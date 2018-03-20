@@ -1,0 +1,171 @@
+
+.connectBanner{
+    padding:0;
+}
+
+.connectContent{
+    background: #F2F6F5;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.connectContent .lle{}
+
+.connectContent .connectList{
+    background: #fff;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.connectContent .connectList .title{
+    line-height: 40px;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+/*-----------------------iconBox------------------*/
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+    url('iconfont.woff') format('woff'),
+    url('iconfont.ttf') format('truetype'),
+    url('iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont{
+     font-family:"iconfont" !important;
+     font-size:50px;font-style:normal;
+     -webkit-font-smoothing: antialiased;
+     -webkit-text-stroke-width: 0.2px;
+     -moz-osx-font-smoothing: grayscale;
+    color: #ccc;
+ }
+
+.connectContent .connectList .iconBox{
+    padding: 0;
+    text-align: center;
+}
+
+.connectContent .connectList .iconBox div{
+    padding: 0;
+}
+
+.connectContent .connectList .iconBox .box1{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.connectContent .connectList .iconBox .box1 .icB{
+    width: 80px;
+    height: 80px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    line-height: 80px;
+    margin: 0 auto;
+}
+
+.connectContent .connectList .iconBox .box2,.box3{
+    line-height: 40px;
+    font-size: 16px;
+    color: #aaa;
+}
+
+/*-----------------------messageBox------------------*/
+
+.messageBox{
+    margin-top: 20px;
+    background: #fff;
+    padding: 30px 15px 30px 15px;
+}
+
+.messageBox .title{
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.messageBox .formName{
+    font-size: 16px;
+    line-height: 50px;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.messageBox .formName .tit{
+    text-align: right;
+    padding: 0;
+}
+
+.messageBox .formName .int{
+    padding: 0;
+}
+
+.messageBox .formName .int input{
+    width: 100%;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 15px 0 15px;
+    line-height: 40px;
+    height: 40px;
+}
+
+.messageBox .formName .int input:focus{
+    outline: none;
+    border:1px solid #45A87A;
+    box-shadow: 0 0 5px #45A87A;
+}
+
+.messageBox .formContent{
+    padding: 0;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.messageBox .formContent .tit{
+    padding: 0;
+    text-align: right;
+}
+
+.messageBox .formContent .int{
+    padding: 0;
+}
+
+.messageBox .formContent .int textarea{
+    width: 100%;
+    min-height: 200px;
+    line-height: 30px;
+    padding: 10px;
+    border:1px solid #ccc;
+    color: #4cae4c;
+    border-radius: 5px;
+}
+
+.messageBox .formContent .int textarea:focus{
+    outline: none;
+    border:1px solid #45A87A;
+    box-shadow: 0 0 5px #45A87A;
+}
+
+.messageBox .butBoxss{
+    height: 50px;
+    margin-top: 40px;
+}
+
+.messageBox .butBoxss .but{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    color: #Fff;
+    background: linear-gradient(#fff,#45A87A,#45A87A,#fff);
+    box-shadow: 0 0 5px #45A87A;
+    margin: 0 auto;
+    cursor: pointer;
+}

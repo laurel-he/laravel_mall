@@ -1,0 +1,110 @@
+
+/*---------------------banner--------------------*/
+.newsBanner{
+    padding: 0;
+}
+
+/*---------------------content---------------------*/
+
+.newsContent{
+    background: #e3e3e3;
+    padding: 0;
+}
+
+.newsContent .lle{
+    padding: 0;
+}
+
+.newsContent .leftContent{
+    margin-top: 30px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.newsContent .leftContent div{
+    padding: 0;
+}
+
+.newsContent .leftContent .leftCos{
+    border-bottom: 1px solid #cccccc;
+}
+
+.newsContent .leftContent .pic{
+    height: 300px;
+    background: #31A26C;
+}
+
+.newsContent .leftContent .tit{
+    line-height: 50px;
+    font-size: 24px;
+    color: #333;
+}
+
+.newsContent .leftContent .con{
+    line-height: 22px;
+    color: #666;
+}
+
+.newsContent .leftContent .dat{
+    line-height: 30px;
+    color: #999;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.newsContent .rightContent{
+    margin-top: 30px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.newsContent .rightContent div{
+    padding: 0;
+}
+
+.newsContent .rightContent .rightTit{
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.newsContent .rightContent .rightCon{
+    margin-top: 20px;
+}
+
+.newsContent .rightContent .rightCon .left{
+    height: 120px;
+    background: #31A26C;
+}
+
+.newsContent .rightContent .rightCon .right{
+    padding-left: 15px;
+}
+
+.newsContent .rightContent .rightCon .right .tit{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.newsContent .rightContent .rightCon .right .dat{
+    color: #999;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.newsContent .rightContent .rightCon .right .scan{
+    color: #999;
+}
+
+/*-------------service-----------------*/
+#service{
+    margin-bottom: 0;
+}
+
+
+

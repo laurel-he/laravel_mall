@@ -1,0 +1,2 @@
+DialogForm 的 ajaxProxy是不是必要 
+ 不是 Group/AddMember 里面 ajaxProxy 是另一个不用传时来

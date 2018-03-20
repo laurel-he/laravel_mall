@@ -1,0 +1,268 @@
+
+.personCenter{
+    background: #f9f9f9;
+    padding: 15px;
+}
+.personCenter .personContent{
+    padding: 0;
+}
+
+.personCenter .personContent .personContentHead{
+    background: #68AB87;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 0;
+    color: #fff;
+}
+
+.personCenter .personContent .personContentHead div{
+    height: 200px;
+}
+
+.personCenter .personContent .personContentHead .userBox .userImg{
+    height: 140px;
+    padding: 0;
+}
+
+.personCenter .personContent .personContentHead .userBox .userImg img{
+    width: 100px;
+    height: 100px;
+    display: block;
+    border-radius: 50px;
+    background: #B3D564;
+    margin: 30px auto;
+}
+
+.personCenter .personContent .personContentHead .userBox .userName{
+    text-align: center;
+    font-size: 16px;
+    height: 20px;
+}
+
+.personCenter .personContent .personContentHead .minBox{
+    height: 200px;
+}
+
+.personCenter .personContent .personContentHead .minBox .minHead{
+    line-height: 50px;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 22px;
+    height: 50px;
+    padding: 0;
+}
+
+.personCenter .personContent .personContentHead .minBox .minBot{
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+    padding: 0;
+}
+
+/*---------------------------左边菜单栏-----------------------*/
+
+#personContentLeft{
+    box-shadow: 0 0 5px #ccc;
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px 15px 30px 15px;
+}
+
+#personContentLeft .leftNavList{
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+#personContentLeft .leftNavList div{
+    padding: 0;
+}
+#personContentLeft .leftNavList .listTitle{
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#personContentLeft .leftNavList .listBar{
+    line-height: 30px;
+    padding-left: 30%;
+    cursor: pointer;
+    border-radius: 3px;
+}
+#personContentLeft .leftNavList a{
+    color: #666;
+    text-decoration: none;
+}
+
+#personContentLeft .leftNavList .listSta{
+    background: #32B16C;
+    color: #fff;
+}
+
+#personContentLeft .leftNavList .listBar:hover{
+    background: #32B16C;
+    color: #fff;
+}
+
+/*-----------------------------右边内容-----------------*/
+
+#personContentRight{
+    padding: 0 0 0 15px;
+}
+
+#rightContent{
+    box-shadow: 0 0 5px #ccc;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#rightContent .basicTitle{
+    margin-top: 10px;
+    line-height: 30px;
+    font-size: 16px;
+    border-left: 3px solid #32B16C;
+}
+
+#rightContent .basicList{
+    padding: 0;
+    margin-top: 15px;
+}
+
+#rightContent .basicList div{
+    padding: 0;
+}
+
+#rightContent .basicList .lef{
+    text-align: right;
+    line-height: 100px;
+    padding-right: 20px;
+}
+
+#rightContent .basicList .rig{
+}
+
+#rightContent .basicList .rig .changHeadBox{
+    width: 120px;
+    height: 100px;
+    box-shadow: 0  0 5px #ccc;
+    border-radius: 5px;
+}
+
+#rightContent .basicList .rig .changHeadBox .basicUserImg{
+    width: 100%;
+    height: 70px;
+    padding-top: 10px;
+}
+
+#rightContent .basicList .rig .changHeadBox .basicUserImg img{
+    width: 60px;
+    height: 60px;
+    display: block;
+    background: #1b6d85;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+#rightContent .basicList .rig .changHeadBox input[type='file']{
+    display: none;
+}
+
+#rightContent .basicList .rig .changHeadBox .basicUserChange{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #666;
+    cursor: pointer;
+}
+
+#rightContent .basicList .leff{
+    padding-right: 20px;
+    text-align: right;
+    line-height: 30px;
+}
+
+#rightContent .basicList .leffI{
+    padding-right: 20px;
+    text-align: right;
+    line-height: 40px;
+}
+
+#rightContent .basicList .rigg{
+    line-height: 30px;
+}
+
+#rightContent .basicList .rigg input[type='text']{
+    height: 40px;
+    min-width: 120px;
+    outline: none;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 0 10px 0 10px;
+}
+
+#rightContent .basicList .rigg input[type='text']:focus{
+    border: none;
+    box-shadow: 0 0 5px #50E8A7;
+}
+
+#rightContent .confirmChange{
+    margin: 30px 0 30px 0;
+    padding:0;
+}
+
+#rightContent .confirmChange div{
+    padding: 0;
+}
+
+#rightContent .confirmChange .rigg .message{
+    position: absolute;
+    left: 0;
+    top:-20px;
+    color: #FF6666;
+}
+
+#confirmChange{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    line-height: 40px;
+    text-align: center;
+    background: #33B16D;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+
+
+
+/*---------------------手机调整样式-----------------*/
+
+@media (max-width:720px) {
+    #personContentLeft .leftNavList .listBar{
+        padding: 0;
+        line-height: 35px;
+        text-align: center;
+    }
+    #personContentRight{
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    .personCenter .personContent .personContentHead{
+        display: none;
+    }
+
+    #rightContent .basicList .rigg input[type='text']{
+        max-width: 100%;
+    }
+}
+

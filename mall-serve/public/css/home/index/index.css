@@ -1,0 +1,706 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 微软雅黑;
+}
+
+.headBar{
+    max-height: 123px;
+}
+
+.indexContent{
+    padding-top: 134px;
+}
+
+.indexContent .banner-bg{
+    padding: 0;
+    background-image: url('../../../images/home/index/bg1.jpg');
+    background-repeat:no-repeat ;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+/*---------------------导航栏---------------------*/
+#navbar{
+    color: #777;
+    background: rgba(255,255,255,0.9);
+    padding-bottom: 10px;
+    /*background-image: url("../../../images/home/index/nav.png");*/
+}
+
+#navbar a{
+    color: #777;
+}
+
+#nav{
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+#ul .m-drop{
+    border:none;
+    box-shadow: none;
+    background: rgba(255,255,255,0.8);
+}
+
+#ul .m-drop li a{
+    text-align: center;
+    line-height: 30px;
+}
+
+#ul li a:hover{
+    color: #047233;
+    border-radius: 5px;
+    background: none;
+}
+
+#ul li a.sta{
+    color: #047233;
+    border-radius: 5px;
+}
+
+#ul a.navC{
+    color: #666;
+    border-radius: 5px;
+}
+
+#ul a.navC:hover{
+    color: #047233;
+    border-radius: 5px;
+}
+
+#ul li a div.line{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #999;
+}
+
+#ul li a:hover div.line{
+    animation: line 0.5s linear ;
+}
+@keyframes line {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+
+#navBut {
+    background: #fff;
+    margin-top: 13px;
+    margin-right: 15px;
+}
+
+#navBut span{
+    background: #666;
+}
+
+#logo{
+    line-height: 30px;
+    font-size: 26px;
+}
+
+.searchBars div{
+    padding: 0;
+}
+
+#searchBar{
+    height: 40px;
+    padding: 0;
+    position: relative;
+}
+#searchB{
+    width: 100%;
+    height: 40px;/*2F9F6D*/
+    border:1px solid #028443;
+    outline: none;
+    padding: 0 50px 0 15px;
+    border-radius: 5px;
+}
+#searchB:focus{
+    border:1px solid #2F9F6D;
+}
+
+#souI{
+    position: absolute;
+    top:5px;
+    right: 10px;
+    color: #666;
+    font-size: 30px;
+    display: block;
+    width: 40px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+#souI:hover{
+    color: #2F9F6D;
+}
+
+/*--------------------------------登录购物车--------------------*/
+
+.personBar{
+    max-height: 30px;
+}
+
+.loginActionBars{
+    height: 30px;
+    z-index: 9999;
+}
+
+#loginBar{
+    height: 30px;
+    padding: 0;
+}
+#loginBar div{
+    padding: 0;
+}
+#loginBar a{
+    text-decoration: none;
+}
+#loginBar .barL{
+    height: 30px;
+}
+#loginBar .barL span{
+    display: block;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: #666;
+}
+#loginBar .barL span:hover{
+    box-shadow: 0 0 3px #666;
+}
+
+#loginBar #buyNumber{
+    position: absolute;
+    color: #fff;
+    padding: 3px;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    background: red;
+    border-radius: 50%;
+    right: 5px;
+    top:10px;
+}
+
+.loginB{
+    top:-50px;
+    right: 100px;
+}
+
+/*-----------------------------购物车------------------*/
+
+#buyCar{
+    display: none;
+    position: relative;
+    float: right;
+    width: 100%;
+    margin-top: 25px;
+    box-shadow: 0 0 5px #999;
+    height: auto;
+    background: #fff;
+    border-radius: 10px;
+    padding-top:5px;
+    padding-bottom: 15px;
+}
+#buyCar .tangleBox{
+    position: absolute;
+    right: 0;
+    top: -16px;
+    height: 16px;
+    width: 70px;
+}
+#buyCar .tangle{
+    position: absolute;
+    right:7%;
+    top: -16px;
+    width: 0;
+    height: 0;
+    border-bottom: 16px solid #ccc;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+#buyCar .header{
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid #ccc;
+}
+#buyCar .header .left{
+    line-height: 40px;
+}
+#buyCar .header .totalBuy{
+    height: 20px;
+    background: #AFDB99;
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+#buyCar .bottom{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#buyCar .bottom div{
+    padding: 0;
+}
+#buyCar .bottom .line{
+    height: 1px;
+    background: #ccc;
+    margin-top: 5px;
+}
+#buyCar .bottom .buyLists{
+    max-height: 300px;
+    min-height: 100px;
+    overflow-y: scroll;
+}
+#buyCar .bottom .buyList{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+#buyCar .bottom .buyList .listL img{
+    width: 100%;
+    height: 65px;
+}
+#buyCar .bottom .buyList .listM .listName{
+    line-height: 30px;
+    color: #0256D5;
+    font-size: 16px;
+    padding: 0 10px 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#buyCar .bottom .buyList .listM .listV{
+    line-height: 20px;
+    color: #999;
+    padding: 0 10px 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+#buyCar .bottom .buyList .listR .price{
+    line-height: 35px;
+    text-align: center;
+    color: red;
+}
+#buyCar .bottom .buyList .listR .del{
+    line-height: 30px;
+    font-size: 16px;
+    text-align: center;
+    color: red;
+    cursor: pointer;
+}
+#buyCar .bottom .goBuy{
+    border-top: 1px solid #2F9F6D;
+    line-height: 50px;
+}
+#buyCar .bottom .goBuy .goB{
+    height: 50px;
+}
+#buyCar .bottom .goBuy #goTo{
+    position: absolute;
+    right: 0;
+    top:10px;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #30B16A;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+}
+
+/*--------------------------个人中心-------------------------*/
+
+#loginBar #myCenter{
+    display: none;
+    min-width: 140px;
+    height: auto;
+    box-shadow: 0 0 5px #666;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+#myCenter .tangle{
+    width: 0;
+    height: 0;
+    border-bottom: 16px solid #ccc;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    position: absolute;
+    top:-16px;
+    left: 17%;
+}
+
+#myCenter .userImg img{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: #2ca02c;
+    margin: 10px auto;
+}
+
+#myCenter .username{
+    line-height: 30px;
+    text-align: center;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow: hidden;
+}
+
+#myCenter .barList{
+    line-height: 30px;
+    margin-top: 10px;
+    border-radius: 3px;
+    color: #999;
+    cursor: pointer;
+}
+
+#myCenter .barList div:nth-child(1){
+    text-align: right;
+}
+
+#myCenter .barList:hover{
+    background: #eeeeee;
+}
+
+#myCenter .barList span{
+    margin-right: 10px;
+}
+
+
+/*-------------------------内容区域---------------------*/
+#content{
+    padding: 0;
+}
+#head{
+    padding: 0;
+}
+#head .llf{
+    padding: 0;
+}
+#head .lle{
+    padding: 0;
+}
+
+/*-------------------banner-----------------*/
+#banner{
+    padding: 0;
+}
+#banner img{
+    width: 100%;
+}
+
+/*--------------------------navF----------------------*/
+#navFs{
+    background: rgba(255,255,255,0.7);
+    padding: 20px 30px 30px 30px;
+    z-index: 99;
+    margin-top: 60px;
+}
+#navFs div{
+    padding: 0;
+    text-align: center;
+}
+#navFs .navFc{
+    margin-top: 5px;
+    color: #666;
+}
+
+#navFs .navFleft{
+    padding-right: 15px;
+    height: 70px;
+    writing-mode: tb-rl;
+    font-size: 16px;
+    border-right: 1px solid #F29FA8;
+}
+
+#navFs .navFright{
+    padding-top: 5px;
+    line-height: 30px;
+}
+
+
+
+/*----------------section1--------------------*/
+
+#section1{
+    text-align: center;
+    margin-top: 80px;
+}
+
+.headMax{
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 10px;
+}
+
+.headMin{
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.headMin .headMinB{
+    background: #F19FA7;
+    width: 210px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+#section1 #section1C{
+    padding: 0;
+}
+
+#section1 #section1C .cont{
+    margin-top: 80px;
+}
+
+/*-----------------------section2--------------------*/
+
+#section2{
+    margin-top: 50px;
+}
+
+#section2 .llf{
+    padding: 0;
+}
+
+#section2 #section2C{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#section2 .cont{
+    margin-top: 80px;
+}
+
+/*-----------------------section3-----------------------*/
+#section3{
+    padding: 20px  0 10px 0;
+}
+
+#section3 .llf{
+    padding: 0;
+}
+
+#section3 #section3C{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#section3 .cont{
+    margin-top: 80px;
+}
+
+/*-------------------------products------------------------------*/
+
+#head1{
+    padding: 0;
+}
+
+#products{
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+#products .heads{
+    padding: 25px 0 20px 0;
+}
+
+#products .productsNav{
+    margin-top: 30px;
+    padding: 0;
+}
+
+#products .productsNav .lle{
+    padding: 0;
+}
+
+#products .productsNav .productsNavs{
+    padding: 0;
+    background: #cccccc;
+    line-height: 40px;
+}
+
+#products .productsNav .productsNavs div{
+    padding: 0;
+    position: relative;
+}
+
+#products .productsNav .productsNavs .bars{
+    position: relative;
+}
+
+#products .productsNav .productsNavs .bars .leanLine{
+    position: absolute;
+    right: -5px;
+    top: 20px;
+    height: 1px;
+    width: 26px;
+    background: #666;
+    transform: rotate(-70deg);
+}
+/*---------------------productsLists---------------*/
+
+#products .productsLists{
+    margin-top: 40px;
+}
+
+#products .productsLists .productsList{
+    border:1px solid #ccc;
+    padding: 0;
+}
+
+/*------------------------service------------------------*/
+
+#service{
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+#service .serviceBar{
+    text-align: center;
+    padding: 15px;
+}
+
+#service .serviceBar .barBox{
+    height: 100%;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 170px;
+    font-size: 30px;
+    font-family: 华文琥珀;
+    box-shadow: 0 0 5px rgba(75,131,84,0.8),0 3px 8px rgba(75,131,84,0.7),0 3px 11px rgba(75,131,84,0.6)
+}
+
+/*---------------------------customService------------------------------*/
+
+.customService{
+    background: #F7F8F0;
+    padding: 50px 15px 50px 15px;
+}
+
+.customService .serviceLine{
+    border-bottom: 2px solid #047233;
+    border-top: 2px solid #047233;
+    padding: 50px 0px 50px 0px;
+}
+
+.customService .serviceLine div{
+    padding: 0;
+}
+
+.customService .serviceLine .left{
+    font-size: 26px;
+    line-height: 60px;
+    padding:0;
+    color: #066F2D;
+}
+
+.customService .serviceLine .middle{
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.customService .serviceLine .middle div{
+    padding: 0;
+}
+
+.customService .serviceLine .right{
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.customService .serviceLine .right div{
+    padding: 0;
+}
+
+/*------------------------------------navBottom---------------------------------*/
+
+.navBottom{
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    line-height: 40px;
+    padding: 0px 15px 0px 15px;
+}
+
+.navBottom .title{
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.navBottom .introduction{
+    line-height: 30px;
+    min-height: 160px;
+}
+
+.navBottom .navBot div{
+    padding: 0;
+}
+
+.navBottom .navNum{
+    line-height: 50px;
+    text-align: center;
+}
+
+/*-----------------------手机样式调整----------------------*/
+
+@media (max-width: 767px) {
+    .headBar{
+        max-height: 100%;
+    }
+    #ul .m-drop{
+        width: 100%;
+        float: left;
+        position: relative;
+        box-shadow: none;
+        border: none;
+        background: none;
+        background: rgba(0,0,0,0.4);
+    }
+    #ul .m-drop li a{
+        line-height: 30px;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .indexContent{
+        padding-top: 117px;
+    }
+
+    #ul li a div{
+    }
+}
+
+
+
+
+

@@ -1,0 +1,317 @@
+li{
+    list-style: none;
+}
+.productBar{
+    line-height: 30px;
+    padding: 10px 0 10px 0;
+    background: #e6e6e6;
+    font-size: 16px;
+}
+
+/*----------------productInfo------------------*/
+
+.productInfo{
+    padding: 15px 0 20px 0;
+}
+
+.productInfo .lle{
+    padding: 0;
+}
+
+.productInfo .proLef {
+    margin-top: 15px;
+    height: 550px;
+}
+
+.productInfo .proLef .top .topLef,.topRig{
+    margin-top: 150px;
+    line-height: 70px;
+    background: #e3e3e3;
+    font-size: 30px;
+    color: #fff;
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.productInfo .proLef .bot .botI{
+    margin-top: 15px;
+    padding: 0 10px 0 0;
+}
+
+.productInfo .proLef .bot .botI .imgB{
+    height: 80px;
+    background: #5bc0de;
+}
+
+.productInfo .proLef .bot .botI .sta{
+    border: 2px solid red;
+}
+
+/*---------------------*/
+
+.productInfo .proRig{
+    margin-top: 15px;
+    padding: 0;
+}
+
+.productInfo .proRig .rigTit{
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #444;
+}
+
+.productInfo .proRig .rigFun{
+    line-height: 30px;
+    font-size: 16px;
+    color: #666;
+}
+
+.productInfo .proRig .rigDes{
+    line-height: 25px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.productInfo .proRig .rigLis{
+    line-height: 30px;
+    color: #299E69;
+    font-size: 18px;
+}
+
+.productInfo .proRig .rigPri{
+    line-height: 40px;
+    border-bottom: 1px solid #cccccc;
+    margin-top: 10px;
+}
+
+.productInfo .proRig .rigNum{
+    margin-top: 15px;
+}
+
+.productInfo .proRig .rigNum div{
+    padding: 0;
+}
+
+.productInfo .proRig .rigNum .left{
+    padding-right: 15px;
+}
+
+.productInfo .proRig .rigNum .left .productNumber{
+    width: 100%;
+    border: 1px solid #999;
+    border-radius: 5px;
+    height: 40px;
+    padding: 0 50px 0 50px;
+    font-size: 18px;
+    outline:none;
+}
+
+.productInfo .proRig .rigNum .left .productNumber:focus{
+    border: 1px solid #5bc0de;
+    box-shadow: 0 0 2px #5bc0de,0 0 3px #5bc0de;
+}
+
+/*鍘婚櫎input type涓簄umber鏃� 绠ご鏍峰紡*/
+/*璋锋瓕娴忚鍣�*/
+.productInfo .proRig .rigNum .left input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+}
+/*鐏嫄娴忚鍣�*/
+.productInfo .proRig .rigNum .left input[type="number"]{
+    -moz-appearance:textfield;
+}
+
+.productInfo .proRig .rigNum .left .increase{
+    position: absolute;
+    left: 0;
+    top:0;
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+    line-height: 30px;
+    text-align: center;
+    border-right:1px solid #999;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.productInfo .proRig .rigNum .left .decrease{
+    position: absolute;
+    right: 0;
+    top:0;
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+    line-height: 30px;
+    text-align: center;
+    border-left:1px solid #999;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.productInfo .proRig .rigNum .right{
+    line-height: 40px;
+    font-size: 18px;
+}
+
+.productInfo .proRig .rigAct{
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.productInfo .proRig .rigAct .buyNow{
+    background: #30A36C;
+    color: #fff;
+    margin-top: 20px;
+    margin-right: 15px;
+}
+
+.productInfo .proRig .rigAct .addStore{
+    background: #A8ACAB;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.productInfo .proRig .rigShare{
+    line-height: 30px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/*--------------------productContent---------------*/
+
+.productContent{
+    background: #F5F5F5;
+    padding: 0;
+}
+
+.productContent .leftCon{
+    background: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+
+.productContent .leftCon img{
+	max-width: 735px;
+}
+
+.productContent .leftCon div{
+    padding: 0;
+}
+
+.productContent .leftCon .productTit{
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.productContent .leftCon .productImg{
+    background: #31A26C;
+    margin-top: 15px;
+    height: 335px;
+}
+
+.productContent .leftCon .productInformation{
+    margin-top: 15px;
+    line-height: 25px;
+    color: #888;
+}
+
+.productContent .leftCon .productImgs{
+    background: #31A26C;
+    margin-top: 15px;
+    height: 335px;
+}
+
+/*--------------------------------------*/
+.productContent .rightCon{
+    background: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+
+.productContent .rightCon .productTit{
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.productContent .rightCon .productLis{
+    padding: 0;
+    margin-top: 15px;
+}
+
+.productContent .rightCon .productLis div{
+    padding: 0;
+}
+
+.productContent .rightCon .productLis .proImg{
+   // height: 200px;
+    //overflow: hidden;
+    padding: 0 10px 0 10px;
+}
+
+.rightCon .productLis .proImg img{
+	max-width: 302px;
+}
+
+.productContent .rightCon .productLis .tit{
+    line-height: 30px;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.productContent .rightCon .productLis .price{
+    line-height: 25px;
+    color: red;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+.gallery-top {
+    height: 80%;
+    width: 100%;
+}
+.gallery-thumbs {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+.gallery-thumbs .swiper-slide {
+    height: 100%;
+    opacity: 0.4;
+}
+.gallery-thumbs .swiper-slide-active {
+    opacity: 1;
+}
+
+
+
+/*-------------------service--------------------*/
+#service{
+    margin-bottom: 0;
+}

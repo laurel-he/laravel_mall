@@ -1,0 +1,229 @@
+.orderDetails{
+    background: #F2F2F2;
+    padding: 0;
+}
+
+#orderDetails{
+    padding: 15px;
+}
+
+#orderDetails div{
+    padding: 0;
+}
+
+#orderDetails .title {
+    line-height: 40px;
+    font-size: 16px;
+}
+
+#orderDetails .title a{
+    color: #333;
+    text-decoration: none;
+}
+
+#orderDetails .status{
+    padding: 25px;
+    line-height: 40px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+#orderDetails .status #cancel{
+    position: absolute;
+    right: 25px;
+    top:25px;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+}
+
+/*收货进度条*/
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'),
+    url('iconfont.woff') format('woff'),
+    url('iconfont.ttf') format('truetype'),
+    url('iconfont.svg#iconfont') format('svg');
+}
+.iconfontStep{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#orderDetails .step{
+    margin-top: 15px;
+    background: #fff;
+    padding: 15px 15px 5px 15px;
+    border-radius: 5px;
+}
+
+#orderDetails .step .stepList{
+    text-align: center;
+}
+
+#orderDetails .step .stepList .stepOne .box{
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    line-height: 80px;
+    margin: 0 auto;
+    background: #DADADA;
+    position: relative;
+    z-index: 999;
+}
+
+#orderDetails .step .stepList .stepOne .state{
+    background: #fff;
+    box-shadow: 0 0 10px #61A6F1;
+}
+
+#orderDetails .step .stepList .stepOne .box span{
+    font-size: 40px;
+    color: #777;
+}
+
+#orderDetails .step .stepList .stepOne .box span.states{
+    color: #61A6F1;
+}
+
+#orderDetails .step .stepList .stepOne .leftLine{
+    height: 2px;
+    background: #DADADA;
+    position: absolute;
+    left: 0;
+    top:39px;
+}
+
+#orderDetails .step .stepList .stepOne .rightLine{
+    height: 2px;
+    background: #DADADA;
+    position: absolute;
+    right: 0;
+    top:39px;
+}
+
+#orderDetails .step .stepList .stepOne .lineState{
+    height: 6px;
+    background: #61A6F1;
+    top:37px;
+}
+
+#orderDetails .step .stepList .stepTwo{
+    line-height: 25px;
+    color: #777;
+    font-size: 16px;
+}
+
+#orderDetails .step .stepList .textS{
+    color: #61A6F1;
+}
+
+/*--------------订单详情内容----------*/
+#orderDetails .orderContent{
+    padding: 15px;
+    background: #fff;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+#orderDetails .orderContent .title{
+    line-height: 40px;
+    font-size: 16px;
+    border-bottom: 1px solid #DADADA;
+    margin-bottom: 10px;
+}
+#orderDetails .orderContent .orderList{
+    line-height: 30px;
+}
+#orderDetails .orderContent .orderList span{
+    color: #999;
+}
+#orderDetails .orderContent .orderValue{
+    background: #F0F2F1;
+    padding: 10px;
+}
+#orderDetails .orderContent .orderValue .leftV img{
+    display: block;
+    width: 100%;
+    height: 100px;
+    background: #FEC955;
+}
+#orderDetails .orderContent .orderValue .leftV .text{
+    padding-left: 10px;
+    line-height: 30px;
+}
+#orderDetails .orderContent .orderValue .leftV .text .storeV{
+    color: #999;
+}
+#orderDetails .orderContent .orderValue .rightV{
+    text-align: center;
+    line-height: 100px;
+}
+#orderDetails .orderContent .orderValue .rightV .lls{
+    color: #888;
+}
+#orderDetails .orderPrice{
+    margin-top: 15px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+}
+#orderDetails .orderPrice .priceTit{
+    border-bottom: 1px solid #e5e5e5;
+    line-height: 40px;
+}
+#orderDetails .orderPrice .priceTit .mid{
+    text-align: center;
+}
+#orderDetails .orderPrice .priceTit .rig{
+    text-align: right;
+}
+#orderDetails .orderPrice .priceTit .total{
+    font-size: 16px;
+    color: #FF6666;
+    text-align: right;
+}
+#orderDetails .orderPrice .priceS{
+    border: none;
+}
+
+
+@media (max-width: 768px) {
+    #orderDetails .step .stepList .stepOne .box{
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        line-height: 60px;
+    }
+
+    #orderDetails .step .stepList .stepOne .box span{
+        font-size: 30px;
+    }
+
+    #orderDetails .step .stepList .stepTwo{
+        font-size: 14px;
+    }
+    #orderDetails .step .stepList .stepOne .leftLine{
+        top:29px;
+    }
+
+    #orderDetails .step .stepList .stepOne .rightLine{
+        top:29px;
+    }
+    #orderDetails .step .stepList .stepOne .lineState{
+        top:27px;
+    }
+    #orderDetails .orderContent .orderValue .rightV{
+        line-height: 50px;
+    }
+}

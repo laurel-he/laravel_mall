@@ -1,0 +1,183 @@
+
+#registerContent{
+    padding: 50px 15px 50px 15px;
+    background: #f7f7f7;
+}
+
+#registerContent .registerForm{
+    height: auto;
+    box-shadow: 0 0 5px #30B16A;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 20px 15px 30px 15px;
+}
+
+#registerContent .registerForm .title{
+    text-align: center;
+    line-height:50px;
+    font-size:24px;
+    color: #333;
+}
+
+#registerContent .registerForm .title .loginAction{
+    position: absolute;
+    right: 0;
+    top:0px;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+#registerContent .registerForm .line{
+    height: 2px;
+    background: #30B16A;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+#registerContent .registerForm .line .diamond{
+    width: 10px;
+    height: 10px;
+    background: #30B16A;
+    /* Rotate */
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    /* Rotate Origin */
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    margin: -2px auto;
+}
+
+/*---------------表单-------------*/
+
+#registerContent .registerForm .registerBar{
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+#registerContent .registerForm .registerBar .leftBar{
+    text-align: right;
+    padding: 0;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#registerContent .registerForm .registerBar .rightBar .message{
+    position: absolute;
+    top:-20px;
+    left: 15px;
+    color: #FF6666;
+    line-height: 20px;
+}
+
+#registerContent .registerForm .registerBar .rightBar{
+    padding-right: 0;
+    margin-bottom: 5px;
+}
+
+#registerContent .registerForm .registerBar .rightBar input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 15px 0 15px;
+    outline: none;
+}
+
+#registerContent .registerForm .registerBar .rightBar input:focus{
+    box-shadow: 0 0 5px #30B16A;
+    border: none;
+}
+
+#sendCode{
+    text-align: center;
+    padding: 0;
+    border-radius: 5px;
+    background: #2F9F6D;
+    color: #fff;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#registerContent .registerForm .minT{
+    line-height: 30px;
+    text-align: center;
+    color: #999;
+}
+
+#registerContent .registerForm .ling{
+    background: #ccc;
+    height: 2px;
+}
+
+#registerContent .registerForm .agreeContent{
+    line-height: 30px;
+    padding: 0;
+}
+
+#registerContent .registerForm .agreeContent .left input[type=checkbox]{
+    display: none;
+}
+
+#registerContent .registerForm .agreeContent .left .checkB{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: 7px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#registerContent .registerForm .agreeContent .left .checkB span{
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    left: 2px;
+    top:2px;
+    border-radius: 3px;
+    background: #2F9F6D;
+}
+
+#registerContent .registerForm .agreeContent .ccn{
+    padding-right: 0;
+    color: #999;
+    font-size: 12px;
+}
+
+#registerContent .registerForm .registerAction{
+    padding-right: 0;
+}
+
+#registerContent .registerForm .registerAction .message{
+    position: absolute;
+    top:0;
+    left: 15px;
+    color: #FF6666;
+    line-height: 20px;
+}
+
+#register {
+    text-align: center;
+    line-height: 40px;
+    margin-top: 30px;
+    background: #30B26A;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+
+

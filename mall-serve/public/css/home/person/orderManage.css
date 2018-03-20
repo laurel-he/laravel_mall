@@ -1,0 +1,90 @@
+
+#rightContent .takeDelivery{
+    border:1px solid #e3e3e3;
+    border-radius: 5px;
+    padding: 0 0 10px 0;
+    margin-bottom: 15px;
+}
+
+#rightContent .takeDelivery div{
+    padding: 0;
+}
+
+#rightContent .takeDelivery .takeDeliveryHead{
+    background: #F3F3F3;
+    padding: 0 15px 0 15px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#rightContent .takeDelivery .takeDeliveryHead .lef{
+    line-height: 24px;
+    padding: 10px 0 10px 0;
+}
+
+#rightContent .takeDelivery .takeDeliveryHead .lef .tit{
+    font-size: 18px;
+    line-height: 30px;
+    color: #FF6666;
+}
+
+#rightContent .takeDelivery .takeDeliveryHead .rig{
+    text-align: right;
+    line-height: 100px;
+}
+
+#rightContent .takeDelivery .takeDeliveryList{
+    padding: 10px 15px 10px 15px;
+}
+
+#rightContent .takeDelivery .takeDeliveryList .lef img{
+    width: 100%;
+    height: 80px;
+    background: #2F9F6D;
+}
+
+#rightContent .takeDelivery .takeDeliveryList .lef .store{
+    padding-left: 10px;
+    line-height: 25px;
+}
+
+#rightContent .takeDelivery .takeDeliveryList .rig .rigBin{
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    line-height: 40px;
+    float: right;
+    margin-top: 15px;
+    border: 1px solid #e5e5e5;
+    cursor: pointer;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#rightContent .takeDelivery .takeDeliveryList .rig a{
+    color: #333;
+    text-decoration: none;
+}
+
+#rightContent .takeDelivery .takeDeliveryList .rig .checkS{
+    margin-left: 10px;
+}
+
+#rightContent .takeDelivery .takeDeliveryList .rig #confirmTake{
+    margin-left: 10px;
+    background: #F45457;
+    color: #fff;
+}
+
+
+@media (max-width: 768px) {
+    #rightContent .takeDelivery .takeDeliveryHead .rig{
+        line-height: 40px;
+    }
+
+    #rightContent .takeDelivery .takeDeliveryList .lef img{
+        height: 80px;
+    }
+}

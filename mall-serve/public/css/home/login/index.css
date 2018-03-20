@@ -1,0 +1,130 @@
+
+#loginBox{
+    background: #f7f7f7;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+#loginBox .loginForm{
+    height: 500px;
+    box-shadow: 0 0 5px #30B16A;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+#loginBox .loginForm .title{
+    line-height: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+#loginBox .loginForm .line{
+    height: 2px;
+    background: #30B16A;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+#loginBox .loginForm .line .diamond{
+    width: 10px;
+    height: 10px;
+    background: #30B16A;
+    /* Rotate */
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    /* Rotate Origin */
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    margin: -2px auto;
+}
+
+#loginBox .loginForm .inputBar{
+    margin-top: 30px;
+}
+
+#loginBox .loginForm .inputBar .inp {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    padding: 0 15px 0 15px;
+}
+
+#loginBox .loginForm .inputBar .inp:focus{
+    box-shadow: 0 0 5px #30B16A;
+    border: none;
+}
+
+#loginBox .loginForm .check{
+    line-height: 30px;
+    padding-left: 45px;
+}
+
+#loginBox .loginForm .check input[type=checkbox]{
+    display: none;
+}
+
+#loginBox .loginForm .check .checkB{
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 5px #ccc;
+    cursor: pointer;
+    color: #2F9F6D;
+    font-size: 20px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    left: 15px;
+    top:5px;
+}
+
+#loginBox .loginForm .actionB{
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#loginBox .loginForm .actionB:hover{
+    box-shadow: 0 0 10px #000;
+}
+
+#login{
+    background: #30B16A;
+}
+#register{
+    background: #B3DD99;
+}
+
+#loginBox .loginForm .messageBar{
+    position: absolute;
+    top:100px;
+    color: #F06464;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+/*--------------------service-------------------------*/
+
+#service{
+    margin-bottom: 0;
+    padding: 30px 45px 30px 45px;
+    background: #DBF0E9;
+}
+
+

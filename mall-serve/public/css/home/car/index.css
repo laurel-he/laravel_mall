@@ -1,0 +1,291 @@
+.carContent{
+    height: auto;
+    background: #f9f9f9;
+    padding: 30px 15px 30px 15px;
+}
+
+.carContent .carBox{
+    box-shadow: 0 0 10px #ccc;
+    padding-bottom: 20px;
+    border-radius: 5px;
+}
+
+.carContent .carBox .title{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.carContent .carBox .title span{
+    margin: 0 10px 0 0;
+    font-size: 30px;
+    line-height: 40px;
+    color: #048544;
+}
+
+.carContent .carBox .carHead{
+    padding: 0;
+    line-height: 40px;
+    background: #EFEFEF;
+    text-align: center;
+}
+
+.carContent .carBox .carHead div{
+    padding: 0;
+}
+
+.carContent .carBox .carHead input[type='checkbox']{
+    display: none;
+}
+
+.carContent .carBox .carHead label.checkbox{
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 16px;
+    float: left;
+    box-shadow: 0 0 3px #666;
+    border-radius: 2px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.carContent .carBox .carHead label.state{
+    background: #F96868;
+    color: #fff;
+}
+
+/*----------------------购物列表------------------*/
+
+.carContent .carBox .carList{
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.carContent .carBox .carList div{
+    padding: 0;
+}
+
+
+.carContent .carBox .carList input[type='checkbox']{
+    display: none;
+}
+
+.carContent .carBox .carList label.checkbox{
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 52px auto;
+    box-shadow: 0 0 3px #666;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 16px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.carContent .carBox .carList label.state{
+    background: #F96868;
+    color: #fff;
+}
+/*------------------手机屏幕时显示类-------------------------*/
+@media (max-width: 720px) {
+    .m-th{
+        display: none;
+    }
+    .carContent .carBox .carList .m-pd{
+        padding-top: 10px;
+    }
+    .carContent .carBox .carList{
+        padding-bottom: 15px;
+    }
+}
+@media (min-width: 720px) {
+    .carContent .carBox .carList .m-pd{
+        padding-top: 45px;
+    }
+}
+/*-----------------------手机屏幕时显示类---------------------*/
+/*--------------------------------------------------*/
+.carContent .carBox .carList .stores .left img{
+    display: block;
+    min-width: 80px;
+    width: 80%;
+    height: 80px;
+    margin: 20px auto;
+    background: #2ca02c;
+}
+
+.carContent .carBox .carList .stores .right{
+    height: 100%;
+    padding-top: 15px;
+    padding-left: 10px;
+    line-height: 30px;
+}
+
+.carContent .carBox .carList .stores .right .storeTitle{
+    font-size: 16px;
+    color: #5FA6D1;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.carContent .carBox .carList .stores .right .storeValue{
+    line-height: 20px;
+    max-height: 40px;
+    overflow: hidden;
+}
+
+.carContent .carBox .carList .price{
+    text-align: center;
+    line-height: 30px;
+}
+
+.carContent .carBox .carList .amount{
+    text-align: center;
+}
+
+.carContent .carBox .carList .amount .amountNumber{
+    width: 120px;
+    height: 30px;
+    border-radius: 2px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 auto;
+    border:1px solid #ccc;
+}
+
+.carContent .carBox .carList .amount .amountNumber div{
+    float: left;
+}
+
+.carContent .carBox .carList .amount .amountNumber .lef{
+    width: 25%;
+    font-size: 34px;
+    line-height: 22px;
+    height: 29px;
+    cursor: pointer;
+    border-right: 1px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.carContent .carBox .carList .amount .amountNumber .mid{
+    width: 50%;
+    font-size: 18px;
+}
+
+.carContent .carBox .carList .amount .amountNumber .rig{
+    width: 25%;
+    font-size: 34px;
+    line-height: 22px;
+    height:29px;
+    cursor: pointer;
+    border-left: 1px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.carContent .carBox .carList .totalPrice{
+    text-align: center;
+    line-height: 30px;
+}
+
+.carContent .carBox .carList .action{
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    color: red;
+}
+
+.carContent .carBox .carList .action .delete{
+    cursor: pointer;
+}
+
+/*----------------结算栏-------------------*/
+
+.carContent .carBox .carActionBar{
+    line-height: 50px;
+    background: #EFEFEF;
+    margin-top: 15px;
+}
+
+.carContent .carBox .carActionBar .leftBars{
+    padding: 0;
+}
+
+.carContent .carBox .carActionBar .leftBars div{
+    float: left;
+    text-align: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    line-height: 28px;
+    margin-top: 10px;
+    margin-right: 15px;
+    border: 1px solid #ccc;
+    color: #666;
+    cursor: pointer;
+}
+
+.carContent .carBox .carActionBar .rightBars{
+    padding: 0;
+    line-height: 50px;
+}
+
+.carContent .carBox .carActionBar .rightBars div{
+    padding: 0;
+}
+
+.carContent .carBox .carActionBar .rightBars #balance{
+    width: 80px;
+    height: 40px;
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    background: #F96868;
+    color: #fff;
+    font-size: 16px;
+}
+
+/*---------------------------猜你喜欢---------------------*/
+
+.perLike{
+    padding: 15px 15px 30px 15px;
+    background: #fff;
+}
+
+.perLike .perLikeTittle{
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.perLike .perLikeLists{
+    padding: 0 0 30px 0;
+}
+
+.perLike .perLikeList{
+    margin-top: 30px;
+}
+
+.perLike .perLikeList img{
+    width: 100%;
+    height: 250px;
+    background: #2F9F6D;
+}
+
+

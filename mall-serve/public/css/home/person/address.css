@@ -1,0 +1,124 @@
+
+#rightContent .basicList #saveAddress{
+    display: none;
+}
+
+#rightContent .basicList .rigg .detailAddress{
+    padding: 0;
+}
+
+#rightContent .basicList .rigg .detailAddress input{
+    width: 100%;
+}
+
+#rightContent .basicList .rigg select{
+    float: left;
+    line-height: 40px;
+    margin-right: 15px;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    background: #f7f7f7;
+}
+
+#rightContent .basicList .rigg select:focus{
+    border: none;
+    box-shadow: 0 0 5px #50E8A7;
+}
+
+#rightContent .basicList .rigg .saveAction{
+    display: block;
+    float: left;
+    margin-top:7px ;
+    margin-right: 15px;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #999;
+    cursor: pointer;
+    line-height: 16px;
+    text-align: center;
+    color: #33B16D;font-size: 16px;
+}
+
+#rightContent .addressB{
+    margin-top: 15px;
+}
+
+#rightContent .addressBox{
+    border-radius: 5px;
+    border: 2px solid #dddddd;
+    padding: 10px 15px 10px 15px;
+}
+
+#rightContent .addressBox:hover{
+    box-shadow: 0 0 5px #3EC1A3;
+}
+
+#rightContent .boxState{
+    border: 2px solid #3EC1A3;
+}
+
+#rightContent .addressBox .addressBoxTitle{
+    padding: 0;
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+}
+
+#rightContent .addressBox .addressBoxTitle div{
+    padding: 0;
+}
+
+#rightContent .addressBox .addressBoxTitle .rig{
+    text-align: right;
+}
+
+#rightContent .addressBox .addressBoxCon{
+    padding: 0;
+    line-height: 30px;
+    color: #999;
+    margin-top: 15px;
+}
+
+#rightContent .addressBox .addressBoxCons{
+    padding: 0;
+    line-height: 30px;
+    margin-top: 30px;
+    color: #666;
+}
+
+#rightContent .addressBox .addressBoxAction{
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    width: 80px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+#rightContent .addressBox .addressBoxAction:hover{
+    box-shadow: 0 0 5px #FF0C0C;
+}
+
+#rightContent .addressBox .addressBoxAction div{
+    padding:0;
+    cursor: pointer;
+}
+
+#rightContent .addressBox .addressBoxAction div:hover{
+    background: #F57171;
+    color: #fff;
+}
+
+
+
+/*---------------------手机调整样式-----------------*/
+
+@media (max-width:720px) {
+    #rightContent .basicList .rigg .phoneMargin{
+        margin-bottom: 15px;
+    }
+}
