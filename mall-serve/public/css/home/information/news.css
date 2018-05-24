@@ -1,13 +1,8 @@
 
 /*---------------------banner--------------------*/
-.newsBanner{
-    padding: 0;
-}
-
 /*---------------------content---------------------*/
-
 .newsContent{
-    background: #e3e3e3;
+    background: #fff;
     padding: 0;
 }
 
@@ -15,96 +10,120 @@
     padding: 0;
 }
 
-.newsContent .leftContent{
-    margin-top: 30px;
-    padding: 30px;
-    background: #fff;
-    border-radius: 5px;
-    margin-bottom: 30px;
-}
-
-.newsContent .leftContent div{
+.newsContent .lle div{
     padding: 0;
 }
 
-.newsContent .leftContent .leftCos{
-    border-bottom: 1px solid #cccccc;
+.newsContent .lle .leftContent{
+    margin-top: 20px;
+    background: #fff;
+    padding-right: 20px;
 }
 
-.newsContent .leftContent .pic{
-    height: 300px;
-    background: #31A26C;
+.newsContent .leftContent .leftBanner img{
+    width: 100%;
 }
 
-.newsContent .leftContent .tit{
-    line-height: 50px;
-    font-size: 24px;
+.newsContent .leftContent .leftLists{
+    padding: 20px 15px 20px 0;
+    border-bottom: 1px solid #999;
+    margin-top: 5px;
+}
+
+.newsContent .leftContent .leftLists:hover{
+    box-shadow: 0 0 5px #DF385F;
+}
+
+.newsContent .leftContent .leftLists a{
     color: #333;
+    text-decoration: none;
 }
 
-.newsContent .leftContent .con{
-    line-height: 22px;
-    color: #666;
+.newsContent .leftContent .leftLists .imgBox{
+    padding-right: 15px;
 }
 
-.newsContent .leftContent .dat{
-    line-height: 30px;
+.newsContent .leftContent .leftLists .imgBox img{
+    width: 100%;
+}
+
+.newsContent .leftContent .leftLists:hover .imgBox img{
+    box-shadow: none;
+}
+
+.newsContent .leftContent .leftLists .msgBox .bigTit{
+    line-height: 40px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.newsContent .leftContent .leftLists .msgBox .times{
+    font-size: 12px;
     color: #999;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    line-height: 30px;
 }
+
+.newsContent .leftContent .leftLists .msgBox .msgCon{
+    line-height: 25px;
+}
+
+.newsContent .leftContent .leftPage #navBars{
+}
+
+.newsContent .leftContent .leftPage #pageNag{
+    margin: 20px auto;
+    display: block;
+}
+
+#pageNag a{
+    color: #F5C3CF;
+}
+
+#pageNag li.active a{
+    background: #F5C3CF;
+    color: #fff;
+    border-color: #F5C3CF;
+}
+
 
 .newsContent .rightContent{
-    margin-top: 30px;
-    padding: 30px;
-    background: #fff;
-    border-radius: 5px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    background: #fafafa;
 }
 
 .newsContent .rightContent div{
     padding: 0;
 }
 
-.newsContent .rightContent .rightTit{
-    line-height: 50px;
-    font-size: 24px;
-    text-align: center;
-    border-bottom: 1px solid #eeeeee;
-}
-
-.newsContent .rightContent .rightCon{
+.newsContent .lle .rightContent .rightTit{
     margin-top: 20px;
-}
-
-.newsContent .rightContent .rightCon .left{
-    height: 120px;
-    background: #31A26C;
-}
-
-.newsContent .rightContent .rightCon .right{
+    line-height: 30px;
     padding-left: 15px;
 }
 
-.newsContent .rightContent .rightCon .right .tit{
-    font-size: 16px;
-    font-weight: bold;
+.newsContent .rightContent .rightTit .line{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #F5C3CF;
 }
 
-.newsContent .rightContent .rightCon .right .dat{
-    color: #999;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.newsContent .lle .rightContent .rightList{
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
 }
 
-.newsContent .rightContent .rightCon .right .scan{
-    color: #999;
+.newsContent .lle .rightContent .rightList .imgBox img{
+    width: 100%;
 }
 
-/*-------------service-----------------*/
-#service{
-    margin-bottom: 0;
+.newsContent .lle .rightContent .rightList .msgBox{
+    padding-left: 10px;
 }
+
+
 
 
 

@@ -13,6 +13,7 @@ use App\Repositories\Criteria\Employee\Group;
 use App\Repositories\Criteria\Department;
 use App\Repositories\Criteria\FieldLike;
 use App\Repositories\Criteria\Employee\RoleCriteria;
+use App\Repositories\Criteria\Order;
 
 class EmployeeService
 {
@@ -90,8 +91,12 @@ class EmployeeService
      */
     public function  get()
     {
+        if (!$this->request->has('orderField')) {
+            $this->repository->pushCriteria(new OrderByIdDesc());
+        } else {
+            $this->repository->pushCriteria(new Order($this->request->input("orderField"), $this->request->input("orderWay", "desc")));
+        }
         
-        $this->repository->pushCriteria(new OrderByIdDesc());
         
         if ($this->request->has('status') && $this->request->input('status') == -1) {
             $this->repository->pushCriteria(new OnlyTrashed());
@@ -137,7 +142,7 @@ class EmployeeService
         }
         return [
         	'items'=>$collection,
-            'users'=>$users,
+//             'users'=>$users,
             'total'=>$re->total()
         ];
         //下面的参考一下。字段没加全

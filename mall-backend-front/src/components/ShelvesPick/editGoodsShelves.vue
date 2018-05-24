@@ -1,50 +1,47 @@
 <template>
     <div >
-        <MyDialog title="修改货架" :name="name" :width="width" :height="height" >
-            <el-form :model="addForm"  :label-width="labelWidth"  ref="addForm" :label-position="labelPosition">
+        <MyDialog title="修改货架" :name="name" :width="width" :height="height" @before-open="onBeforeOpen">
+            <el-form :model="editForm"  :label-width="labelWidth"  ref="editForm" :label-position="labelPosition">
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item label="货架编号" prop="production_in_number" >
-                            <el-input class="name-input" v-model="number"  auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
+                        <el-form-item label="货架编号" prop="shelves_num" >
+                            {{model.shelves_num}}
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item label="货架状态" prop="production_in_number" >
-                            <el-input class="name-input" v-model="text"  auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
+                        <el-form-item label="货架状态" prop="shelves_status" >
+                            <span v-if="model.shelves_status==0">空</span>
+                            <span v-if="model.shelves_status==1">满</span>
+                            <span v-if="model.shelves_status==2">坏</span>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item label="已放数量" prop="production_in_number" >
-                            <el-input class="name-input" v-model="putNumber"  auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
+                        <el-form-item label="已放数量" prop="deposit_num" >
+                            {{model.deposit_num}}
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item label="面編数量" prop="production_in_number" >
-                            <el-input class="name-input"  v-model="allNumber" auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
+                        <el-form-item label="满編数量" prop="full_num" >
+                            {{model.full_num}}
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item prop="goods_type_id"  label="商品类型">
-                            <el-select
-                                    v-model="addForm.goods_type_id"
-
-                                    placeholder="商品类型">
-                                <el-option v-for="v in types" :label="v.name"
+                        <el-form-item prop="cate_type_id"  label="商品类型">
+                            <el-select v-model="editForm.cate_type_id" size="small" placeholder="商品类型" clearable @change="cate_type_change">
+                                <el-option v-for="v in CategoryList" :label="v.label"
                                            :value="v.id" :key="v.id">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item prop="product_id"  label="商品种类">
-                            <el-select
-                                    v-model="addForm.product_id"
-                                    placeholder="商品种类">
-                                <el-option v-for="v in productNames" :label="v.name"
+                        <el-form-item prop="cate_kind_id"  label="商品种类">
+                            <el-select v-model="editForm.cate_kind_id" size="small" placeholder="商品品类" @change="setKindName">
+                                <el-option v-for="v in CategoryChildrenList" :label="v.label"
                                            :value="v.id" :key="v.id">
                                 </el-option>
                             </el-select>
@@ -54,28 +51,27 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="商品名称" prop="goods_name" >
-                            <el-input class="name-input" v-model="addForm.goods_name"  auto-complete="off" placeholder="请填写商品名称"></el-input>
+                            <el-input class="name-input" v-model="editForm.goods_name"  auto-complete="off" placeholder="请填写商品名称"></el-input>
                         </el-form-item>
                     </el-col>
 
                     <el-col :span="12">
-                        <el-form-item label="商品编号" prop="goods_number" >
-                            <el-input class="name-input" v-model="addForm.goods_number"  auto-complete="off" placeholder="请填写商品编号"></el-input>
+                        <el-form-item label="商品编号" prop="sku_sn" >
+                            <el-input class="name-input" v-model="editForm.sku_sn"  auto-complete="off" placeholder="请填写商品编号"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
-               <el-row>
-                   <el-col :span="12">
-                       <el-form-item label="放入数量" prop="production_in_number" >
-                           <el-input class="name-input" v-model="addForm.production_in_number"  auto-complete="off" placeholder="请填写入放入数量"></el-input>
-                       </el-form-item>
-                   </el-col>
-
-               </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="放入数量" prop="goods_num" >
+                            <el-input class="name-input" v-model="editForm.goods_num"  auto-complete="off" placeholder="请填写入放入数量"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
                 <el-row>
                     <el-col :span="24">
                         <el-form-item label="备注"  prop="remarks">
-                            <el-input type="textarea"  auto-complete="off" v-model="addForm.remarks" placeholder="请填写备注"></el-input>
+                            <el-input type="textarea"  auto-complete="off" v-model="editForm.remarks" placeholder="请填写备注"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -83,8 +79,8 @@
             <div slot="dialog-foot" class="dialog-footer">
                 <el-button @click="handleClose">取 消</el-button>
                 <submit-button
-                    :observer="dialogThis"
-                    @click="formSubmit('addForm')" >
+                        :observer="dialogThis"
+                        @click="beforeFormSubmit('editForm')" >
                     保 存
                 </submit-button>
             </div>
@@ -95,29 +91,28 @@
 <script>
 
     import DialogForm from '../../mix/DialogForm';
-    import EmployeeSelectProxy from '../../packages/EmployeeSelectProxy';
+    import SelectProxy from  '../../packages/SelectProxy';
+    import ShelvesManagementSelectProxy from '../../packages/ShelvesManagementSelectProxy';
+
     import { mapGetters } from 'vuex';
 
     // import Dialog from '../common/Dialog';
     export default {
         name: 'addDialog',
         mixins:[DialogForm],
-        // props:{
-        //
-        // },
-        // components:{
-        //     Dialog
-        // },
+        props:{
+            CategoryList:{
+                type:Array
+            }
+        },
+
         data () {
             return {
                 dialogThis:this,
                 labelPosition:"right",
                 labelWidth:'80px',
                 computedusers:[],
-                text:'满',
-                number:21354,
-                allNumber:50,
-                putNumber:20,
+                CategoryChildrenList:[],
                 types: [
                     {id:1,name:'面膜'},
                     {id:2,name:'爽肤水'},
@@ -138,55 +133,92 @@
                     {id:1,name:'顺丰'},
                     {id:2,name:'圆通'},
                 ],
-                addForm:{
-                    product_id: "",
-                    warehouse_number: "",
-                    production_in_number: "",
-                    goods_type_id: '',
-                    goods_number: '',
-                    storage_id: '',
-                    production_in_time: '',
-                    distribution_id: '',
-                    remarks:''
+                editForm:{
+                    shelves_id: "",
+                    cate_type_id: "",
+                    cate_type: "",
+                    cate_kind_id: "",
+                    cate_kind: "",
+                    goods_name: '',
+                    goods_num:'',
+                    sku_sn: '',
+                    remarks:'',
+                    shelvesData:{}
                 },
-
                 rules:{
                     name:[
                         { required: true, message: '请输入小组名称', trigger: 'blur' }
-                    ],  
+                    ],
                     department_id:[
                         { required: true, message:'请选择所属部门', trigger: 'blur', type: 'number'}
                     ],
                     remarks:[
                         { message:'输入内容最大长度为200', type: 'string', trigger:'blur', max:200}
-              ]
-                }
+                    ]
+                },
+                model:"",
+                full_num:'',
+                deposit_num:'',
             }
         },
         computed:{
-            ...mapGetters({
-                'user_department_id':'department_id'
-            }),
 
         },
         methods:{
             getAjaxPromise(model){
                 return this.ajaxProxy.create(model);
             },
-            loadUsers(data){
-                this.computedusers = data.items;
+            setKindName(v){
+                let item = '';
+                for(item in this.CategoryChildrenList){
+                    if(this.CategoryChildrenList[item]['id'] ==v){
+                        this.editForm.cate_kind=this.CategoryChildrenList[item]['label']
+                    }
+                }
             },
-            onDepartChange(v){
-                this.employeeSelect.setParam({department_id:v, role:'group-captain', group_candidate:1})
-                this.employeeSelect.load();
-                this.addForm.manager_id = "";
+            beforeFormSubmit(name){
+                this.deposit_num = parseInt(this.deposit_num)  + parseInt(this.editForm.goods_num);
+                this.editForm.shelvesData={full_num:this.full_num,deposit_num:this.deposit_num};
+                this.editForm.shelves_id=this.model.id;
+                this.formSubmit(name)
+                this.full_num='';
+                this.deposit_num='';
+                let data ={shelves_id:this.model.id};
+                let that = this;
+                this.ajaxProxy.get(data).then(function(response){
+                    that.$emit('add-submit',response.data)
+                })
             },
+            cate_type_change(v){
+                if(v){
+                    let selectProxy = new SelectProxy('/getCategorys/'+ v, this.getCategoryChildrenList, this);
+                    selectProxy.load();
+                    let item = '';
+                    for(item in this.CategoryList){
+                        if(this.CategoryList[item]['id'] ==v){
+                            this.editForm.cate_type=this.CategoryList[item]['label']
+                        }
+                    }
+                }
+            },
+            getCategoryChildrenList(data){
+                this.CategoryChildrenList=data;
+            },
+            onBeforeOpen(model) {
+                this.model =  model.params.model;
+                this.full_num =this.model.full_num;
+                this.deposit_num =this.model.deposit_num;
+            }
+        },
+        watch:{
+            model:function(val, oldVal){
+                this.initObject(val, this.editForm);
+            }
         },
         created(){
-            this.employeeSelect = new EmployeeSelectProxy({}, this.loadUsers, this);
 
         }
-        
+
     }
 </script>
 

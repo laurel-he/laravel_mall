@@ -12,9 +12,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      "**": "http://localhost:8000" // 所有的
-      // "/admin": "http://localhost:8000",
-      // "/images": "http://localhost:8000"
+      "**": "http://localhost:8000", // 所有的 本地开发
+      // '**':"http://yanggang112.51vip.biz:50004"  // 本地测试服务器
     },
 
     // Various Dev Server settings

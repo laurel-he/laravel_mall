@@ -1,7 +1,7 @@
 <template>
     <div >
-        <MyDialog title="生产入库" :name="name" :width="width" :height="height" >
-            <el-form :model="addForm"  :label-width="labelWidth"  ref="addForm" :label-position="labelPosition">
+        <MyDialog title="生产入库" :name="name" :width="width" :height="height" @before-open="onOpen">
+            <el-form :model="addForm"  :label-width="labelWidth" :rules="addFormRules"  ref="addForm" :label-position="labelPosition">
                 <el-row>
                     <el-col :span="12">
                         <el-form-item prop="entry_sn"  label="入库单号">
@@ -30,7 +30,7 @@
                     </el-col>
                     <el-col :span="12">
                         <el-form-item prop="entrepot_id"  label="配送中心">
-                            <el-select v-model="addForm.entrepot_id" placeholder="郑州配送中心">
+                            <el-select v-model="addForm.entrepot_id" placeholder="配送中心">
                                 <el-option v-for="v in distributors" :label="v.name"
                                            :value="v.id" :key="v.id">
                                 </el-option>
@@ -46,7 +46,7 @@
                     </el-col>
                 </el-row>
 
-                <el-table :data="addForm.childrenData" border style="width: 100%">
+                <el-table :data="addForm.childrenData" border style="width: 100%" max-height="250">
                     <el-table-column prop="goods_name" label="商品名称"></el-table-column>
                     <el-table-column prop="sku_sn" label="商品编号"></el-table-column>
                     <el-table-column prop="num" label="输入数量"></el-table-column>
@@ -204,6 +204,15 @@
                         {required: true, type: 'number',  message: '请填写商品数量', trigger:'change'}
                     ],
                 },
+
+                addFormRules:{
+                    entrepot_id:[
+                        { required:true, type: 'number', message:'请选择配送中心', trigger:'change'}
+                    ],
+                    comment:[
+                        {max:100, message:'最大支持100个字符', trigger:'blur'}
+                    ]
+                }
             }
         },
         computed:{
@@ -222,6 +231,7 @@
                 this.types = data.items;
             },
             setCateKind(pid){
+                this.productForm.cate_kind_id = '';
                 for (let i = 0; i < this.types.length; i++) {
                     if (this.types[i].id == pid) {
                         this.typesKind = this.types[i].children;// && this.types[i].children
@@ -230,11 +240,14 @@
                 }
             },
             setKindName(id){
-                for (let i = 0; i < this.typesKind.length; i++) {
-                    if (this.typesKind[i].id == id) {
-                        this.productForm.cate_kind = this.typesKind[i].label;
+                if(id){
+                    for (let i = 0; i < this.typesKind.length; i++) {
+                        if (this.typesKind[i].id == id) {
+                            this.productForm.cate_kind = this.typesKind[i].label;
+                        }
                     }
                 }
+
             },
             setEntyAt(v){
                 this.addForm.entry_at = v;
@@ -243,6 +256,7 @@
                 let vmThis = this;
                 let data = Object.assign({}, this.productForm);
 
+                data.entry_at = this.addForm.entry_at;
                 this.$refs['productForm'].validate((valid)=>{
                     if (valid) {
                         this.addForm.childrenData.push(data);
@@ -262,6 +276,9 @@
 
             clearChidren(){
                 this.addForm.childrenData = [];
+            },
+            onOpen(){
+                this.addForm.entry_at = new Date();
             }
         },
         created(){

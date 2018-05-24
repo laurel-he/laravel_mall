@@ -24,7 +24,8 @@
                 <TableProxy
                         :url="mainurl"
                         :param="mainparam"
-                        :reload="dataTableReload">
+                        :reload="dataTableReload"
+                        :page-size="15">
                     <el-table-column label="序号" align="center"  type="index" width="65"></el-table-column>
 
                     <el-table-column prop="name" label="联系人姓名" align="center"></el-table-column>
@@ -94,6 +95,7 @@ import SearchTool from '../../mix/SearchTool';
 import SelectProxy from  '../../packages/SelectProxy';
 
 import Contacts from '../../ajaxProxy/Contacts';
+import { mapGetters, mapMutations } from 'vuex';
 //import TableProxy from '../common/TableProxy';
 
 export default {
@@ -104,12 +106,16 @@ export default {
         Add,
         Edit,
     },
-
+    computed:{
+        ...mapGetters([
+            'getUser'
+        ])
+    },
     data () {
         return {
             ajaxProxy:Contacts,
             mainurl:Contacts.getUrl(),
-            mainparam:"",
+            mainparam:'',
             total:100,
             dataLoad:false,
             searchForm:{
@@ -122,9 +128,6 @@ export default {
     methods:{
         getAjaxProxy(){
             return  this.ajaxProxy;
-        },
-        dataReload:function(){
-          console.log(this.searchForm);
         },
         searchReset:function(){
             this.$refs['searchForm'].resetFields();
@@ -144,7 +147,7 @@ export default {
     },
     created(){
         this.$on('search-tool-change', this.onSearchChange);
-
+        this.onSearchChange({id:this.getUser.id});
     }
 }
 </script>

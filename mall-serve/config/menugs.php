@@ -20,7 +20,7 @@ return [
 		],
 		//3
 		[
-				'text'=>'商品类型',
+				'text'=>'商品种类',
 				'icon'=>null,
 				'index'=>'GoodsType'
 		],
@@ -44,7 +44,7 @@ return [
 		],
 		//7
 		[
-				'text'=>'保证金',
+				'text'=>'充值管理',
 				'icon'=>null,
 				'index'=>'Deposit'
 		],
@@ -56,7 +56,7 @@ return [
 		],
 		//9
 		[
-				'text'=>'订单详情',
+				'text'=>'订单管理',
 				'icon'=>null,
 				'index'=>'OrderList'
 		],
@@ -68,7 +68,7 @@ return [
 		],
 		//11
 		[
-				'text'=>'退款审核',
+				'text'=>'退换货审核',
 				'icon'=>null,
 				'index'=>'Refund'
 		],
@@ -177,7 +177,7 @@ return [
         ],  
         //29
         [
-        		'text'=>'配送发货',
+        		'text'=>'发货单',
         		'icon'=>null,
         		'index'=>'DistributionDelivery',
         ],  
@@ -193,7 +193,18 @@ return [
         		'icon'=>null,
         		'index'=>'ExpressCompany',
         ],
-
+        //32
+        [
+            'text'=>'纸箱管理',
+            'icon'=>null,
+            'index'=>'CartonManagement',
+        ],
+	//33
+	[
+                'text' => '验货',
+                'icon' => null,
+                'index' => 'GoodsInspect'
+        ]
 
 		
 ];

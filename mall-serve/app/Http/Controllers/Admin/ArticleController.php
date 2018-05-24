@@ -24,8 +24,8 @@ class ArticleController extends Controller
         $re = $query->paginate(20);
         
         return [
-        		'items' => $re->items(),
-        		'total' => $re->total()
+    		'items' => $re->items(),
+    		'total' => $re->total()
         ];
     }
 

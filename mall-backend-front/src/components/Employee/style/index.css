@@ -1,0 +1,8 @@
+.el-checkbox{
+    width: 110px;
+    margin-right: 10px;
+}
+.el-checkbox+.el-checkbox{
+    margin-left: 0px;
+    
+}

@@ -32,6 +32,7 @@ class AlterTableAssignBack extends Migration
            
            $table->string('sale_name',10)->nullable()->comment('销售员姓名');
            $table->date('pass_check')->nullable()->comment('通过审核的时间');
+           $table->string('express_sn',50)->nullable()->comment('快递号');
            
         });
     }

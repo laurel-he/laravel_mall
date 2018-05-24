@@ -14,6 +14,10 @@ class ShelvesManagementController extends Controller
      */
     public function index(Request $request)
     {
+//        if($request->input('shelvesUP')){
+//            var_dump('111111111111111');die();
+//            ShelvesManagement::sum('deposit_num')->groupBy('distributor_id')->get();
+//        }
         $where=[];
         if($request->has('shelves_num')){
             $where['shelves_num']=$request->input('shelves_num');
@@ -27,8 +31,8 @@ class ShelvesManagementController extends Controller
         if($request->has('shelves_manager_id')){
             $where['shelves_manager_id']=$request->input('shelves_manager_id');
         }
-       $data =  ShelvesManagement::where($where)->get();
-       return ['items'=>$data,'total'=>count($data)];
+       $data =  ShelvesManagement::where($where) ->paginate($request->input('pageSize'));
+        return ['items' => $data->items(), 'total' => $data->total()];
     }
 
     /**

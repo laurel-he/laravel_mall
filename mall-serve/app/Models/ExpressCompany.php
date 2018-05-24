@@ -15,6 +15,7 @@ class ExpressCompany extends Model
       'contact_name',
       'contact_tel',
       'remark',
+      'eng'
     ];
     protected $hidden = ['created_at', 'updated_at','deleted_at'];
     protected $dates = [

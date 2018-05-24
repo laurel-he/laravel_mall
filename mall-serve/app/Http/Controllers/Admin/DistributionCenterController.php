@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\DistributionCenter;
 use Illuminate\Http\Request;
+use App\Http\Requests\EntrePotCreate;
 
 class DistributionCenterController extends Controller
 {
@@ -54,11 +55,12 @@ class DistributionCenterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EntrePotCreate $request)
     {
         $data = $request->all();
         $data['eng_name']=strtoupper($data['eng_name'] );
         $this->model->create($data);
+        return $this->success([]);
     }
 
     /**
@@ -92,9 +94,10 @@ class DistributionCenterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $data['eng_name']=strtoupper($data['eng_name'] );
+        $data = $request->except('eng_name');
+//         $data['eng_name']=strtoupper($data['eng_name'] );
         $this->model->where('id',$id)->update($data);
+        return $this->success([]);
     }
 
     /**

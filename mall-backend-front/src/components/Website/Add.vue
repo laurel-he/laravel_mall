@@ -1,24 +1,24 @@
 <template>
     <div >
         <MyDialog title="添加联系人" :name="name" :width="width" :height="height">
-            <el-form :model="addForm"  ref="addForm" :rules="rules" :label-width="labelWidth"   :label-position="labelPosition">
+            <el-form :model="addForm" ref="addForm" :rules="rules" :label-width="labelWidth"   :label-position="labelPosition">
 
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item label="具体网址" prop="webUrl" >
+                        <el-form-item label="网站" prop="webUrl" >
                             <el-input class="name-input" size="small" placeholder="具体网址" v-model.number="addForm.webUrl"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :span="24">
-                        <el-form-item label="网址描述" prop="describe" >
-                            <el-input type="textarea"  size="small" placeholder="网址描述" v-model.number="addForm.describe"></el-input>
+                    <el-col :span="12">
+                        <el-form-item label="名称" prop="describe" >
+                            <el-input class="name-input" size="small" placeholder="网站名称" v-model.number="addForm.describe"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :span="24">
+                    <el-col :span="16">
                         <el-form-item label="备注" prop="remark" >
                             <el-input type="textarea" size="small" placeholder="备注" v-model.number="addForm.remark"></el-input>
                         </el-form-item>
@@ -69,14 +69,8 @@ export default {
                 remark:"",
             },
             rules:{
-                title:[
-                    { required: true, message: '请输入公告标题', trigger: 'change'},
-                ],
-                type_id:[
-                    { required: true, message: '请选择公告类型', trigger: 'blur'},
-                ],
-                content:[
-                    {required: true, message: '请输入公告内容', trigger: 'blur'},
+                webUrl:[
+                    { required: true, message: '请输入网址', trigger: 'blur'},
                 ],
             },
         }

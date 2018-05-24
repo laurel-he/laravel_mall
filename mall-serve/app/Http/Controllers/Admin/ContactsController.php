@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Contacts;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use App\Models\CustomerUser;
 
 class ContactsController extends Controller
 {
@@ -22,6 +24,7 @@ class ContactsController extends Controller
     public function index(Request $request)
     {
         $where = [];
+        $where['user_id'] = $request->input('id');
         if ($request->has('name')) {
             $where['contacts.name'] = $request->input('name');
         }
@@ -30,8 +33,8 @@ class ContactsController extends Controller
         }
         $data = $this->model->where($where)
             ->orderBy('contacts.created_at', 'desc')
-            ->get();
-        return ['items' => $data, 'total' => count($data)];
+            ->paginate($request->input('pageSize'));
+        return ['items' => $data->items(), 'total' => $data->total()];
     }
 
     /**
@@ -52,6 +55,9 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
+        
         $re=$this->model->create($request->all());
         if ($re) {
             return $this->success($re);
@@ -91,6 +97,7 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
         $re=$this->model->where('id',$id)->update($request->all());
         if ($re) {
             return $this->success($re);

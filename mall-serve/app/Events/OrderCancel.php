@@ -27,6 +27,7 @@ class OrderCancel
     {
         $this->entrepot_id = $order->entrepot_id;
         $this->goodsList = $order->goods;
+        $this->order = $order;
     }
 
     /**
@@ -48,5 +49,10 @@ class OrderCancel
     public function getGoodsList()
     {
         return $this->goodsList;
+    }
+    
+    public function getOrder()
+    {
+        return $this->order;
     }
 }

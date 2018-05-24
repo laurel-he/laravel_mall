@@ -7,7 +7,8 @@ class OrderlistRepository extends Repository
 {
     public function  model()
     {
-        return 'App\Models\Orderlist';
+//         return 'App\Models\Orderlist';
+        return 'App\Models\OrderBasic';
     }
     public static function  setVisible($collection, $attributes)
     {

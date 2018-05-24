@@ -4,6 +4,9 @@ namespace  App\Services\Orderlist;
 use App\Repositories\OrderlistRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Alg\ModelCollection;
+use App\Repositories\Criteria\OrderByIdDesc;
+use App\Repositories\Criteria\WhereIn;
 class OrderlistService
 {
     private $repository = null;
@@ -34,7 +37,7 @@ class OrderlistService
         }
         if ($this->request->has('goods_name')) {
             $goods = DB::table('goods_basic')
-                ->where('goods_name', 'like', "%".$this->request->goods_name."%")
+                ->where('goods_name', 'like', $this->request->goods_name."%")
                 ->get();
             $ids = array();
             foreach($goods as $v)
@@ -44,16 +47,39 @@ class OrderlistService
             $whereIn = $ids;
         }
         if ($this->request->has('consignee')) {
-            $sales = DB::table('customer_basic')
-                ->where('name', 'like', "%".$this->request->consignee."%")
+            $sales = DB::table('order_address')
+                ->where('name', 'like', $this->request->consignee."%")
                 ->get();
             foreach ($sales as $v){
                 $where[] = ['cus_id',$v->id];
             }
         }
-        if ($this->request->has('sale_name')) {
-            $where[]=['deal_name','like',"%".$this->request->sale_name."%"];
-
+        
+        if ($this->request->has('phone')) {
+            $sales = DB::table('order_address')
+            ->where('phone', 'like', $this->request->phone."%")
+            ->get();
+            $ids = [];
+            foreach ($sales as $v){
+                $ids[] = $v->order_id;
+            }
+            if ($ids) {
+                $this->repository->pushCriteria(new WhereIn('id', $ids));
+            }
+        }
+        
+        
+        if ($this->request->has('deal_name')) {
+            $where[]=['deal_name','like',"%".$this->request->deal_name."%"];
+        }
+        if ($this->request->has('deal_id')) {
+            $where[]=['deal_id','=',$this->request->deal_id];
+        }
+        if ($this->request->has('department_id')) {
+            $where[]=['department_id','=',$this->request->department_id];
+        }
+        if ($this->request->has('group_id')) {
+            $where[]=['group_id','=',$this->request->group_id];
         }
         if ($this->request->has('type')) {
             $where[]=['order_status','=', $this->request->type];
@@ -67,14 +93,36 @@ class OrderlistService
         if ($this->request->has('end')) {
             $where[]=['created_at','<=', $this->request->end];
         }
-        if(count($where)>0||count($whereIn>0))
+        if ($this->request->has('status')) {
+            $where[]=['status',$this->request->input('status')];
+        }
+        if ($this->request->has('product_status')) {
+            $where[]=['product_status',$this->request->input('product_status')];
+        }
+        if ($this->request->has('after_sale_status')) {
+            $where[]=['after_sale_status','<>',0];
+        }
+        
+        if (!$this->request->has('orderField')) {
+            $this->repository->pushCriteria(new OrderByIdDesc());
+        }
+        
+        if(count($where)>0 || count($whereIn>0))
         {
             $order_status=  app()->makeWith('App\Repositories\Criteria\Orderlist\OrderStatus', ['where'=>$where,'whereIn'=>$whereIn]);
             $this->repository->pushCriteria($order_status);
         }
-        $result = $this->repository->paginate();
+        $result = $this->repository->paginate($this->request->input('pageSize', 20));
+        
+        $collection = $result->getCollection();
+        if ($this->request->has('appends')) {
+            ModelCollection::setAppends($collection, $this->request->input('appends'));
+        }
+        
+        logger("[debug]", $collection->toArray());
+        
         return [
-            'items'=> $result->getCollection(),
+            'items'=> $collection,
             'total'=> $result->total()
         ];
     }

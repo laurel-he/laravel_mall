@@ -31,6 +31,9 @@
             },
             setSubmited(){
                 this.loading = false;
+            },
+            setSubmiting(){
+                this.loading = true;
             }
         },
         watch:{
@@ -42,6 +45,7 @@
         created(){
             this.observer.$on('valid-error', this.setSubmited);
             this.observer.$on('submit-final', this.setSubmited);
+            this.$on('submit-ing', this.setSubmiting);
         }
     }
 </script>

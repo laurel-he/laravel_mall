@@ -31,7 +31,7 @@ export default {
         let validatePass2 = (rule, value, callback) => {
             if (value === '') {
                 callback(new Error('请再次输入密码'));
-            } else if (value !== this.editPasswordForm.checkPass) {
+            } else if (value !== this.editPasswordForm.password) {
                 callback(new Error('两次输入密码不一致!'));
             } else {
                 callback();
@@ -49,11 +49,11 @@ export default {
             },
 
             rules:{
-                password: [
-                    { required:true ,  type:'string', min:6, max:20, trigger: 'blur',message:'请输入新密码' }
+                password:[
+                    { required:true ,  type:'string', min:6, max:20, trigger: 'blur',message:'密码格式为6-20位' },
                 ],
-                checkPass: [
-                    { required:true , validator: validatePass2, trigger: 'blur' }
+                checkPass:[
+                    {required:true , validator:validatePass2,trigger:'blur'},
                 ],
             }
         }

@@ -8,12 +8,13 @@
 	"license" : "MIT",
 	"type" : "project",
 	"require" : {
-		"php" : ">=5.6.4",
-		"bosnadev/repositories" : "^0.13.0",
-		"laravel/framework" : "5.4.*",
-		"laravel/tinker" : "~1.0",
-		"overtrue/laravel-lang" : "dev-master",
-		"zizaco/entrust" : "1.8.0"
+		"php": ">=5.6.4",
+		"bosnadev/repositories": "^0.13.0",
+		"doctrine/dbal": "^2.5",
+		"laravel/framework": "5.4.*",
+		"laravel/tinker": "~1.0",
+		"overtrue/laravel-lang": "dev-master",
+		"zizaco/entrust": "1.8.0"
 	},
 	"require-dev" : {
 		"fzaninotto/faker" : "~1.4",

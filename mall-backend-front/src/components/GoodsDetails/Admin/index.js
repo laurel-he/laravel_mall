@@ -50,29 +50,13 @@ export default {
         }
     },
     methods: {
-        /* mainTableLoad(data) {
-            this.toggleTableLoad();
-            let res_data = data.items;
-            for(var x in res_data){
-                // console.log(res_data[x]);
-                res_data[x].new_goods = res_data[x].new_goods ==1 ? true : false;
-                res_data[x].hot_goods = res_data[x].hot_goods ==1 ? true : false;
-                res_data[x].recommend_goods = res_data[x].recommend_goods ==1 ? true : false;
-                res_data[x].status = res_data[x].status ==1 ? true : false;
 
-            }
-                console.log(res_data);
-            this.tableData = res_data;
-            this.total = data.total;
-        }, */
         getAjaxProxy(){
             return this.ajaxProxy;
         },
         initCateOptions(data){
             this.cateOptions = data.items;
             this.setTypeMap(this.cateOptions);
-
-            //console.log(this.cateOptions);
         },
         initUnitTypes(data){
             this.UnitTypes = data;
@@ -93,38 +77,23 @@ export default {
                 this.$message.error("请选择正确的时间段");
                 return ;
             }
-            // param.with = ['category'];
             this.mainparam = JSON.stringify(param);
         },
         showAdd(){
             this.$modal.show('add-goods-details',{model:this.UnitTypes});
         },
         showEdit(id){
-            // let fileList = [];
-            // row.del_imgs = [];
-            // row.img_path = [];
-            // row.cate_id = [];
-            
-            // for (let index = 0; index < row.category.length; index++) {
-            //     row.cate_id.push(row.category[index].id);
-            // }
-            // for (let index = 0; index < row.imgs.length; index++) {
-            //     fileList.push({name:row.imgs[index].url, url:row.imgs[index].full_url});  
-            // }
-
             this.$modal.show('edit-goods-details', {
               id: id,
               extra: this.UnitTypes,
-            //   fileList: fileList,
             });
         },
         showSpec(row){
-            this.$modal.show('edit-goods-spec', {
-              model: row
-            });
+            // console.log('asdf');
+            this.$modal.show('edit-goods-spec', {model: row});
+            // console.log('asdf----------bbbbb');
         },
         handleCateChange(v){
-            //console.log(v);
             this.searchForm.cate_id = v;
         },
         getStartTime(v){
@@ -142,14 +111,21 @@ export default {
             return cate.join(" / ");
         },
         setStatusChange(row){
-            console.log(row);
-            console.log(arguments);
-            // row.del_imgs = [];
-            // row.img_path = [];
-            // row.cate_id = [];
             this.ajaxProxy.update(row.id, {status:row.status}).catch((response)=>{
                 this.$message.error('更新失败');
                 row.status = row.status == 1 ? 2 : 1 ;
+            });
+        },
+        setHotgoodsChange(row){
+            this.ajaxProxy.update(row.id, {hot_goods:row.hot_goods}).catch((response)=>{
+                this.$message.error('更新失败');
+                row.hot_goods = row.hot_goods == 1 ? 0 : 1 ;
+            });
+        },
+        setNewgoodsChange(row){
+            this.ajaxProxy.update(row.id, {new_goods:row.new_goods}).catch((response)=>{
+                this.$message.error('更新失败');
+                row.new_goods = row.new_goods == 1 ? 0 : 1 ;
             });
         },
         setTypeMap(data){

@@ -3,10 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>化妆品商城后台管理系统</title>
+    
+    <!--[if IE]><script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script><![endif]-->
   </head>
   <body>
     <div id="app"></div>
+    <script>
+        if(isIE = navigator.userAgent.indexOf("MSIE")!=-1) { 
+            var h = document.getElementsByTagName('head');
+            var scr = document.createElement('script');
+            scr.setAttribute('src', 'https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js');
+            h[0].appendChild(scr);
+        } 
+       </script>
     <!-- built files will be auto injected -->
   </body>
 </html>

@@ -113,7 +113,7 @@
                     remarks:'',
                     manager_id:'',
                     status:'',
-                    entrepot_id:""
+                    entrepot_id:''
                 },
                 rules:{
                     remarks:[
@@ -145,9 +145,7 @@
 
         },
         watch:{
-
             model:function(val, oldVal){
-                console.log(val);
                 for (const key in this.editForm) {
                     if (this.editForm.hasOwnProperty(key)) {
                         this.editForm[key] = val[key]

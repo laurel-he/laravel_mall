@@ -78,14 +78,8 @@
                     weixin:"",
                 },
                 rules:{
-                    title:[
-                        { required: true, message: '请输入公告标题', trigger: 'change'},
-                    ],
-                    type_id:[
-                        { required: true, message: '请选择公告类型', trigger: 'blur',type: 'number',},
-                    ],
-                    content:[
-                        {required: true, message: '请输入公告内容', trigger: 'blur'},
+                    name:[
+                        { required: true, message: '请输入姓名', trigger: 'blur'},
                     ],
                 },
                 model:''

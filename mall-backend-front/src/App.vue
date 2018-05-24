@@ -76,6 +76,10 @@
     text-align: center;
   }
 
+  .el-table__body tr.current-row>td {
+    background: #c9e5f5;
+  }
+
   /* .slide-fade-enter-active, .slide-fade-leave-active {
       transition: all 0.4s;
   }

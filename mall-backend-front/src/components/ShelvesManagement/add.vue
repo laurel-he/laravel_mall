@@ -25,9 +25,10 @@
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="负责人" prop="shelves_manager_id" >
-                            <el-select v-model="addForm.shelves_manager_id" placeholder="请选择负责人" @change="managerChange">
-                                <el-option v-for="v in managers" :label="v.name" :value="v.id" :key="v.id"></el-option>
-                            </el-select>
+                            {{getUser.realname}}
+                            <!--<el-select v-model="addForm.shelves_manager_id" placeholder="请选择负责人" @change="managerChange">-->
+                                <!--<el-option v-for="v in managers" :label="v.name" :value="v.id" :key="v.id"></el-option>-->
+                            <!--</el-select>-->
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -54,7 +55,7 @@
 
 <script>
     import DialogForm from '../../mix/DialogForm';
-    import { mapGetters } from 'vuex';
+    import { mapActions,mapGetters } from 'vuex';
     // import Dialog from '../common/Dialog';
     export default {
         name: 'addDialog',
@@ -73,7 +74,10 @@
                 }
             },
         },
-        components:{
+        computed:{
+            ...mapGetters([
+                'getUser'
+            ])
         },
         data () {
             return {
@@ -82,20 +86,23 @@
                 labelWidth:'80px',
                 addForm:{
                     shelves_name: "",
+                    shelves_status:0,
                     shelves_num: "",
                     distributor_id: "",
                     distributor_name: "",
-                    shelves_manager_id: "",
+                    shelves_manager_id: '',
                     shelves_manager_name: "",
                     remark: '',
                 },
 
                 rules:{
                     shelves_name:[
-                        { required: true, message: '请输入货架名称', trigger: 'blur' }
+                        { required: true, message: '请输入货架名称', trigger: 'blur' },
+                        { max:20, message: '输入的内容不能超过20个字符', trigger: 'blur' }
                     ],
                     shelves_num:[
                         { required: true, message:'请输入货架编号', trigger: 'blur', },
+                        { max:20, message: '输入的内容不能超过20个字符', trigger: 'blur' }
                     ],
                     distributor_id:[
                         { required: true,message:'请选择配送中心', type: 'number', trigger:'change'}
@@ -108,6 +115,7 @@
             }
         },
         methods:{
+
             getAjaxPromise(model){
                 return this.ajaxProxy.create(model);
             },
@@ -141,7 +149,8 @@
             },
         },
         created(){
-
+            this.addForm.shelves_manager_id = this.getUser.id;
+            this.addForm.shelves_manager_name = this.getUser.realname;
 
         }
         

@@ -30,7 +30,8 @@ class Department extends Model
         'type',
         'status',
         'remarks',
-        'entrepot_id'
+        'entrepot_id',
+        'deposit'
     ];
     
     /**
@@ -48,8 +49,9 @@ class Department extends Model
 
     private static $types = array(
         '销售部',
-        '推广部',
-        '客服部',
+        '配送部'
+//         '推广部',
+//         '客服部',
 //         '投顾部',
 //         '风控部'
     );
@@ -92,6 +94,15 @@ class Department extends Model
     public function manager()
     {
     	return $this->belongsTo('App\Models\User', 'manager_id')->select(['id','realname', 'mobilephone']);
+    }
+    
+    public function addDeposit($deposit)
+    {
+        $this->deposit = round($this->deposit+ $deposit, 2);
+    }
+    
+    public function subDeposit($deposit) {
+        $this->deposit = round($this->deposit - $deposit, 2);
     }
     
 }

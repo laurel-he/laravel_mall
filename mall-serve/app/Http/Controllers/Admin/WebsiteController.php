@@ -23,13 +23,14 @@ class WebsiteController extends Controller
     public function index(Request $request)
     {
         $where = [];
+        $where['user_id'] = $request->input('id');
         if ($request->has('webUrl')) {
             $where['websites.webUrl'] = $request->input('webUrl');
         }
         $data = $this->model->where($where)
             ->orderBy('websites.created_at', 'desc')
-            ->get();
-        return ['items' => $data, 'total' => count($data)];
+            ->paginate($request->input('pageSize'));
+        return ['items' => $data->items(), 'total' => $data->total()];
     }
 
     /**

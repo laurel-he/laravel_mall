@@ -119,7 +119,7 @@ export default {
                     { message:'输入内容最大长度为200', type: 'string', trigger:'blur', max:200}
                 ],
                 entrepot_id:[
-                    { required: true ,type :'number', trigger:'change'}
+                    { required: true ,type :'number',message:'请选择配送中心', trigger:'change'}
                 ]
             },
 

@@ -1,19 +1,16 @@
 
-.connectBanner{
-    padding:0;
-}
-
 .connectContent{
-    background: #F2F6F5;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    background: #fff;
+    padding: 10px 0 40px 0;
 }
 
-.connectContent .lle{}
+.connectContent div{
+    padding: 0;
+}
 
 .connectContent .connectList{
     background: #fff;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 40px;
 }
 
@@ -44,13 +41,35 @@
     color: #ccc;
  }
 
+.connectContent .connectList .conTi{
+    line-height: 40px;
+}
+
+.connectContent .connectList .conTi a{
+    color: #666;
+    text-decoration: none;
+}
+
+.connectContent .connectList .conTi span{
+    color: #DF385F;
+}
+
 .connectContent .connectList .iconBox{
     padding: 0;
     text-align: center;
+    color: #999;
 }
 
 .connectContent .connectList .iconBox div{
     padding: 0;
+}
+
+.connectContent .connectList .iconBox .boxes{
+    padding: 0 10px 0 10px ;
+}
+
+.connectContent .connectList .iconBox .boxes .boxB{
+    border: 1px solid #ccc;
 }
 
 .connectContent .connectList .iconBox .box1{
@@ -70,7 +89,8 @@
 .connectContent .connectList .iconBox .box2,.box3{
     line-height: 40px;
     font-size: 16px;
-    color: #aaa;
+    color: #999;
+    margin-bottom: 20px;
 }
 
 /*-----------------------messageBox------------------*/
@@ -115,8 +135,8 @@
 
 .messageBox .formName .int input:focus{
     outline: none;
-    border:1px solid #45A87A;
-    box-shadow: 0 0 5px #45A87A;
+    border:none;
+    box-shadow: 0 0 5px #DF385F;
 }
 
 .messageBox .formContent{
@@ -137,18 +157,20 @@
 
 .messageBox .formContent .int textarea{
     width: 100%;
-    min-height: 200px;
+    min-height: 90px;
     line-height: 30px;
     padding: 10px;
     border:1px solid #ccc;
-    color: #4cae4c;
+    color: #666;
+    resize: none;
+    overflow-y: hidden;
     border-radius: 5px;
 }
 
 .messageBox .formContent .int textarea:focus{
     outline: none;
-    border:1px solid #45A87A;
-    box-shadow: 0 0 5px #45A87A;
+    border:none;
+    box-shadow: 0 0 5px #DF385F;
 }
 
 .messageBox .butBoxss{
@@ -164,8 +186,8 @@
     line-height: 40px;
     font-size: 16px;
     color: #Fff;
-    background: linear-gradient(#fff,#45A87A,#45A87A,#fff);
-    box-shadow: 0 0 5px #45A87A;
+    background: #DF385F;
+    box-shadow: 0 0 5px #DF385F;
     margin: 0 auto;
     cursor: pointer;
 }

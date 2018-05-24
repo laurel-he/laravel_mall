@@ -12,6 +12,7 @@ class ShelvesManagement extends Model
     protected $table='shelves_managements';
     protected $fillable=[
         'shelves_name',
+        'shelves_status',
         'shelves_num',
         'distributor_id',
         'distributor_name',

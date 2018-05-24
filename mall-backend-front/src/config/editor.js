@@ -13,8 +13,8 @@ const  CONFIT = {
         methods: 'POST',  // 可选参数 图片上传方式  默认为post
         //token: sessionStorage.token,  // 可选参数 如果需要token验证，假设你的token有存放在sessionStorage
         name: 'avatar',  // 可选参数 文件的参数名 默认为img
-        size: 500,  // 可选参数   图片限制大小，单位为Kb, 1M = 1024Kb
-        accept: 'image/png, image/gif, image/jpeg, image/jpg',  // 可选参数 可上传的图片格式
+        size: 2048,  // 可选参数   图片限制大小，单位为Kb, 1M = 1024Kb
+        accept: 'image/png,image/gif,image/jpeg,image/jpg',  // 可选参数 可上传的图片格式
         // start: function (){}
         start: () => {
         },  // 可选参数 接收一个函数 开始上传数据时会触发

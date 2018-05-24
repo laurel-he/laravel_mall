@@ -38,12 +38,13 @@
         methods: {
             setPageAdmin(){
                 if (this.$store.getters.hasRole('administrator') || 
-                    this.$store.getters.hasRole('super-manager')) {
+                    this.$store.getters.hasRole('super-manager') ) {
                     this.page_admin = true;
                 } 
             },
             setPageDepart(){
-                if (this.$store.getters.hasRole('department-manager')) {
+                if (this.$store.getters.hasRole('department-manager') ||
+                    this.$store.getters.hasRole('human-resources')) {
                     this.page_depart = true;
                 } 
             }

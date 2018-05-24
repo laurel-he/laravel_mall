@@ -8,18 +8,23 @@
                             <el-input v-model="editForm.company_name" placeholder="请填写物流名称"></el-input>
                         </el-form-item>
                     </el-col>
+                </el-row>
+                <el-row>
                     <el-col :span="12">
                         <el-form-item label="联系人" prop="contact_name">
                             <el-input v-model="editForm.contact_name" placeholder="请填写联系人"></el-input>
                         </el-form-item>
                     </el-col>
-                </el-row>
-                <el-row>
                     <el-col :span="12">
                         <el-form-item label="联系方式" prop="contact_tel" >
                             <el-input v-model="editForm.contact_tel" placeholder="请填写联系电话"></el-input>
                         </el-form-item>
                     </el-col>
+                    <!-- <el-col :span="12">
+                        <el-form-item label="编号前缀" prop="eng" >
+                            <el-input v-model="editForm.eng" placeholder=""></el-input>
+                        </el-form-item>
+                    </el-col> -->
                 </el-row>
                 <el-row>
                     <el-col :span="14">
@@ -46,6 +51,7 @@ import FormMix from '../../mix/Form';
 import APP_CONST from '../../config';
 import DialogMix from '../../mix/Dialog';
 import { mapGetters } from 'vuex';
+import { PHONE_REG } from "@/config/index";
 export default {
     name: 'Edit',
     mixins:[DialogForm,FormMix],
@@ -71,12 +77,12 @@ export default {
                 company_name:[
                     { required: true, message: '请输入物流公司名称', trigger: 'blur' }
                 ],
-                contact_name:[
-                    { required: true, message:'请输入物流公司联系人', trigger: 'blur', },
-                ],
-                contact_tel:[
-                    { required: true,message:'请输入联系人电话', type: 'string', trigger:'blur'}
-                ],
+                // contact_name:[
+                //     { required: true, message:'请输入物流公司联系人', trigger: 'blur', },
+                // ],
+                // contact_tel:[
+                //     { required: true,message:'请输入联系人电话', pattern:PHONE_REG, trigger:'blur'}
+                // ],
 
             },
             model:null,

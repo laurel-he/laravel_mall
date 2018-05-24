@@ -31,22 +31,4 @@ class CustomerRepository extends Repository
          $this->model->join($table, "customer_basic.$field", '=', $table.".".$foreField);
         return $this;
     }
-    
-    public function  joinSale() 
-    {
-        $this->join('customer_saleperson', 'id', 'cus_id');
-        return $this;
-    }
-    
-    public function  joinSpread() 
-    { 
-        $this->join('customer_spreadpeople', 'id', 'cus_id');
-        return $this;
-    }
-    
-    public function  joinApp() 
-    {
-        $this->join('customer_app', 'id', 'cus_id');
-        return $this;
-    }
 }

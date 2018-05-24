@@ -24,6 +24,7 @@
         <el-table
             ref="proxyTable"
             :data="mainData"
+            :height="height"
             v-loading="dataLoad"
             border
             highlight-current-row
@@ -31,16 +32,15 @@
             @sort-change="sortChange"
             @cell-dblclick="dbclick"
             @cell-click="cellclick"
-	    element-loading-text="拼命加载中"
-            >
+	        element-loading-text="拼命加载中">
             <slot></slot>
         </el-table>
         <br>
-        <el-row >
+        <el-row type="flex" justify="end">
             <el-col :span="12">
                 <slot name="buttonbar"></slot>            
             </el-col>
-            <el-col :span="12">
+            <el-col :span="12" >
                 <div class="pull-right">
                     <el-pagination
                         :current-page="currentPage"
@@ -83,6 +83,10 @@
             reload:{
                 type:Number,
                 default:0
+            },
+            height:{
+                type:[String, Number],
+                default:''
             }
       },
       data () {

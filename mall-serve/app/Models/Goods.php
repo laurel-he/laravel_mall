@@ -17,17 +17,23 @@ class Goods extends Model
     
     
     protected $fillable= [
-    		'goods_name',
-    		'goods_price',
-    		'goods_number',
-    		'unit_type',
-    		'description',
-    		'cover_url',
-    		'status',
-    		'subtitle',
-    		'brief',
-    		'goods_sn',
-            'sku_sn'
+		'goods_name',
+		'goods_price',
+		'goods_number',
+		'unit_type',
+		'description',
+		'cover_url',
+		'status',
+		'subtitle',
+		'brief',
+		'goods_sn',
+        'sku_sn',
+        'new_goods',
+        'hot_goods',
+        'del_price',
+        'comments',
+        'sale_count',
+        'sale_able_count'
     ];
     
     //多对多
@@ -59,6 +65,11 @@ class Goods extends Model
     	return $this->belongsToMany('App\Models\GoodsSpecs', 'sku_attrs', 'goods_id', 'spec_id');
     }
     
+    public function derectAttr()
+    {
+        return $this->hasMany("App\Models\SkuAttr", 'goods_id');
+    }
+    
     
     /**
      * 获取封面图片。
@@ -77,5 +88,15 @@ class Goods extends Model
     public static function getCount()
     {
     	return self::withTrashed()->count();
+    }
+    
+    /**
+     * 限制查询只包括上架。
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
 }

@@ -1,0 +1,108 @@
+/*---------------------banner--------------------*/
+/*---------------------content---------------------*/
+.newsContent{
+    background: #fff;
+    padding: 0;
+}
+
+.newsContent   .leftContent{
+    margin-top: 20px;
+    background: #fff;
+    /*padding-right: 20px;*/
+}
+
+.newsContent   .leftContent .contentShow{
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-top: 2px solid #F5C3CF;
+    padding: 15px;
+}
+
+.newsContent   .leftContent .contentShow .bigTitle{
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+.newsContent   .leftContent .contentShow .timeZone{
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    line-height: 25px;
+}
+
+.newsContent   .leftContent .contentShow .timeZone span{
+    margin-right: 10px;
+}
+
+.newsContent   .leftContent .contentShow .content{
+    margin-top: 10px;
+    line-height: 25px;
+}
+
+.newsContent   .leftContent .contentShow .content .daodu{
+    font-weight: bold;
+}
+
+.newsContent .  .leftContent .contentShow .content .con{
+    text-indent: 2em;
+}
+
+.newsContent   .leftContent .contentShow .content img{
+    width: 100%;
+    margin: 15px auto;
+}
+
+.newsContent   .leftContent .proNext{
+    line-height: 40px;
+    margin-top: 10px;
+}
+
+.newsContent   .leftContent .proNext .next{
+    text-align: right;
+}
+
+.newsContent   .leftContent .proNext a{
+    color: #999;
+}
+
+.newsContent .rightContent{
+    margin-top: 20px;
+    
+}
+
+.rightBackgroun {
+	padding-top: 1px;
+	background: #fafafa;
+}
+
+.newsContent   .rightContent .rightTit{
+    margin-top: 20px;
+    line-height: 30px;
+    padding-left: 15px;
+}
+
+.newsContent .rightContent .rightTit .line{
+    position: absolute;
+    left: 15px;
+    top: 21px;
+    height: 30px;
+    width: 4px;
+    background: #F5C3CF;
+}
+
+.newsContent  .rightContent .rightList{
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    overflow:hidden;
+}
+
+.newsContent   .rightContent .rightList .imgBox img{
+    width: 100%;
+}
+
+.newsContent   .rightContent .rightList .msgBox{
+    padding-left: 10px;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\InventorySystem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 /**
  * 库存
@@ -22,9 +23,9 @@ class Inventory
     }
     /**
      * 添加订单逻辑
-     * @todo 
-     *  1、 生成锁定记录 表结构参考 库存明细下面的销售锁定
-     *  2、 库存表 更新对应的 可售数量和锁定数量 注意 要用事务
+     * @ todo 
+     *  1、 done 生成锁定记录 表结构参考 库存明细下面的销售锁定
+     *  2、 done 库存表 更新对应的 可售数量和锁定数量 注意 要用事务
      *  //
      * 
      * @param integer $entrepot_id
@@ -69,23 +70,23 @@ class Inventory
     /**
      * 发货完成
      * @todo 
-     *  1、生成发货记录
+     *  // done 自动有了 1、生成发货记录
      *  2、库存表 更新对应的 发货锁定 和  仓库数量 、发货在途
      */
-    public function orderAssigned()
+    public function orderAssigned($entrepot_id, $goods)
     {
-        
+        return $this->model->assignedOrder($entrepot_id, $goods);
     }
     
     /**
      * 签收 完成
      * @todo
-     *  1、生成签收记录
+     *  // done 暂不需要了 1、生成签收记录
      *  2、库存表 更新对应的 发货在途 和  签收数量
      */
-    public function orderSignatured()
+    public function orderSignatured($entrepot_id, $goods)
     {
-        
+        return $this->model->orderSignatured($entrepot_id, $goods);
     }
     
     /**
@@ -106,15 +107,17 @@ class Inventory
         DB::beginTransaction();
         try {
             foreach ($products as $product) {
+                $entry_at = Carbon::parse($product['entry_at'])->setTimezone('Asia/Shanghai')->toDateTimeString();
                 if ($this->model->hasOneBySkuSn($entrepot_id, $product['sku_sn'])) {
-                    $this->model->entryUpdate($entrepot_id, $product['sku_sn'], $product['num']);
+                    $this->model->entryUpdate($entrepot_id, $product['sku_sn'], $product['num'],$entry_at);
                 } else {
                     $this->model->insert([
                         'entrepot_id'  => $entrepot_id ,
                         'sku_sn'       => $product['sku_sn'],
                         'goods_name'   => $product['goods_name'],
                         'entrepot_count' => $product['num'],
-                        'saleable_count' => $product['num']
+                        'saleable_count' => $product['num'],
+                        'entry_at'     => $entry_at,
                     ]);
                 }
             }
@@ -146,6 +149,19 @@ class Inventory
             ['sku_sn', '=', $sku_sn]
         ])->value('saleable_count');
         return is_numeric($re) ? $re : 0 ;
+    }
+    
+    /**
+     * 换货锁定
+     */
+    public function exchangeLock($entrepot_id, $goodsList)
+    {
+        $this->model->exchangeLock($entrepot_id, $goodsList);
+    }
+    
+    public function exchangeUnLock($entrepot_id, $goodsList)
+    {
+        $this->model->exchangeUnLock($entrepot_id, $goodsList);
     }
     
 }

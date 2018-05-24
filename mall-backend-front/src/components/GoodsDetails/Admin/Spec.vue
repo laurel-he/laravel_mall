@@ -77,12 +77,12 @@
 	// todo 改造成 TableProxy
 // import DialogForm from '../../mix/DialogForm';
 
-import FormMix from '../../../mix/Form';
-import Dialog from '../../../mix/Dialog';
+import FormMix from '@/mix/Form';
+import Dialog from '@/mix/Dialog';
 import AttrItem from '../../common/AttrFormItem';
 import localMix from '../mix';
-import goodsSkuAjax from '../../../ajaxProxy/GoodsSku';
-import GoodsTypeSelectProxy from '../../../packages/GoodsTypeSelectProxy';
+import goodsSkuAjax from '@/ajaxProxy/GoodsSku';
+import GoodsTypeSelectProxy from '@/packages/GoodsTypeSelectProxy';
 
 
 const SET_BUTTON_LABLE_ADD  = '添加SKU';
@@ -137,7 +137,7 @@ export default {
     },
     methods:{
 		onOpen(param){
-			// model = param.params.model;
+			
 			let category = param.params.model.category;
 			this.goods_id = param.params.model.id;
 
@@ -145,7 +145,7 @@ export default {
 
 			let re = null;
             if (category instanceof Array) {
-                re = category[category.length-1];
+                re = category[category.length-1].id;
             } else { 
                 re = 0;
             }
@@ -153,8 +153,6 @@ export default {
             if (this.cateMap[re]) {
                 this.goodsTypeProxy.setParam({id:this.cateMap[re]}).find();
             } 
-
-			// this.goodsTypeProxy.setParam({id:1}).find();
 
 		},
 		getAjaxPromise(model){
@@ -177,17 +175,6 @@ export default {
 			
 			this.skuForm.goods_id = this.goods_id;
 			this.formSubmit('skuForm');
-            // let obj = Object.assign({}, this.skuForm);
-			// this.specForm.skus.push(obj);
-			// obj.goods_id = this.goods_id;
-			// console.log(obj);
-
-
-            // this.attrForm = [];
-            // this.copy(this._attrForm, this.attrForm);
-            // this.skuForm.name = "";
-            // this.skuForm.price = "";
-            // this.skuForm.num = "";
 		},
         deleteAttrItem(index){
             this.addForm.skus.splice(index,1);
@@ -200,7 +187,7 @@ export default {
             this.copy(this._attrForm, this.attrForm);
             this.skuForm.name = "";
             this.skuForm.price = "";
-			this.skuForm.num = "";
+			this.skuForm.num = 0;
 			delete this.skuForm.id;
 
 			this.button_label = SET_BUTTON_LABLE_ADD;
@@ -248,6 +235,7 @@ export default {
 		}
 	},
 	created(){
+		
 		this.goodsTypeProxy  = new GoodsTypeSelectProxy({}, this.loadGoodsAttr, this);
 
 		this.$on('submit-success', this.resetSkuForm);

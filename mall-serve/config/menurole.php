@@ -22,6 +22,16 @@ return [
         20,
         21
     ],
+    'human-resources' => [
+      
+        6,
+       
+        
+        18,
+        19,
+        20,
+        21
+    ],
     'sale-captain' => [
         0,
         6,

@@ -14,6 +14,13 @@ use App\Repositories\Criteria\Customer\UserCriteria;
 use App\Repositories\Criteria\Customer\Relative;
 use App\Repositories\Criteria\Customer\Phone;
 use App\Repositories\Criteria\Customer\Name;
+use App\Repositories\Criteria\Customer\Qq;
+use App\Repositories\Criteria\Customer\Weixin;
+use App\Repositories\Criteria\FieldEqual;
+use App\Repositories\Criteria\Customer\Contact;
+use App\Repositories\Criteria\OrderByIdDesc;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Criteria\FieldLike;
 
 class CustomerService
 {
@@ -35,6 +42,11 @@ class CustomerService
 
 //        $selectFields = ['id','name','type','sex','recommend'];
 
+        
+        if (!$this->request->has('orderField')) {
+            $this->repository->pushCriteria(new OrderByIdDesc());
+        }
+
     	if ($this->request->has('with')) {
     		$with = $this->request->input('with');
     		$nWith = [];
@@ -52,17 +64,47 @@ class CustomerService
     	
     	//relative 
     	//FIXME 这里逻辑好像有问题 relatives 不应该出现
-    	$relatives = ['user_id', 'group_id', 'department_id'];
-    	foreach ($relatives as $value) {
-    		if ($this->request->has($value)) {
-    			$this->repository->pushCriteria(new Relative($this->request->input($value), $value));
-    		};
-    	}
-        if ($this->request->has('phone')) {
-            $this->repository->pushCriteria(new Phone($this->request->input('phone')));
+//     	$relatives = ['department_id','group_id','user_id'];
+//     	foreach ($relatives as $value) {
+//     		if ($this->request->has($value)) {
+//     			$this->repository->pushCriteria(new Relative($this->request->input($value), $value));
+//     		}
+//     	}
+        
+    	$this->repository->pushCriteria(new Relative($this->request));
+    	
+        
+//         if ($this->request->has('phone')) {
+//             $this->repository->pushCriteria(new Phone($this->request->input('phone')));
+//         }
+//         if ($this->request->has('qq')) {
+//             $this->repository->pushCriteria(new Qq($this->request->input('qq')));
+//         }
+//         if ($this->request->has('weixin')) {
+//             $this->repository->pushCriteria(new Weixin($this->request->input('weixin')));
+//         }
+
+    	if ($this->request->has('phone') || $this->request->has('qq') || $this->request->has('weixin')) {
+    	    $this->repository->pushCriteria(new Contact($this->request));
         }
+        
         if ($this->request->has('name')) {
             $this->repository->pushCriteria(new Name($this->request->input('name')));
+        }
+        if ($this->request->has('id')) {
+            $this->repository->pushCriteria(new FieldEqual('id', $this->request->input('id')));
+        }
+        
+        if ($this->request->has('id_card')) {
+            $this->repository->pushCriteria(new FieldLike('id_card', $this->request->input('id_card')));//FieldEqual
+        }
+        
+        if ($this->request->has('cus_address')) {
+            $this->repository->pushCriteria(new FieldLike('cus_address', $this->request->input('cus_address')));
+        }
+        
+        if ($this->request->has('type')) {
+            $this->repository->pushCriteria(new FieldEqual('type', $this->request->input('type')));
         }
 
     	$selectFields = $this->request->has('fields') ? $this->request->input('fields'): ['*'];
@@ -70,19 +112,22 @@ class CustomerService
                        ->paginate($this->request->input('pageSize', 20),$selectFields);
         
         $appends = [];
+        if ($this->request->has('appends')) {
+            $appends = $this->request->input('appends');
+        }
         if (in_array('type', $selectFields) or in_array('*', $selectFields)) {
-        	$appends = ['sex_text'];
+        	$appends[] = 'sex_text';
         }
         if (!empty($appends)) {
         	$collection = ModelCollection::setAppends($result->getCollection(), $appends);
         } else {
         	$collection = $result->getCollection();
         }
-       
         return  [
-        	'items'=> $collection,
+            'items'=> $collection,
             'total'=> $result->total()
         ];
+
     }
     public  function  getData(){
 
@@ -114,44 +159,26 @@ class CustomerService
         ];
     }
 	/**
-	 * @FIXME 改造成事务
 	 */
     public function storeData()
     {
-        $this->customer_basic->name = $this->request->name;
-        $this->customer_basic->sex = $this->request->sex;
-        $this->customer_basic->age = $this->request->age;
-        $this->customer_basic->save();
-        $cus_id=$this->customer_basic->id;
-        $this->customer_contact->cus_id=$cus_id;
-        $this->customer_contact->phone=$this->request->phone;
-        $this->customer_contact->qq=$this->request->qq;
-        $this->customer_contact->qq_nickname=$this->request->qq_nickname;
-        $this->customer_contact->weixin=$this->request->weixin;
-        $this->customer_contact->weixin_nickname=$this->request->weixin_nickname;
-        $this->customer_contact->save();
+        $model = $this->customer_basic->create($this->request->all());
+
+        $data = $this->request->all();
+        $data['cus_id'] = $model->id;
+        $modelc = $this->customer_contact->create($data);
+
         //0 代表添加
         $user = Auth::user();
-        event(new SetCustomerUser( $user, $this->customer_basic->id, CustomerUser::ADD));
+        event(new SetCustomerUser( $user, $model->id, CustomerUser::ADD));
+        
+        
+        return $model;
     }
 
     public function upDate($id)
     {
-
-        $updata1=[
-            'name'=>$this->request->name,
-            'age'=>$this->request->age,
-            'sex'=>$this->request->sex,
-        ];
-        $updata2=[
-            'phone'=>$this->request->phone,
-            'weixin'=>$this->request->weixin,
-            'weixin_nickname'=>$this->request->weixin_nickname,
-            'qq'=>$this->request->qq,
-            'qq_nickname'=>$this->request->qq_nickname,
-        ];
-        $this->customer_basic->where('id','=',$id)->update($updata1);
-        $this->customer_contact->where('cus_id','=',$id)->update($updata2);
+        $this->customer_basic->where('id','=',$id)->update($this->request->all());
     }
 
     public function destroyData($id)

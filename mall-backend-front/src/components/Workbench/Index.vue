@@ -11,10 +11,10 @@
                             <img :src="getUser.head" class="image"  style="width:200px;height:200px;border-radius:100%; vertical-align:middle;">
 
                             <div id="th" style="float:right;width:200px;border-left:1px solid #e2e2e2;line-height:180%">
-                                &nbsp;&nbsp;&nbsp;<span>姓名：{{getUser.account}}</span><br>
+                                &nbsp;&nbsp;&nbsp;<span>姓名：{{getUser.realname}}</span><br>
                                 &nbsp;&nbsp;&nbsp;<span>I  D：{{getUser.id}}</span><br>
-                                &nbsp;&nbsp;&nbsp;<span>职位类型：总经办</span><br>
-                                &nbsp;&nbsp;&nbsp;<span>单位：成都总部</span><br>
+                                &nbsp;&nbsp;&nbsp;<span>职位类型：{{getUserRoles[0].display_name}}</span><br>
+                                &nbsp;&nbsp;&nbsp;<span>单位：{{departName}}</span><br>
                                 &nbsp;&nbsp;&nbsp;<span>Q  Q：{{getUser.qq}}</span><br>
                                 &nbsp;&nbsp;&nbsp;<span>电话：{{getUser.mobilephone}}</span><br>
                                 &nbsp;&nbsp;&nbsp;<span>地址：{{getUser.address}}</span>
@@ -43,7 +43,7 @@
 
                                 <el-table-column prop="title" label="公告标题" align="center"></el-table-column>
 
-                                <el-table-column prop="content" label="公告内容" align="center"></el-table-column>
+                                <el-table-column prop="content" label="公告内容" align="center" :show-overflow-tooltip="true"></el-table-column>
                             </el-table>
                         </div>
                     </el-card>
@@ -59,7 +59,7 @@
 
                                 <el-table-column prop="name" label="联系人姓名" align="center"></el-table-column>
 
-                                <el-table-column label="备注"  prop="relationship_id" align="center">
+                                <el-table-column label="备注"  prop="relationship_id" align="center" :show-overflow-tooltip="true">
                                     <template slot-scope="scope">
                                         <span v-if="scope.row.relationship_id==1">父子(女)</span>
                                         <span v-if="scope.row.relationship_id==2">母子(女)</span>
@@ -81,16 +81,16 @@
                             <el-table  :data="WebsiteDataList"     border ref="select" style="width: 100%">
                                 <el-table-column label="序号" align="center"  type="index" width="65"></el-table-column>
 
-                                <el-table-column prop="describe" label="网址描述" align="center"></el-table-column>
+                                <el-table-column prop="describe" label="名称" align="center"></el-table-column>
 
 
-                                <el-table-column prop="webUrl" label="具体网址" align="center">
+                                <el-table-column prop="webUrl" label="网站" align="center">
                                     <template slot-scope="scope">
                                         <a :href="'http://' + scope.row.webUrl" target="_blank">{{scope.row.webUrl}}</a>
                                     </template>
                                 </el-table-column>
 
-                                <el-table-column prop="remark" label="备注"  align="center"></el-table-column>
+                                <el-table-column prop="remark" label="备注"  align="center" :show-overflow-tooltip="true"></el-table-column>
 
                             </el-table>
 
@@ -125,7 +125,9 @@
         mixins: [PageMix, SearchTool,DataTable],
         computed:{
             ...mapGetters([
-                'getUser'
+                'getUser',
+                'departName',
+                'getUserRoles'
             ])
         },
         data() {
@@ -155,9 +157,6 @@
             handleSelectionChange(val) {
                 this.multipleSelection = val;
             },
-
-
-
             getSysNoticeData(){
                 let selectProxy = new SelectProxy(this.sysNoticeUrl, this.sysNoticeData, this);
                 selectProxy.load();
@@ -167,6 +166,7 @@
             },
             getContactsData(){
                 let selectProxy = new SelectProxy(this.contactsUrl, this.contactsData, this);
+                selectProxy.setExtraParam({id:this.getUser.id});
                 selectProxy.load();
             },
             contactsData(data){
@@ -174,6 +174,7 @@
             },
             getWebsiteData(){
                 let selectProxy = new SelectProxy(this.websiteUrl, this.websiteData, this);
+                selectProxy.setExtraParam({id:this.getUser.id});
                 selectProxy.load();
             },
             websiteData(data){
@@ -199,7 +200,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     /*#one #two{*/
-        /*padding:22px;*/
+    /*padding:22px;*/
     /*}*/
     .head {
         padding: 15px 20px;

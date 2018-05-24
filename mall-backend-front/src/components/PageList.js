@@ -4,15 +4,18 @@ import Navgation from './Navgation.vue';
 const PageList = {
     'Navgation':Navgation,
 
+    'UserSetting': (resolve) => { require(['./UserSetting/Index.vue'],resolve)},
+    'UserInfo': (resolve) => { require(['./UserInfo/Index.vue'],resolve)},
+
     'GoodsDetails': (resolve) => { require(['./GoodsDetails/Index.vue'], resolve)},
     'GoodsSpecs': (resolve) => { require(['./GoodsSpecs/Index.vue'], resolve)},
     'GoodsType': (resolve) => { require(['./GoodsType/Index.vue'], resolve)},
     'Department':(resolve)=>{ require(['./Department/Index.vue'], resolve)},
     'Group':(resolve)=>{ require(['./Group/Index.vue'], resolve)},
     'Employee':(resolve)=>{ require(['./Employee/Index.vue'], resolve)},
-    'Customer':(resolve)=>{ require(['./CustomerInformation/Index.vue'], resolve)},
+    'Customer':(resolve)=>{ require(['./CustomerInfo/Index.vue'], resolve)},
 
-    'BuyOrders': (resolve) => { require(['./BuyOrders/Index.vue'], resolve)},
+    // 'BuyOrders': (resolve) => { require(['./BuyOrders/Index.vue'], resolve)},
     'OrderList':(resolve)=>{ require(['./OrderList/Index.vue'], resolve)},
     'Refund':(resolve)=>{ require(['./Refund/Index.vue'], resolve)},
     'InventoryList':(resolve)=>{ require(['./InventoryList/Index.vue'], resolve)},
@@ -34,13 +37,18 @@ const PageList = {
     'StockSum': (resolve) => { require(['./StockSum/Index.vue'], resolve)},
     'StockOutDetails': (resolve) => { require(['./StockOutDetails/Index.vue'], resolve)},
     'StockWarning': (resolve) => { require(['./StockWarning/Index.vue'], resolve)},
-    'ShelvesPick': (resolve) => { require(['./ShelvesPick/Index.vue'], resolve)},
+    // 'ShelvesPick': (resolve) => { require(['./ShelvesPick/Index.vue'], resolve)},
 
     'ExpressCompany': (resolve) => { require(['./ExpressCompany/Index.vue'], resolve)},
     'ExpressReceive': (resolve) => { require(['./ExpressReceive/Index.vue'], resolve)},
     'DistributionDelivery': (resolve) => { require(['./DistributionDelivery/Index.vue'], resolve)},
     'ShelvesManagement': (resolve) => { require(['./ShelvesManagement/Index.vue'], resolve)},
     'DistributionCenter': (resolve) => { require(['./DistributionCenter/Index.vue'], resolve)},
+    'CartonManagement': (resolve) => { require(['./CartonManagement/Index.vue'], resolve)},
+
+    //验货
+    'GoodsInspect': (resolve) => { require(['./GoodsInspect/Index.vue'], resolve)},
+
 
 
 };

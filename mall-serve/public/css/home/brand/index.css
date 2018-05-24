@@ -1,0 +1,79 @@
+
+#brand{
+    background: #fff;
+    margin-top: 20px;
+    padding: 15px 0 15px 0;
+}
+
+#brand .left{
+    padding: 0;
+}
+
+#brand .left #leftNav{
+    padding: 15px;
+    height: 400px;
+    border:1px solid #ccc;
+}
+
+#brand .left #leftNav ul li{
+    margin-bottom: 10px;
+}
+
+#brand .left #leftNav ul li a{
+    color: #666;
+    padding: 0 0 0 35px;
+    line-height: 40px;
+    font-size: 16px;
+}
+
+#brand .left #leftNav ul li a .icons{
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    color: #666;
+    left: 10px;
+    top:10px;
+}
+
+#brand .left #leftNav ul li.active a .icons{
+    color: #DF385F;
+}
+
+#brand .left #leftNav ul li.active a{
+    box-shadow: 0 0 3px #DF385F;
+    background: #fff;
+    border-radius: 0;
+    color: #DF385F;
+}
+
+#brand .right{
+    position: relative;
+    height: auto;
+    padding: 0 0 0 15px;
+}
+
+#brand .right .imgBox{
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+#brand .right .imgBox img{
+    width:100%;
+}
+
+.leftNavDisplay{
+    position: fixed;
+    top:110px;
+}
+
+@media (max-width: 767px) {
+    #brand .left{
+        display: none;
+    }
+}
+
+
+
+

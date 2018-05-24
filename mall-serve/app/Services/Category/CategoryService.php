@@ -4,6 +4,7 @@ namespace  App\Services\Category;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler;
+use App\Repositories\Criteria\FieldEqual;
 class CategoryService
 {
     private $repository = null;

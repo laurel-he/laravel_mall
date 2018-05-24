@@ -10,6 +10,7 @@ use App\Models\User;
 class RoleController extends Controller
 {
     /**
+     * 
      * 在添加员工的时候 允许设置的角色
      * 
      * @todo 做成一个管理界面
@@ -22,10 +23,35 @@ class RoleController extends Controller
             'sale-manager', 
             'sale-captain', 
             'sale-staff', 
+            'human-resources',
+            'assign-manager',
+            'assign-captain',
+            'assign-staff',
+            'assign-service',
+            'assign-buyer',
+            'assign-buyer-manager'
         ],
-        'sale-manager' => [
-            'sale-captain',
-            'sale-staff', 
+//         'sale-manager' => [
+//             'sale-captain',
+//             'sale-staff', 
+//         ]
+    ];
+    
+    public static $departAssignableMap = [
+      //type = 0
+        [
+          'sale-captain',
+          'sale-staff', 
+          'human-resources'
+        ],
+        //type=1
+        [
+            'assign-manager',
+            'assign-captain',
+            'assign-staff',
+            'assign-service',
+            'assign-buyer',
+            'assign-buyer-manager'
         ]
     ];
     
@@ -45,27 +71,46 @@ class RoleController extends Controller
     
     public function assignable()
     {
-    	$roles = Auth::user()->getRoles(false);
-//         $roles = User::find(1)->getRoles(false);
-        
-    	$names = array_column($roles->toArray(), 'name');
-    	$assignable = [];
-    	foreach ($names as $value) {
-    	    if (isset(self::$assignableMap[$value])) {
-    	        $assignable = array_merge($assignable, self::$assignableMap[$value]);
-    	    }
-    	}
+        /**
+         * 是不是　管理员　？
+         * 是　按管理员的
+         * 不是　按部门的
+        */
+        $user = Auth::user();
+        logger("[debug2]", [$user->isSuperAdmin() or $user->isAdministrator()]);
+        if ($user->isSuperAdmin() or $user->isAdministrator()) {
+            $roles = $user->getRoles(false);
+            
+            $names = array_column($roles->toArray(), 'name');
+            $assignable = [];
+            foreach ($names as $value) {
+                if (isset(self::$assignableMap[$value])) {
+                    $assignable = array_merge($assignable, self::$assignableMap[$value]);
+                }
+            }
+            
+            if (!in_array('*', $assignable)) {
+                $query = Role::whereIn('name', $assignable);
+            } else {
+                $query = Role::query(); // Role::on();
+            }
+            
+            return [
+                'items'=> $query->get()
+            ];
+        } else {
+            $department = $user->department;
+            if ($department) {
+                return [
+                    "items"=> Role::whereIn('name', self::$departAssignableMap[$department['type']])->get()
+                ];
+            } else {
+                return [
+                    'items' => []
+                ];
+            }
+        }
     	
-    	if (!in_array('*', $assignable)) {
-    	    $query = Role::whereIn('name', $assignable);
-    	} else {
-    	    $query = Role::query(); // Role::on();
-    	}
-    	
-    	
-    	return [
-    	    'items'=> $query->get()
-    	];
     }
 
     /**

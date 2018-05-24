@@ -13,4 +13,8 @@ class ConnectionController extends CommonController
         static::$bar['line7']='line';
         return view('home/connection/index',['bar'=>static::$bar]);
     }
+    
+    public function technology(){
+        return view('home/connection/technology',['bar'=>static::$bar]);
+    }
 }

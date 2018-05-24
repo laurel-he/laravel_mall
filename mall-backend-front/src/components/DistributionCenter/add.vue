@@ -37,7 +37,7 @@
                 <el-row>
                     <el-col :span="24">
                         <el-form-item label="备注"  prop="comment">
-                            <el-input type="textarea"  auto-complete="off" v-model="addForm.comment" placeholder="请填写备注"></el-input>
+                            <el-input type="textarea"  auto-complete="off" v-model="addForm.comment" placeholder="请填写备注(100字以内)"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -46,7 +46,7 @@
                 <el-button @click="handleClose">取 消</el-button>
                 <submit-button
                     :observer="dialogThis"
-                    @click="formSubmit('addForm')" >
+                    @click="beforeSubmit" >
                     保 存
                 </submit-button>
             </div>
@@ -60,6 +60,7 @@
     import EmployeeSelectProxy from '../../packages/EmployeeSelectProxy';
     import { mapGetters } from 'vuex';
 
+    import { PHONE_REG } from "@/config/index";
     // import Dialog from '../common/Dialog';
     export default {
         name: 'addDialog',
@@ -76,30 +77,6 @@
                 labelPosition:"right",
                 labelWidth:'80px',
                 computedusers:[],
-                text:'满',
-                number:21354,
-                allNumber:50,
-                putNumber:20,
-                types: [
-                    {id:1,name:'面膜'},
-                    {id:2,name:'爽肤水'},
-                ],
-                productNames: [
-                    {id:1,name:'面膜 6张'},
-                    {id:2,name:'爽肤水 200ml'},
-                ],
-                storageUsers: [
-                    {id:1,name:'张三'},
-                    {id:2,name:'李四'},
-                ],
-                departments:[
-                    {id:1,name:'面膜'},
-                    {id:2,name:'爽肤水'},
-                ],
-                distributors: [
-                    {id:1,name:'顺丰'},
-                    {id:2,name:'圆通'},
-                ],
                 addForm:{
                     name: "",
                     eng_name: "",
@@ -114,18 +91,19 @@
                         { required: true, message: '请输入配送中心名称', trigger: 'blur' }
                     ],
                     eng_name:[
-                        { required: true, message:'请输入英文简称', trigger: 'blur', },
-                        {  min: 1, max: 3, message: '长度不能超过3个字符', trigger: 'blur'  }
+                        { type:'string', pattern:/^[a-zA-Z]+$/, required: true, message:'请输入英文简称', trigger: 'blur', },
+                        {  min: 1, max: 2, message: '长度不能超过2个字符', trigger: 'blur'  }
                     ],
-                    contact:[
-                        { required: true,message:'请输入联系人', type: 'string', trigger:'blur'}
-                    ],
-                    contact_phone:[
-                        { required: true,message:'请输入联系人电话', type: 'string', trigger:'blur'}
-                    ],
-                    address:[
-                        { required: true, message:'请输入地址', type: 'string', trigger:'blur'}
-                    ],
+                    // contact:[
+                    //     { required: true,message:'请输入联系人', type: 'string', trigger:'blur'}
+                    // ],
+                    // contact_phone:[
+                    //     { required: true,message:'请输入联系人电话', pattern:PHONE_REG, trigger:'blur'}
+                    // ],
+                    // address:[
+                    //     { required: true, message:'请输入地址', type: 'string', trigger:'blur'},
+                    //     {   max: 100, message: '长度不能超过100个字符', trigger: 'blur'  }
+                    // ],
                 }
             }
         },
@@ -142,6 +120,10 @@
                 this.employeeSelect.load();
                 this.addForm.manager_id = "";
             },
+            beforeSubmit(){
+                this.addForm.eng_name.toUpperCase();
+                this.formSubmit('addForm');
+            }
         },
         created(){
             this.employeeSelect = new EmployeeSelectProxy({}, this.loadUsers, this);

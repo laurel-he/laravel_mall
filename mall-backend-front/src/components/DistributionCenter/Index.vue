@@ -20,9 +20,9 @@
         </el-row>
         <el-row>
             <el-col>
-                 <TableProxy :url="mainurl" :param="mainparam" :reload="dataTableReload">
-
-                    <el-table-column label="ID" align="center" prop="id"></el-table-column>
+                 <TableProxy :url="mainurl" :param="mainparam" :reload="dataTableReload" :page-size="15">
+                    <el-table-column type="index" width="80" label="序号"></el-table-column>
+                    <!-- <el-table-column label="ID" align="center" prop="id"></el-table-column> -->
 
                     <el-table-column prop="name" label="名称" align="center"></el-table-column>
 
@@ -32,9 +32,9 @@
 
                     <el-table-column prop="contact_phone" label="联系方式" align="center"></el-table-column>
 
-                    <el-table-column prop="address" label="地址" align="center"></el-table-column>
+                    <el-table-column prop="address" label="地址" align="center" :show-overflow-tooltip="true"></el-table-column>
 
-                    <el-table-column prop="comment" label="备注" align="center"></el-table-column>
+                    <el-table-column prop="comment" label="备注" align="center" :show-overflow-tooltip="true"></el-table-column>
 
                     <el-table-column  label="操作" align="center" width="200">
                         <template slot-scope="scope">

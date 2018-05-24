@@ -5,7 +5,7 @@
                     <el-row>
                         <el-col :span="12">
                             <el-form-item label="部门" prop="department_id">
-                                <el-select clearable size="small" placeholder="请选择部门名"  v-model="departmentInput" @change="onDepartChange">
+                                <el-select clearable  placeholder="请选择部门名"  v-model="departmentInput" @change="onDepartChange">
                                     <el-option v-for="(v,index) in departments"
                                         :label="v.name" 
                                         :value="index"
@@ -14,7 +14,7 @@
                                 </el-select>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="12">
+                        <!-- <el-col :span="12">
                             <el-form-item label="小组" prop="group_id" >
                                 <el-select size="small" placeholder="请选择小组"  v-model="groupInput" @change="onGroupChange">
                                         <el-option v-for="(v,index) in groups"
@@ -25,11 +25,16 @@
                                         </el-option>
                                 </el-select>
                             </el-form-item>
+                        </el-col> -->
+                        <el-col :span="12">
+                            <el-form-item label="金额" prop="money" >
+                                <el-input class="name-input"  placeholder="输入金额" v-model.number="addForm.money"></el-input>
+                            </el-form-item>
                         </el-col>
                     </el-row>
 
                     <el-row>
-                        <el-col :span="12">
+                        <!-- <el-col :span="12">
                             <el-form-item label="员工" prop="user_id" >
                                 <el-select size="small" placeholder="请选择员工"  v-model="userInput" @change="onUserChange">
                                     <el-option v-for="(v,index) in users"
@@ -39,22 +44,18 @@
                                     </el-option>
                                 </el-select>
                             </el-form-item>
-                        </el-col>
+                        </el-col> -->
 
-                        <el-col :span="12">
-                            <el-form-item label="金额" prop="money" >
-                                <el-input class="name-input" size="small" placeholder="输入金额" v-model.number="addForm.money"></el-input>
-                            </el-form-item>
-                        </el-col>
+                        
                     </el-row>
                     <el-row>
                         <el-col :span="12">
                             <el-form-item label="充值方式" prop="charge_type" >
-                                <el-select size="small" placeholder="请选择充值方式"  v-model="addForm.charge_type" >
+                                <el-select   placeholder="请选择充值方式"  v-model="addForm.charge_type" >
                                     <el-option v-for="(v,index) in chargeTypes"
                                         :label="v.name"
                                         :value="v.id"
-                                        :key="v.id">
+                                        :key="index">
                                     </el-option>
                                 </el-select>
                             </el-form-item>
@@ -127,8 +128,8 @@
                 userInput:'',
                 addForm:{
                     department_id:"",
-                    group_id:"",
-                    user_id:"",
+                    // group_id:"",
+                    // user_id:"",
                     department_name:"",
                     group_name:"",
                     charge_type:'',
@@ -142,7 +143,7 @@
                 },
                 rules:{
                     money:[
-                        { required: true, message:'金额未输入或输入的格式不正确', type:'integer', trigger:'blur',min:0 }
+                        { required: true, message:'金额未输入或输入的格式不正确', pattern:/^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/ , trigger:'blur',min:0 }
                     ],
                     remark:[
                         { message:'输入内容最大长度为200', type: 'string', trigger:'blur', max:200}
@@ -199,6 +200,10 @@
             let departProxy = new DepartSelectProxy(null, this.loadDepartment, this);
             this.departProxy = departProxy;
             this.departProxy.load();
+
+            this.addForm.creator_id = this.creator_id;
+            this.addForm.creator = this.creator;
+            
         }
     }
     </script>

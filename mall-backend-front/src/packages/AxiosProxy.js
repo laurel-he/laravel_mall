@@ -7,5 +7,5 @@ const instance = Axios.create({
     withCredentials: true ,//process.env.NODE_ENV == 'development' ? false :true
 
 });
-
+console.log(process.env);
 export default instance;

@@ -1,0 +1,211 @@
+
+#stars{
+    padding: 0 0 10px 0;
+}
+
+#stars div{
+    padding: 0;
+}
+
+#stars .starsTitle{
+    line-height: 50px;
+}
+
+#stars .starsTitle a{
+    color: #666;
+    text-decoration: none;
+}
+
+#stars .starsTitle span{
+    color: #DF385F;
+}
+
+#stars .productTit{
+    line-height: 50px;
+    text-align: center;
+}
+
+#stars .productTit a{
+    display: block;
+    padding: 0 10px 0 10px;
+    text-decoration: none;
+    color: #666;
+    line-height: 50px;
+    font-size: 16px;
+}
+
+#stars .productTit a.active{
+    border-bottom: 2px solid #DF385F;
+    color: #DF385F;
+}
+
+#stars .productBanners{
+    margin-top: 20px;
+}
+
+#stars .productBanners .left{
+    padding-right: 7px;
+    text-align: center;
+}
+
+#stars .productBanners .left .lefBox{
+    box-shadow: 0 0 5px #666;
+    padding: 15px;
+}
+
+#stars .productBanners .left .lefBox .tits{
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#stars .productBanners .left .lefBox .minTit{
+    line-height: 40px;
+}
+
+#stars .productBanners .left .lefBox .minTit .line{
+    width: 40px;
+    height: 2px;
+    background: #666;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -20px;
+}
+
+#stars .productBanners .left .lefBox .lefCon{
+    line-height: 25px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+#stars .productBanners .right{
+    padding-left: 3px;
+}
+
+#stars .productBanners .right div{
+    box-shadow: 0 0 5px #666;
+}
+
+#stars .productBanners .right img{
+    width: 100%;
+    height: 100%;
+}
+
+#stars .proLists:nth-child(3n-2){
+    margin-top: 10px;
+    padding-right: 7px;
+}
+
+#stars .proLists:nth-child(3n){
+    margin-top: 10px;
+    padding-left: 7px;
+}
+
+#stars .proLists:nth-child(3n-1){
+    margin-top: 10px;
+    padding: 0 3px 0 3px;
+}
+
+#stars .proLists .proList{
+    box-shadow: 0 0 5px #666;
+    padding: 10px 30px 10px 30px;
+}
+
+#stars .proLists .proList:hover{
+    box-shadow: 0 0 5px #DF385F;
+}
+
+#stars .proLists .proList .imgB img{
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 244px;
+    width: 258px;
+}
+
+#stars .proLists .proList .proTit{
+    line-height: 20px;
+    height: 40px;
+    overflow: hidden;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+#stars .proLists .proList .priceBox{
+    line-height: 30px;
+    margin-top: 5px;
+}
+
+#stars .proLists .proList .priceBox span{
+    margin-right: 5px;
+}
+
+#stars .proLists .proList .priceBox .price{
+    color: #DF385F;
+}
+
+#stars .proLists .proList .priceBox .saleN{
+    width: 40px;
+    height: 20px;
+    background: #F5D29C;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#stars .proLists .proList .priceBox .saleB{
+    background: #C0A36B;
+}
+
+#stars .proLists .proList .priceBox .shop{
+    float: right;
+    cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+    #stars .productBanners .left .lefBox{
+        height: 350px;
+    }
+    #stars .productBanners .right .imgBox{
+        height: 350px;
+    }
+    #stars .productBanners .left .lefBox .lefCon{
+        max-height: 225px;
+        overflow: hidden;
+    }
+}
+@media (min-width: 992px)and (max-width: 1199px) {
+    #stars .productBanners .left .lefBox{
+        height: 300px;
+    }
+    #stars .productBanners .right .imgBox{
+        height: 300px;
+    }
+    #stars .productBanners .left .lefBox .lefCon{
+        max-height: 175px;
+        overflow: hidden;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    #stars .productBanners .left .lefBox{
+        height: 250px;
+    }
+    #stars .productBanners .right .imgBox{
+        height: 250px;
+    }
+    #stars .productBanners .left .lefBox .lefCon{
+        max-height: 125px;
+        overflow: hidden;
+    }
+}

@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Services\Customer\CustomerService;
 use App\Models\CustomerUser;
+use App\Models\CustomerApp;
 use App\Models\User;
 use App\Events\SetCustomerUser;
+use Illuminate\Validation\ValidationException;
+use App\Events\ContactConflict;
 
 class CustomerController extends Controller
 {
@@ -22,10 +25,25 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-
-        return   $this->service->get();
+        $business = $request->query('business', 'default');
+        $result = [];
+        switch ($business) {
+            case 'customerType':
+                $result = CustomerApp::getType();
+                break;
+            case 'customerSource':
+                $result = CustomerApp::getSource();
+                break;
+            case 'complainType':
+                $result = CustomerApp::getComplainType();
+                break;
+            default:
+                $result = $this->service->get();
+                break;
+        }
+        return $result; 
 
     }
 
@@ -45,9 +63,34 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $this->service->storeData();
+        
+//         if (!$request->has('department_id')) {
+//             return $this->error([], '未分配部门，你还不能添加');
+//         }
+        
+        try {
+            $this->validate($request, [
+                'phone' => ['nullable','unique:customer_contact'],
+                'qq' => ['nullable','unique:customer_contact'],
+                'weixin' => ['nullable','unique:customer_contact'],
+//                 'department_id' =>'required'
+            ]);
+        } catch (ValidationException $e) {
+            event( new ContactConflict($e->validator->errors(), $request->only(['phone','qq','weixin'])));
+            throw $e;
+        }
+        
+        
+        try {
+           
+            $this->service->storeData();
+        } catch (Exception $e) {
+            return $this->error(null, $e->getMessage());
+        }
+        
+        return $this->success([]);
     }
 
     /**
@@ -107,15 +150,15 @@ class CustomerController extends Controller
     	//cus_ids
     	$from_id = $request->input('from_id');
     	if (!$from_id) {
-    		return $this->error();
+    		return $this->error(0);
     	}
     	$user_id = $request->input('user_id');
     	if (!$user_id) {
-    		return $this->error();
+    		return $this->error(0);
     	}
     	
     	if ($from_id == $user_id) {
-    		return $this->error();
+    		return $this->error(0);
     	}
     	
     	
@@ -130,7 +173,7 @@ class CustomerController extends Controller
     	  
     	}
     	
-    	return $this->success();
+    	return $this->success(1);
     }
     
     /**
@@ -165,15 +208,11 @@ class CustomerController extends Controller
     			continue;
     		}
     		foreach ($cus_ids as $id) {
+                
     			event(new SetCustomerUser(
-    					$id,
-    					CustomerUser::QUIT,
-    					$userModel->id,
-    					$userModel->group_id,
-    					$userModel->department_id,
-    					$userModel->realname,
-    					$userModel->group->name,
-    					$userModel->department->name));
+    			        $userModel,
+    			        $id,
+    					CustomerUser::QUIT ));
     			
     		}
     	}

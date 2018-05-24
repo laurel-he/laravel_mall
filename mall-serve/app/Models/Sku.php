@@ -35,6 +35,8 @@ class Sku extends Model
 	
 	
 	
+	
+	
 	public static function getCount()
 	{
 		return self::withTrashed()->count();

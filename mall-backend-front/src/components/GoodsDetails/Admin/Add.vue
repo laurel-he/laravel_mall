@@ -1,7 +1,7 @@
 <template>
     <div >
         <MyDialog title="添加" :name="name" :width="width" :height="height" @before-open="onOpen">
-            <el-form :model="addForm" :rules="addFormRules" ref="addForm" :label-width="labelWidth"  :label-position="labelPosition">
+            <el-form :model="addForm" :rules="addFormRules" ref="addForm" :label-width="labelWidth"   :label-position="labelPosition" style="height:600px; overflow-y: auto">
                 <el-tabs v-model="activeName" @tab-click="handleClick">
                     <el-tab-pane label="基本信息" name="first">
                         <el-row>
@@ -44,12 +44,10 @@
                                 </el-form-item>
                             </el-col>
                             <el-col :span="12">
-                                <el-form-item label="是否上架"  prop="status">
-                                    <el-radio-group v-model="addForm.status">
-                                        <el-radio label="1">是</el-radio>
-                                        <el-radio label="2">否</el-radio>
-                                    </el-radio-group>
+                                <el-form-item label="原价"  prop="del_price">
+                                    <el-input class="name-input" v-model="addForm.del_price"  auto-complete="off" placeholder="0.00"></el-input>
                                 </el-form-item>
+                                
                             </el-col>
                         </el-row>
                         <el-row>
@@ -74,10 +72,55 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="是否上架"  prop="status">
+                                    <el-radio-group v-model="addForm.status">
+                                        <el-radio label="1">是</el-radio>
+                                        <el-radio label="2">否</el-radio>
+                                    </el-radio-group>
+                                </el-form-item>
+                            </el-col>
                         </el-row>
+                        <!-- 库存需要 -->
+                        <el-row>
+                            <el-col :span="12">
+                                <el-form-item label="包装规格"  prop="">
+                                        <el-col :span="4">
+                                            <el-input placeholder="长"></el-input>
+                                        </el-col>
+                                        <el-col class="line" :span="2">-</el-col>
+                                        <el-col :span="4">
+                                            <el-input placeholder="宽"></el-input>
+                                        </el-col>
+                                        <el-col class="line" :span="2">-</el-col>
+                                        <el-col :span="4">
+                                            <el-input placeholder="高"></el-input>
+                                        </el-col>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="条码"  >
+                                    <el-input placeholder="条码"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                       
+                        <el-row>
+                            <el-col :span="12">
+                                <el-form-item label="重量"  >
+                                    <el-input placeholder="重量单位 g"></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-form-item label="气泡垫"  >
+                                    <el-input placeholder="重量单位 g"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                       <!-- / 库存需要 -->
+                       
                         <el-row>
                             <el-col>
-                                
                                     <quill-editor v-model="editContent"
                                        
                                         ref="myQuillEditor"
@@ -178,6 +221,28 @@
                         </el-dialog>
                         <div class="el-upload__tip">默认第一张图片为封面图片</div>
                     </el-tab-pane>  
+                    <el-tab-pane label="前台显示" name="four">
+                        <el-row>
+                            <el-col :span="12">
+                                <el-form-item label="累计评价"  prop="comments">
+                                    <el-input class="name-input" v-model="addForm.comments"  auto-complete="off" placeholder="1890"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row>
+                            <el-col :span="12">
+                                <el-form-item label="累积销售"  prop="sale_count">
+                                    <el-input class="name-input" v-model="addForm.sale_count"  auto-complete="off" placeholder="500"></el-input>
+                                </el-form-item>
+                            </el-col>
+
+                            <el-col :span="12">
+                                <el-form-item label="显示库存"  prop="sale_able_count">
+                                    <el-input class="name-input" v-model="addForm.sale_able_count"  auto-complete="off" placeholder="1890"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-tab-pane>
                 </el-tabs>
             </el-form>
     
@@ -246,7 +311,10 @@ export default {
                 description:'',
                 img_path:[],
                 skus:[],
-
+                del_price:"0.00",
+                comments:"12",
+                sale_count:"244",
+                sale_able_count:"1000"
             },
             attrForm:[],
             editContent:'',
@@ -256,10 +324,17 @@ export default {
             skuForm:{
                 name:"",
                 price:"",
-                num:0,
+                // num:0,
                 sku_sn:""
             },
             addFormRules:{
+                goods_name:[
+                    {required: true, message:'名称必填', trigger:'blur'},
+                    {max:100, message:'最长100个字符', trigger:'blur'}
+                ],
+                unit_type:[
+                    {required: true,   message: '请选择单位', trigger:'change'}
+                ],
                 goods_price:[
                     {required: true,pattern:/^(([1-9]\d{0,9})|0)(\.\d{1,2})?$/,  message: '价格格式为00.00', trigger:'blur'}
                 ],
@@ -374,8 +449,8 @@ export default {
             let obj = Object.assign({}, this.skuForm);
             this.addForm.skus.push(obj);
             this.attrForm = [];
-            this.copy(this._attrForm, this.attrForm);
-            this.$refs.skuForm.resetFields();
+            // this.copy(this._attrForm, this.attrForm);
+            this.$refs['skuForm'].resetFields();
         },
         
         deleteAttrItem(index){
@@ -416,6 +491,9 @@ export default {
     }
     .vertical-middle{
         vertical-align: middle;
+    }
+    .line {
+        text-align: center;
     }
 </style>
       

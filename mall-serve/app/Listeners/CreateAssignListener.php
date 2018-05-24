@@ -36,23 +36,36 @@ class CreateAssignListener
     {
         $order = $event->getOrder();
         
-        $addressModel = OrderAddress::find($order->id);
+        //$addressModel = OrderAddress::find($order->id);
+        $order->goods->load('productCategory');
         
+        $inserts = [];
         foreach ($order->goods  as $product) {
-            $re = Assign::create([
-                'entrepot_id'=>$order->entrepot_id,
-                'order_id'=>$order->id,
-                'order_goods_id'=>$product->id,
-                'order_address_id'=>$addressModel->id
+//             var_dump($product);
+            $inserts[] =Assign::create([
+                'entrepot_id'=> $order->entrepot_id,
+                'order_id'   => $order->id,
+                'address_id' => $order->address->id,
+//                 'order_goods_id'   => $product->id,
+//                 'cus_name'   => $order->customer->name,
+//                 'goods_name' => $product->goods_name,
+//                 'goods_num'  => $product->goods_number,
+//                 'unit_type'  => $product->unit_type,
+//                 'cate_type'  => $product->productCategory->cate_type,
+//                 'cate_type_id' => $product->productCategory->cate_type_id,
+//                 'cate_kind'  => $product->productCategory->cate_kind,
+//                 'cate_kind_id' => $product->productCategory->cate_kind_id,
+//                 'deliver_name' => $order->address->name,
+//                 'deliver_phone' => $order->address->phone,
+//                 'deliver_zip_code' => $order->address->zip_code,
+//                 'deliver_address' => $order->address->address,
+//                 'sale_name' => $order->deal_name,
+//                 'pass_check' => $order->auditor_time
             ]);
         }
         
-        $re = Assign::create([
-            'entrepot_id'=>$order->entrepot_id,
-            'order_id'=>$order->id
-        ]);
         
-        if (!$re) {
+        if (count($inserts) == 0) {
             throw new \Exception('配货单创建失败');
         }
         

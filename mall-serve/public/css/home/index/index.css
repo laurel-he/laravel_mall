@@ -6,41 +6,52 @@
 
 .headBar{
     max-height: 123px;
+    padding: 0;
+    background: #DF385F;
+}
+
+.headBar div{
+    padding: 0;
 }
 
 .indexContent{
-    padding-top: 134px;
+    padding-top: 109px;
+    background: #fff ;
+
 }
 
 .indexContent .banner-bg{
     padding: 0;
-    background-image: url('../../../images/home/index/bg1.jpg');
+    /*background-image: url('../../../images/home/index/bg1.jpg');
     background-repeat:no-repeat ;
     background-position: center;
-    background-size: 100% 100%;
+    background-size: 100% 100%;*/
 }
 
 /*---------------------导航栏---------------------*/
 #navbar{
     color: #777;
     background: rgba(255,255,255,0.9);
-    padding-bottom: 10px;
+    height: auto;
     /*background-image: url("../../../images/home/index/nav.png");*/
 }
 
 #navbar a{
-    color: #777;
+    color: #333;
 }
 
 #nav{
-    padding-top: 10px;
+    height: 50px;
     font-size: 16px;
 }
 
-#ul .m-drop{
+/*#ul .m-drop{
     border:none;
     box-shadow: none;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,1);
+}*/
+
+#ul{
 }
 
 #ul .m-drop li a{
@@ -49,13 +60,13 @@
 }
 
 #ul li a:hover{
-    color: #047233;
+    color: #fff;
     border-radius: 5px;
     background: none;
 }
 
 #ul li a.sta{
-    color: #047233;
+    color: #fff;
     border-radius: 5px;
 }
 
@@ -65,7 +76,7 @@
 }
 
 #ul a.navC:hover{
-    color: #047233;
+    color: #fff;
     border-radius: 5px;
 }
 
@@ -75,7 +86,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: #999;
+    background: #fff;
 }
 
 #ul li a:hover div.line{
@@ -92,7 +103,6 @@
 
 
 #navBut {
-    background: #fff;
     margin-top: 13px;
     margin-right: 15px;
 }
@@ -102,15 +112,26 @@
 }
 
 #logo{
-    line-height: 30px;
     font-size: 26px;
+    width: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    float: left;
 }
 
-.searchBars div{
+#logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.searchBar{
     padding: 0;
 }
 
 #searchBar{
+    width: 100%;
     height: 40px;
     padding: 0;
     position: relative;
@@ -118,13 +139,13 @@
 #searchB{
     width: 100%;
     height: 40px;/*2F9F6D*/
-    border:1px solid #028443;
+    border: none;
+    border-bottom: 2px solid #666;
     outline: none;
     padding: 0 50px 0 15px;
-    border-radius: 5px;
 }
 #searchB:focus{
-    border:1px solid #2F9F6D;
+    border-bottom:2px solid #DF385F;
 }
 
 #souI{
@@ -147,16 +168,22 @@
 /*--------------------------------登录购物车--------------------*/
 
 .personBar{
-    max-height: 30px;
+    height: 68px;
+    background: #ffffff;
+}
+
+.personBar div{
+    padding: 0;
 }
 
 .loginActionBars{
-    height: 30px;
+    height: 40px;
     z-index: 9999;
+    margin-top: 22px;
 }
 
 #loginBar{
-    height: 30px;
+    height: 40px;
     padding: 0;
 }
 #loginBar div{
@@ -164,20 +191,26 @@
 }
 #loginBar a{
     text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 #loginBar .barL{
-    height: 30px;
+    height: 40px;
 }
-#loginBar .barL span{
-    display: block;
-    line-height: 30px;
-    font-size: 20px;
-    text-align: center;
-    margin-top: 10px;
-    color: #666;
+#loginBar div {
+    position: relative;
 }
-#loginBar .barL span:hover{
-    box-shadow: 0 0 3px #666;
+#loginBar div img{
+    cursor: pointer;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0 0 0 -20px;
+}
+#loginBar div img:hover{
+    box-shadow: 0 0 3px #DF385F;
 }
 
 #loginBar #buyNumber{
@@ -387,273 +420,216 @@
     margin-right: 10px;
 }
 
-
-/*-------------------------内容区域---------------------*/
-#content{
-    padding: 0;
-}
-#head{
-    padding: 0;
-}
-#head .llf{
-    padding: 0;
-}
-#head .lle{
-    padding: 0;
-}
-
 /*-------------------banner-----------------*/
 #banner{
-    padding: 0;
+    /*padding: 0;*/
+    height: auto;
 }
 #banner img{
     width: 100%;
 }
 
-/*--------------------------navF----------------------*/
-#navFs{
-    background: rgba(255,255,255,0.7);
-    padding: 20px 30px 30px 30px;
-    z-index: 99;
-    margin-top: 60px;
+#banner .bannerBox{
+    overflow: hidden;
 }
-#navFs div{
+
+#banner .imgs{
+    width: 100%;
+    height: 100%;
+}
+/*----------minBanner-------------------*/
+#minBanner{
+    margin-top: 10px;
+    margin-left:-9px;
+    margin-right: -9px;
+}
+
+#minBanner div{
     padding: 0;
-    text-align: center;
-}
-#navFs .navFc{
-    margin-top: 5px;
-    color: #666;
 }
 
-#navFs .navFleft{
-    padding-right: 15px;
-    height: 70px;
-    writing-mode: tb-rl;
-    font-size: 16px;
-    border-right: 1px solid #F29FA8;
-}
-
-#navFs .navFright{
-    padding-top: 5px;
-    line-height: 30px;
-}
-
-
-
-/*----------------section1--------------------*/
-
-#section1{
-    text-align: center;
-    margin-top: 80px;
-}
-
-.headMax{
-    line-height: 50px;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 10px;
-}
-
-.headMin{
-    line-height: 25px;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    margin-top: 15px;
+#minBanner .imgBox{
+    padding: 0 10px 0 10px;
     margin-bottom: 15px;
 }
-.headMin .headMinB{
-    background: #F19FA7;
-    width: 210px;
-    margin: 0 auto;
-    color: #fff;
+
+#minBanner .imgBox img:hover{
+    box-shadow: 0 0 3px #bf9d63,
+    0 0 5px #bf9d63;
 }
 
-#section1 #section1C{
+
+/*----------------productList----------------------*/
+#productList{
+    padding: 0;
+    margin: 0px -10px;
+}
+
+
+#productList .list{
+    margin-top: 10px;
+}
+
+#productList .list{
+    padding: 0px 10px 0px 10px;
+}
+
+#productList .list img{
+    width: 100%;
+}
+
+/*-------------------------------------------*/
+/*-------------------------内容区域---------------------*/
+
+#content{
     padding: 0;
 }
 
-#section1 #section1C .cont{
-    margin-top: 80px;
+/*------------------新品首发------------------*/
+
+.newProduct{
+    margin-top: 40px;
+    padding: 0;
+    height: auto;
 }
 
-/*-----------------------section2--------------------*/
-
-#section2{
-    margin-top: 50px;
-}
-
-#section2 .llf{
+.newProduct div{
     padding: 0;
 }
 
-#section2 #section2C{
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-#section2 .cont{
-    margin-top: 80px;
-}
-
-/*-----------------------section3-----------------------*/
-#section3{
-    padding: 20px  0 10px 0;
-}
-
-#section3 .llf{
-    padding: 0;
-}
-
-#section3 #section3C{
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-#section3 .cont{
-    margin-top: 80px;
-}
-
-/*-------------------------products------------------------------*/
-
-#head1{
-    padding: 0;
-}
-
-#products{
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 0;
-}
-
-#products .heads{
-    padding: 25px 0 20px 0;
-}
-
-#products .productsNav{
-    margin-top: 30px;
-    padding: 0;
-}
-
-#products .productsNav .lle{
-    padding: 0;
-}
-
-#products .productsNav .productsNavs{
-    padding: 0;
-    background: #cccccc;
+#content .newT{
     line-height: 40px;
 }
 
-#products .productsNav .productsNavs div{
+#content .newT .left span{
+    display: block;
+    float: left;
+    font-size: 16px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+#content .newT .left .line{
+    height: 20px;
+    width: 5px;
+    background: #7ACDEC;
+    margin-top: 10px;
+}
+
+#content .newT .right{
+    text-align: right;
+}
+
+#content .newT .right a{
+    color: #666;
+    text-decoration: none;
+}
+
+.newProduct .newC{
     padding: 0;
-    position: relative;
+    background: #fff;
 }
 
-#products .productsNav .productsNavs .bars{
-    position: relative;
+.newProduct .newC .left{
+    height: 440px;
 }
 
-#products .productsNav .productsNavs .bars .leanLine{
-    position: absolute;
-    right: -5px;
-    top: 20px;
-    height: 1px;
-    width: 26px;
-    background: #666;
-    transform: rotate(-70deg);
-}
-/*---------------------productsLists---------------*/
-
-#products .productsLists{
-    margin-top: 40px;
-}
-
-#products .productsLists .productsList{
-    border:1px solid #ccc;
-    padding: 0;
-}
-
-/*------------------------service------------------------*/
-
-#service{
-    padding: 0;
-    margin-bottom: 50px;
-}
-
-#service .serviceBar{
-    text-align: center;
-    padding: 15px;
-}
-
-#service .serviceBar .barBox{
+.newProduct .newC .left img{
+    width: 100%;
     height: 100%;
-    border-radius: 50%;
+}
+
+.newProduct .newC .right{
+    height: 440px;
+    overflow: hidden;
+    position: relative;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.newProduct .newC .right .imgBox a{
+    color: #333;
+    display: block;
+    width: 100%;
+}
+
+.newProduct .newC .right .imgBox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align:center;
+}
+
+.newProduct .newC .right .imgBox img{
+    display: block;
+    max-width: 100%;
+    max-height: 140px;
+    margin: 0 auto;
+}
+
+.newProduct .newC .right .imgBox .msg{
+    line-height: 30px;
+    float: left;
+    width: 100%;
+}
+
+.newProduct .newC .right .imgBox .msg div{
+    width: 100%;
     text-align: center;
-    line-height: 170px;
+    height: 30px;
+}
+
+.newProduct .newC .right .imgBox .msg .goodsName{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px 0 10px;
+}
+
+.newProduct .newC .right .imgBox .msg .price{
+    color: red;
+}
+
+.newProduct .newC .right .swiper-button-prev{
+    background: #ccc;
     font-size: 30px;
-    font-family: 华文琥珀;
-    box-shadow: 0 0 5px rgba(75,131,84,0.8),0 3px 8px rgba(75,131,84,0.7),0 3px 11px rgba(75,131,84,0.6)
+    color: #fff;
+    line-height: 44px;
+    text-align: center;
 }
 
-/*---------------------------customService------------------------------*/
-
-.customService{
-    background: #F7F8F0;
-    padding: 50px 15px 50px 15px;
+.newProduct .newC .right .swiper-button-next{
+    background: #ccc;
+    font-size: 30px;
+    color: #fff;
+    line-height: 44px;
+    text-align: center;
 }
 
-.customService .serviceLine{
-    border-bottom: 2px solid #047233;
-    border-top: 2px solid #047233;
-    padding: 50px 0px 50px 0px;
-}
+/*------------------------*/
 
-.customService .serviceLine div{
-    padding: 0;
-}
-
-.customService .serviceLine .left{
-    font-size: 26px;
-    line-height: 60px;
-    padding:0;
-    color: #066F2D;
-}
-
-.customService .serviceLine .middle{
-    padding: 0;
-    line-height: 30px;
-    font-size: 14px;
-}
-
-.customService .serviceLine .middle div{
-    padding: 0;
-}
-
-.customService .serviceLine .right{
-    padding: 0;
-    line-height: 30px;
-    font-size: 14px;
-}
-
-.customService .serviceLine .right div{
-    padding: 0;
-}
 
 /*------------------------------------navBottom---------------------------------*/
 
 .navBottom{
-    background: rgba(0,0,0,0.7);
-    color: #fff;
+    background: #fff;
+    color: #333;
     line-height: 40px;
-    padding: 0px 15px 0px 15px;
+    padding: 0;
 }
 
+
+
 .navBottom .title{
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: bold;
     margin-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .navBottom .introduction{
@@ -661,13 +637,95 @@
     min-height: 160px;
 }
 
-.navBottom .navBot div{
-    padding: 0;
+.navBottom .navBot {
+    margin-top: 50px;
+    border-top: 2px solid #DF385F;
+}
+
+.navBottom .navBot div div a{
+    text-decoration: none;
+    color: #333;
+}
+
+
+.navBottom .navBot div.box{
+    padding-left: 44px;
+}
+.navNum a{
+	color: #fff;
 }
 
 .navBottom .navNum{
+    color: #fff;
     line-height: 50px;
     text-align: center;
+    background: #F5C3CF;
+}
+
+.productBanner{
+    padding: 0;
+    margin-top: -40px;
+}
+
+#scrollBox{
+    position:fixed;
+    width: 50px;
+    height: auto;
+    top: 45%;
+    right: 6%;
+    background: #DF385F;
+    border-radius: 5px;
+}
+
+#scrollBox .sbox{
+    width: 40px;
+    height: auto;
+    margin: 5px 5px;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    cursor: pointer;
+}
+
+#scrollBox .sbox .content{
+    width: 80px;
+    position: absolute;
+    left: -80px;
+    top: 0;
+    height: 40px;
+    background: #DF385F;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    display: none;
+}
+
+#scrollBox .sbox:hover > .content{
+    display: block;
+}
+
+#scrollBox div:last-child{
+    border-bottom: none;
+}
+
+#scrollBox div img{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+#scrollBox #fcode {
+	width: 100px;
+	height:100px;
+}
+
+#qrcode{
+    position: absolute;
+    left: -40px;
+    width: 60px;
+    height: 60px;
+    top: -29px;
+    background: #fff;
+    box-shadow: 0 0 3px #666;
 }
 
 /*-----------------------手机样式调整----------------------*/
@@ -675,6 +733,18 @@
 @media (max-width: 767px) {
     .headBar{
         max-height: 100%;
+    }
+    #nav{
+        top: -20px;
+    }
+    .headBar{
+        /*height: 102px;*/
+    }
+    #ul{
+        /*background: #999;*/
+    }
+    #ul a.navC{
+        color: #fff;
     }
     #ul .m-drop{
         width: 100%;
@@ -693,10 +763,45 @@
     }
 
     .indexContent{
-        padding-top: 117px;
+        padding-top: 184px;
     }
 
     #ul li a div{
+    }
+    #logo{
+        position: absolute;
+        top: -34px;
+    }
+    #banner{
+        margin-top: 0;
+    }
+
+    #saleProduct .saleContent .right{
+        height: auto;
+    }
+
+    .contentBox .contentCls .right .proBox{
+        width: 50%;
+    }
+
+    #minBanner .imgBox{
+        padding: 0 15px 0 15px;
+    }
+
+    #minBanner .imgBox:first-child{
+        padding: 0 15px 0 15px;
+    }
+
+    #minBanner .imgBox:last-child{
+        padding: 0 15px 0 15px;
+    }
+
+    #productList .list:first-child{
+        padding:0 15px 0 15px;
+    }
+
+    #productList .list:last-child{
+        padding:0 15px 0 15px;
     }
 }
 

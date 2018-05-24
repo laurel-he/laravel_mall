@@ -26,4 +26,9 @@ class EntrepotProductCategory extends Model
         'cate_type',
         'cate_kind'
     ];
+    
+    public function  entrepotGoods()
+    {
+        return $this->hasMany('App\Modles\InventroySystem', 'sku_sn', 'sku_sn');
+    }
 }

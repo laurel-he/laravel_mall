@@ -12,7 +12,8 @@ const app = {
         },
         assignable(state){
             return state.assignable;
-        }
+        },
+        
     },
 
     mutations:{

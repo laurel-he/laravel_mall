@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use App\Repositories\OrderlistRepository;
 use App\Services\Orderlist\OrderlistService;
 use App\Events\AddOrder;
+use App\Events\OrderPass;
+use App\Events\OrderCancel;
 class OrderBasicController extends Controller
 {
 
@@ -64,55 +66,45 @@ class OrderBasicController extends Controller
      */
     public function store(Request $request)
     {
-    	if($request->exchange) {
-            $order_id=$request->id;
-            $orderGoods=$request->order_goods;
-            $data=[];
-            foreach ($orderGoods as $k => $v){
-                $v['order_id'] = $order_id;
-                unset($v['moneyNotes']);
-                $data[$k]=$v;
+        DB::beginTransaction();
+        try {
+            $allData = $request->all();
+            $allData['entrepot_id'] = auth()->user()->getEntrepotId();
+            if ($allData['entrepot_id'] == 0) {
+                throw new \Exception('没有绑定配送中心');
             }
-            DB::table('order_goods')->insert($data);
-        } else {
-            
-            DB::beginTransaction();
-            try {
-                $allData = $request->all();
-                $allData['entrepot_id'] = auth()->user()->getEntrepotId();
-                $orderModel = OrderBasic::make($allData);
-                $re = $orderModel->save();
-                if (!$re) {
-                    throw new  \Exception('订单创建失败');
-                }
-                $orderGoodsModels = [];
-                foreach ($request->order_goods as $goods) {
-                    $goods['unit_type'] = GoodsDetails::getUnitTypes($goods['unit_type']);
-                    $orderGoodsModels[] = OrderGoods::make($goods);
-                }
-//                 $orderGoodsModels = array_map(function($goods){
-//                     return OrderGoods::make($goods);
-//                 }, $request->order_goods);
-                if (!empty($orderGoodsModels)) {
-                    $orderModel->goods()->saveMany($orderGoodsModels);
-                }
-
-                foreach ($request->order_address as $address) {
-                    $orderAddressModels = OrderAddress::make($address);
-                }
-                if (!empty($orderAddressModels)) {
-                    $orderModel->address()->save($orderAddressModels);
-                }
-
-                event( new AddOrder($orderModel) );
-                DB::commit();
-            } catch (Exception $e) {
-                DB::rollback();
-                return  $this->error([], $e->getMessage());
+            $orderModel = OrderBasic::make($allData);
+            $re = $orderModel->save();
+            if (!$re) {
+                throw new  \Exception('订单创建失败');
+            }
+            $orderGoodsModels = [];
+            foreach ($request->order_goods as $goods) {
+                $goods['unit_type'] = GoodsDetails::getUnitTypes($goods['unit_type']);
+                $orderGoodsModels[] = OrderGoods::make($goods);
+            }
+            //                 $orderGoodsModels = array_map(function($goods){
+            //                     return OrderGoods::make($goods);
+            //                 }, $request->order_goods);
+            if (!empty($orderGoodsModels)) {
+                $orderModel->goods()->saveMany($orderGoodsModels);
             }
             
-            return $this->success([$orderModel->id]);
-    	}
+            foreach ($request->order_address as $address) {
+                $orderAddressModels = OrderAddress::make($address);
+            }
+            if (!empty($orderAddressModels)) {
+                $orderModel->address()->save($orderAddressModels);
+            }
+            
+            event( new AddOrder($orderModel) );
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return  $this->error([], $e->getMessage());
+        }
+        
+        return $this->success([$orderModel->id]);
     }
 
     /**
@@ -148,7 +140,7 @@ class OrderBasicController extends Controller
     {
         //update 返回 bool
         //var_dump(Department::find($id));die();
-        $res = array(
+        /* $res = array(
             'goods_id' => $request->input('goods_id'),
             'order_all_money' => $request->input('order_all_money'),
             'order_pay_money' => $request->input('order_pay_money'),
@@ -157,8 +149,8 @@ class OrderBasicController extends Controller
             'exchange_check' => $request->input('exchange_check'),
             'check_status' => $request->input('check_status'),
             'order_status' => $request->input('order_status'),
-        );
-        $re = $this->repository->update($res, $id);
+        ); */
+        $re = $this->repository->update($request->all(), $id);
         if ($re) {
             return $this->success($re);
             //return 1;
@@ -197,5 +189,47 @@ class OrderBasicController extends Controller
     public function destroy(OrderBasic $orderBasic,$id)
     {
         $this->model->destroy($id);
+        return $this->success([]);
+    }
+    
+    public function updateCheckStatus(Request $request , $id)
+    {
+        $data = $request->all();
+        $this->model = $this->model->find($id);
+        $this->model->status = $data['status'];
+        $re = $this->model->save();
+        if ($re) {
+            DB::beginTransaction();
+            if ($data['status'] == 1) {
+                try {
+                    event( new OrderPass($this->model, auth()->user()));
+                    DB::commit();
+                } catch (Exception $e) {
+                    DB::rollback();
+                    return $this->error([], $e->getMessage());
+                }
+            } else {
+                
+            }
+            
+            return $this->success([]);
+        } else {
+            return $this->error([]);
+        }
+    }
+    
+    public function cancel(Request $request , $id)
+    {
+        DB::beginTransaction();
+        try {
+            $re = $this->repository->update(['status'=> OrderBasic::CANCEL], $id);
+            event(new OrderCancel(\App\models\OrderBasic::find($id)));
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            return $this->error([], $e->getMessage());
+        }
+        
+        return $this->success([]);
     }
 }

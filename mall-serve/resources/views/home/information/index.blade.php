@@ -5,9 +5,6 @@
 @endsection
 
 @section('content')
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 protectBanner">
-        <img src="/images/home/product/banner.jpg" style="width: 100%;" alt="">
-    </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 protectContent">
 
         <div class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 lle">

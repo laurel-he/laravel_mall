@@ -44,7 +44,7 @@
                     <el-table-column prop="goods_name" label="商品名称" width="180" align="center">
                     </el-table-column>
 
-                    <el-table-column  label="图片" width="180" align="center">
+                    <el-table-column  label="图片" width="100" align="center">
                         <template slot-scope="scope">
                             <img :src="scope.row.cover_url" width="50" height="50" alt="">
                         </template>
@@ -56,7 +56,7 @@
                     <el-table-column prop="goods_number" label="商品货号" align="center">
                     </el-table-column>
 
-                    <el-table-column prop="goods_type" label="商品分类" align="center">
+                    <el-table-column prop="goods_type" label="商品分类" width="180" align="center">
                         <template slot-scope="scope">
                             {{ displayCategory(scope.row.category) }}
                         </template>
@@ -67,25 +67,31 @@
                             {{setUnitTypes(scope.row.unit_type)}}
                         </template>
                     </el-table-column>
-                    <!-- <el-table-column prop="new_goods" label="新品" align="center">
+                    <el-table-column prop="new_goods" label="新品首发" align="center">
                         <template slot-scope="scope">
                             <el-switch
                                     v-model="scope.row.new_goods"
                                     on-color="#13ce66"
-                                    off-color="#ff4949">
+                                    off-color="#ff4949"
+                                    :on-value="1" 
+                                    :off-value="0"
+                                    @change="setNewgoodsChange(scope.row)">
                             </el-switch>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="hot_goods" label="热卖" align="center">
+                    <el-table-column prop="hot_goods" label="畅销精品" align="center">
                         <template slot-scope="scope">
                             <el-switch
                                     v-model="scope.row.hot_goods"
                                     on-color="#13ce66"
-                                    off-color="#ff4949">
+                                    off-color="#ff4949"
+                                    :on-value="1" 
+                                    :off-value="0"
+                                    @change="setHotgoodsChange(scope.row)">
                             </el-switch>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="recommend_goods" label="推荐" align="center">
+                    <!-- <el-table-column prop="recommend_goods" label="推荐" align="center">
                         <template slot-scope="scope">
                             <el-switch
                                     v-model="scope.row.recommend_goods"
@@ -103,9 +109,11 @@
 
                     <el-table-column  label="操作" align="center" width="200">
                         <template slot-scope="scope">
-                            <el-button type="info" size="small" @click="showEdit(scope.row.id)">编辑</el-button>
-                            <el-button type="info" size="small" @click="showSpec(scope.row)">规格</el-button>
-                            <el-button type="danger" size="small" @click="handleDelete(scope.row.id)">删除</el-button>
+                            <el-button-group>
+                                <el-button type="info" size="small" @click="showEdit(scope.row.id)">编辑</el-button>
+                                <el-button type="info" size="small" @click="showSpec(scope.row)">规格</el-button>
+                                <el-button type="danger" size="small" @click="handleDelete(scope.row.id)">删除</el-button>
+                            </el-button-group>
                         </template>
                     </el-table-column>
 

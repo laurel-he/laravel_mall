@@ -46,7 +46,9 @@ class ExpressCompanyController extends Controller
      */
     public function store(Request $request)
     {
-        ExpressCompany::create($request->all());
+        $this->validate($request, ['eng'=>'required|unique:express_companies|max:2'],['eng.unique'=>'编号前缀已使用']);
+        $model = ExpressCompany::create($request->all());
+        return $this->success($model);
     }
 
     /**

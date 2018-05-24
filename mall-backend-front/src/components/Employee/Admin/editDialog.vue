@@ -35,7 +35,7 @@
                             <el-col :span="12">
                                 <el-form-item label="所属部门" prop="department_id">
                                     <el-select   v-model="editForm.department_id" placeholder="部门" @change="departmentChange">
-                                        <el-option label="请选择" :value="0"></el-option>
+                                        <!-- <el-option label="请选择" :value="0"></el-option> -->
                                         <el-option v-for="v in departments" :label="v.name"
                                                    :value="v.id" :key="v.id">
                                         </el-option>
@@ -44,8 +44,8 @@
                             </el-col>
                             <el-col :span="12">
                                 <el-form-item label="所属团队" prop="group_id" >
-                                    <el-select v-model="editForm.group_id" placeholder="团队小组">
-                                        <el-option label="请选择" :value="0"></el-option>
+                                    <el-select v-model="editForm.group_id" clearable placeholder="团队小组">
+                                        <el-option label="无" :value="0"></el-option>
                                         <el-option
                                                 v-for="group in groups"
                                                 :label="group.name"
@@ -159,7 +159,65 @@
 
 
                     </el-tab-pane>
-                    
+                    <el-tab-pane label="身份证照" name="third">
+                        <el-row>
+                            <el-col :span="24">
+                                <el-form-item label="手持身份证照">
+                                    <el-upload
+                                        class="avatar-uploader"
+                                        name="avatar"
+                                        :data="carParam"
+                                        :action="url"
+                                        accept="image/gif, image/jpeg,image/jpg,image/png"
+                                        :show-file-list="false"
+                                        :on-success="handleCardImg"
+                                        :on-error="uploadError"
+                                        :before-upload="beforeAvatarUpload">
+                                        <img v-if="cardImg" :src="cardImg" class="avatar show-img">
+                                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                    </el-upload>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row>
+                            <el-col :span="24">
+                                <el-form-item label="身份证正面照">
+                                    <el-upload
+                                        class="avatar-uploader"
+                                        name="avatar"
+                                        :data="carParam"
+                                        :action="url"
+                                        accept="image/gif, image/jpeg,image/jpg,image/png"
+                                        :show-file-list="false"
+                                        :on-success="handleCardFront"
+                                        :on-error="uploadError"
+                                        :before-upload="beforeAvatarUpload">
+                                        <img v-if="cardFront" :src="cardFront" class="avatar show-img">
+                                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                    </el-upload>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row>
+                            <el-col :span="24">
+                                <el-form-item label="身份证反面照">
+                                    <el-upload
+                                        class="avatar-uploader"
+                                        name="avatar"
+                                        :data="carParam"
+                                        :action="url"
+                                        accept="image/gif, image/jpeg,image/jpg,image/png"
+                                        :show-file-list="false"
+                                        :on-success="handleCardBack"
+                                        :on-error="uploadError"
+                                        :before-upload="beforeAvatarUpload">
+                                        <img v-if="cardBack" :src="cardBack" class="avatar show-img">
+                                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                    </el-upload>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-tab-pane>
                 </el-tabs>
             </el-form>
             <div slot="dialog-foot" >
@@ -178,8 +236,7 @@
     import { mapGetters } from 'vuex';
 
     import APP_CONST from '../../../config';
-
-    
+    import { PHONE_REG,QQ_REG } from "@/config/index";
     export default {
         name: 'editDialog',
         mixins:[DialogForm,getGroupsByPid],
@@ -198,11 +255,15 @@
             return {
                 dialogThis: this,
                 labelPosition:"right",
-                labelWidth:'80px',
+                labelWidth:'100px',
                 url:APP_CONST.UPLOAD_URL,
                 uplaodParam:{  name:"avater", subdir:'asdf' },
                 uploadImg:"",
                 activeName:'first',
+                carParam:{subdir:'IDCar'},
+                cardImg:'',
+                cardFront:'',
+                cardBack:'',
                 groups:[],
                 editForm:{
                     id:'',
@@ -210,7 +271,7 @@
                     // account:"",
                     // password:"123456",
                     role_ids:[],
-                    group_id:0,
+                    group_id:'',
                     department_id:"",
                     sex:'',
                     telephone:"",
@@ -222,6 +283,9 @@
                     weixin:"",
                     weixin_nickname:"",
                     id_card:"",
+                    card_img:'',
+                    card_front:'',
+                    card_back:'',
                     // location:'成都市',
                     // ip:'192.168.0.1',
                     // create_name:"系统管理员",
@@ -232,7 +296,13 @@
                 rules:{
                     // account:[
                     //     { required: true, message:"账号必填", type:'string'}
-                    // ]
+                    // ],
+                    mobilephone:[
+                        { required: true, message:'请输入正确的手机号', pattern: PHONE_REG, trigger:'blur'},
+                    ],
+                    qq:[
+                        { required: true, message:'请输入正确格式的QQ号',  pattern: QQ_REG, trigger:'blur'},
+                    ],
                 },
                 model:''
 
@@ -244,13 +314,17 @@
                 this.groups=[];
                 this.getGroupsAjax(v);
                 if (this.model.department_id != v) {
-                    this.editForm.group_id = 0 ;
+                    this.editForm.group_id = '' ;
                 }
                 
             },
             onOpen(param){
                 this.model = param.params.model;
+                console.log(this.model);
                 this.uploadImg=this.model.head;
+                this.cardImg=this.model.card_img;
+                this.cardFront=this.model.card_front;
+                this.cardBack=this.model.card_back;
                 // this.getGroupsAjax(param.params.model.department_id);
             },
             getAjaxPromise(model){
@@ -280,7 +354,29 @@
             },
             resetUploadImg (){
                 this.uploadImg = "";
-            }
+            },
+            handleCardImg(response, file, fileList){
+                this.editForm.card_img = response.data.url;
+                this.cardImg = URL.createObjectURL(file.raw);
+            },
+            handleCardFront(response, file, fileLis){
+                this.editForm.card_front = response.data.url;
+                this.cardFront = URL.createObjectURL(file.raw);
+            },
+            handleCardBack(response, file, fileLis){
+                this.editForm.card_back = response.data.url;
+                this.cardBack = URL.createObjectURL(file.raw);
+            },
+            uploadError(err, file, fileList){
+                this.$message.error('上传出错：' + err.msg);
+            },
+            beforeAvatarUpload(file) {
+                const isLt2M = file.size / 1024 / 1024 < 2;
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                return isLt2M;
+            },
 
         },
         watch:{
@@ -301,9 +397,7 @@
                 }
 
                 this.departmentChange(this.editForm.department_id);
-
-
-            }
+            },
         },
         created(){
             this.$on('submit-final', this.resetUploadImg);
@@ -313,12 +407,17 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    @import "../style/index.css";
     .avatar{
         max-width: 200px;
         max-height: 200px;
     }
     .name-input{
         max-width: 217px;
+    }
+    .show-img{
+       max-width: 180px;
+       max-height:180px; 
     }
 </style>
 

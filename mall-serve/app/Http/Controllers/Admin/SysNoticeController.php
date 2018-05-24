@@ -31,8 +31,8 @@ class SysNoticeController extends Controller
             ->select('sys_notices.*','user_basic.account')
             ->where($where)
             ->orderBy('sys_notices.created_at', 'desc')
-            ->get();
-        return ['items'=>$data,'total'=>count($data)];
+            ->paginate($request->input('pageSize'));
+        return ['items' => $data->items(), 'total' => $data->total()];
     }
 
     /**

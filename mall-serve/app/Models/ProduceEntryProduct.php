@@ -28,6 +28,6 @@ class ProduceEntryProduct extends Model
     
     public function produceEntry()
     {
-        return $this->belongsTo('App\Models\ProduceEntry', 'parent_id');
+        return $this->belongsTo('App\Models\ProduceEntry', 'parent_id')->select(['id', 'entry_sn','user_name','entry_at','comment']);
     }
 }

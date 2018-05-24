@@ -29,8 +29,8 @@ class Deposit extends Model
      */
     protected $fillable = [
     		'department_id',
-    		'group_id',
-    		'user_id',
+//     		'group_id',
+//     		'user_id',
     		'department_name',
     		'group_name',
     		'realname',
@@ -42,4 +42,12 @@ class Deposit extends Model
     		'charge_time',
     		'remark',
     ];
+    
+    
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department', 'department_id');
+    }
+    
+    
 }

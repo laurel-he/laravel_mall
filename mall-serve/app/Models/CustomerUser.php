@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class CustomerUser extends Model
 {
@@ -23,6 +24,7 @@ class CustomerUser extends Model
     	'user_id',
     	'cus_id',
     	'type',
+    	'plan',
     	'group_id',
     	'department_id',
     	'group_name',
@@ -54,6 +56,16 @@ class CustomerUser extends Model
     public function department()
     {
     	return $this->belongsTo('App\Models\Department', 'department_id');
+    }
+    
+    public function setConflict()
+    {
+        $this->last_conflict = Carbon::now();
+    }
+    
+    public function setTracked()
+    {
+        $this->last_track = Carbon::now();
     }
     
     

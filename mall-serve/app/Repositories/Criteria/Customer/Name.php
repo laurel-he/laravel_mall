@@ -18,7 +18,7 @@ class Name extends Criteria
 
     public function  apply($model, RepositoryInterface $repository)
     {
-        return $model->where('name', $this->name);
+        return $model->where('name','like',$this->name."%");
     }
 
 }

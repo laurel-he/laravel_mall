@@ -5,7 +5,7 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item  label="是否通过">
-                            <el-select size="small" placeholder="是否通过" v-model="checkForm.check_status">
+                            <el-select size="small" placeholder="是否通过" v-model="checkForm.status">
                                 <el-option
                                         v-for="check in c_status"
                                         :label="check.status"
@@ -30,6 +30,7 @@
 
 <script>
     import DialogForm from '../../mix/DialogForm';
+    import { mapGetters } from 'vuex';
     export default {
         name: 'checkDialog',
         mixins:[DialogForm],
@@ -47,27 +48,24 @@
                 labelPosition:"right",
                 labelWidth:'100px',
                 checkForm:{
+                    id:"",
+                    status:'',
+
                 },
-                order_statuslist:[
-                    {id:'0',status:'未付款'},
-                    {id:'1',status:'待确认'},
-                    {id:'2',status:'已完成'},
-                    {id:'3',status:'已关闭'},
-                    {id:'4',status:'退款中'},
-                ],
-                shipping_statuslist:[
-                    {id:'0',status:'待发货'},
-                    {id:'1',status:'已发货'},
-                    {id:'2',status:'已收货'},
-                ],
+                
                 c_status:[
                     {id:'1', status:'通过'},
-                    {id:'2', status:'未通过'}
+                    {id:'6', status:'未通过'}
                 ],
 
             }
         },
-
+        computed:{
+            ...mapGetters({
+                'auditor_id':'user_id',
+                'auditor_name':'realname'
+            })
+        },
         methods:{
             addFormSubmit:function(){
                 console.log(this.checkForm);
@@ -83,15 +81,21 @@
                 this.checkForm.into_time = v;
             },
             onOpen(event){
-              this.checkForm = event.params.row;
+                console.log(event);
+                this.checkForm.id = event.params.row.id;
+                // this.checkForm.status = event.params.row.status;
             },
             getAjaxPromise(model){
                 delete model.cus_name;
                 delete model.user_name;
-                return this.ajaxProxy.update(model.id, model);
+                return this.ajaxProxy.updateCheckStatus(model.id, model);
             },
         },
-
+        created(){
+            //需要检测 reset 会不会 把下面的置空
+            this.checkForm.auditor_id = this.user_id;
+            this.checkForm.auditor_name = this.realname;
+        }
     }
 </script>
 

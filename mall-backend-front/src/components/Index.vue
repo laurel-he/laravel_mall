@@ -11,12 +11,12 @@
                     <div class="top-date">北京时间 {{dateTime}}</div>
                 </el-col>
                 <el-col  :span="6">
-                    <div class="top-name">销售二区-猛龙组-特朗普</div>
+                    <div class="top-name">{{realname}}</div>
                     <el-menu class="el-menu-demo" id="top-css" mode="horizontal" @select="handleSelect">
                         <el-submenu index="999">
-                            <template slot="title">特朗普</template>
-                            <!-- <el-menu-item index="UserInfo"><i class="el-icon-setting"></i>个人信息</el-menu-item> -->
-                            <!-- <el-menu-item index="UserSetting"><i class="el-icon-setting"></i>设置密码</el-menu-item> -->
+                            <template slot="title">{{realname}}</template>
+                            <!-- <el-menu-item index="UserInfo"><i class="el-icon-edit"></i>个人信息</el-menu-item> -->
+                            <el-menu-item index="UserSetting"><i class="el-icon-setting"></i>设置密码</el-menu-item>
                             <el-menu-item index="Logout"><i class="el-icon-circle-close"></i>退出登录</el-menu-item>
                         </el-submenu>
                     </el-menu>
@@ -61,7 +61,7 @@
 <script>
 
     // import Navgation from './Navgation.vue';
-    import { mapActions } from 'vuex';
+    import { mapActions,mapGetters } from 'vuex';
     import PageList from "./PageList";
     export default {
         name: 'Index',
@@ -70,7 +70,7 @@
         data () {
             return {
                 currentView:"",
-                editableTabsValue: '2',
+                editableTabsValue: '',
                 editableTabs: [],
 
                 exclude:[],
@@ -78,6 +78,11 @@
                 isshadow:false,
                 dateTime:'',
             }
+        },
+        computed:{
+            ...mapGetters({
+                'realname':'realname'
+            }),
         },
         methods:{
             ...mapActions([
@@ -135,18 +140,18 @@
 
                 let i = this.exclude.indexOf(component.$options.name);
                 if (i!=-1) {
-                    console.log('reset component', component.$options.name);
+                    // console.log('reset component', component.$options.name);
                     component.$emit('page-reset');
                     this.exclude.splice(i,1);
                 }
             },
             beforeDestroy(name){
-                console.log('set destroy');
+                // console.log('set destroy');
                 // this.$nextTick(function () {
 
                 // })
                 l
-                console.log(this.exclude);
+                // console.log(this.exclude);
             },
 
             navChange(name){
@@ -247,7 +252,9 @@
         },
         mounted:function(){
             let vThis = this;
-            this.navChange('ShelvesManagement');
+
+            this.navChange('Workbench');
+
             setInterval(function(){
                 vThis.getCurDate();
             }, 1000);

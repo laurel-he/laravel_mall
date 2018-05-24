@@ -185,7 +185,8 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	$re = $this->repository->update($request->except(['role_ids']), $id);
+        // var_dump($request->all());
+    	$re = $this->repository->update($request->except(['role_ids','roles']), $id);
     	$mode = User::find($id);
 //     	dd($mode);
         event(new AddEmployee($mode, $request->input('role_ids',[])));
@@ -246,9 +247,9 @@ class EmployeeController extends Controller
     	$data['password'] = bcrypt($request->input('password'));
     	$re = User::where('id', $id)->update($data);
     	if ($re) {
-    		return $this->success(1);
+    		return $this->success($re,'修改成功');
     	} else {
-    		return $this->error(0);
+    		return $this->error($re,'修改失败');
     	}
     }
 }

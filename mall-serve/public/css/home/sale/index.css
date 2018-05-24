@@ -1,0 +1,96 @@
+
+body{
+    background: #F2F2F2;
+}
+
+.saleCon{
+    padding: 0;
+}
+
+#saleBest{
+
+}
+
+#saleBest div{
+    padding: 0;
+}
+
+#saleBest .saleBestTitle{
+    line-height: 40px;
+}
+
+#saleBest .saleBestTitle a{
+    text-decoration: none;
+    color: #666;
+}
+
+#saleBest .saleBestTitle span{
+    color: #DF385F;
+}
+
+#saleBest .saleLists{
+    background: #fff;
+    margin-bottom: 40px;
+}
+
+#saleBest .saleLists .saleList{
+    padding: 15px;
+    border: 1px solid #fff;
+}
+
+#saleBest .saleLists .saleList:hover{
+    border: 1px solid #FF0EA7;
+}
+
+#saleBest .saleLists .saleList .mainImg{
+    width: 100%;
+    min-width: 200px;
+    height: 260px;
+    
+}
+
+#saleBest .saleLists .saleList .listTitle{
+    line-height: 20px;
+    height: 60px;
+    overflow: hidden;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+#saleBest .saleLists .saleList .listPrice{
+    line-height: 30px;
+    margin-top: 5px;
+}
+
+#saleBest .saleLists .saleList .listPrice span{
+    margin-right: 5px;
+}
+
+#saleBest .saleLists .saleList .listPrice .price{
+    color: #F6059F;
+}
+
+#saleBest .saleLists .saleList .listPrice .saleN{
+    width: 40px;
+    height: 20px;
+    background: #F5D29C;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+#saleBest .saleLists .saleList .listPrice .saleB{
+    background: #C0A36B;
+}
+
+#saleBest .saleLists .saleList .listPrice .shop{
+    float: right;
+    cursor: pointer;
+}

@@ -7,7 +7,7 @@ class OrdergoodsRepository extends Repository
 {
     public function  model()
     {
-        return 'App\Models\Ordergoods';
+        return 'App\Models\OrderGoods';
     }
     public static function  setVisible($collection, $attributes)
     {

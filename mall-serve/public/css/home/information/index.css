@@ -1,7 +1,4 @@
 
-.protectBanner{
-    padding: 0;
-}
 
 .protectContent{
     padding: 20px;
@@ -25,7 +22,7 @@
     font-size: 22px;
     font-weight: bold;
     line-height: 40px;
-    border-bottom: 1px solid #4cae4c;
+    border-bottom: 1px solid #bf9d63;
     padding-bottom: 15px;
 }
 
@@ -80,8 +77,8 @@
 
 .protectForm .userPhone input:focus{
     outline: none;
-    border: 1px solid #4cae4c;
-    box-shadow: 0 0 5px #4cae4c;
+    border: 1px solid #bf9d63;
+    box-shadow: 0 0 5px #bf9d63;
 }
 
 .protectForm .userPhone .codeBox{
@@ -109,7 +106,7 @@
     height: 40px;
     line-height: 40px ;
     text-align: center;
-    background: #45A87A;
+    background: #bf9d63;
     color: #fff;
     margin: 0 auto;
     border-radius: 5px;

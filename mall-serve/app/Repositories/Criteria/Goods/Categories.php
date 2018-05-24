@@ -28,7 +28,8 @@ class Categories extends Criteria
 // 		return $model->category()->WherePivotIn('cate_id', $this->cate); //会添加 goods_id is null 
 		$cates = $this->cate;
 		return $model->whereHas('midCate', function ($query) use($cates) {
-					$query->whereIn('cate_id', $cates);
+// 					$query->whereIn('cate_id', $cates);
+                    $query->where('cate_id', $cates[count($cates)-1]);
 			   });
 	}
 }

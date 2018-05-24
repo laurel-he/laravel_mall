@@ -25,9 +25,7 @@
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="负责人" prop="shelves_manager_id" >
-                            <el-select v-model="editForm.shelves_manager_id" placeholder="请选择负责人" @change="managerChange">
-                                <el-option v-for="v in managers" :label="v.name" :value="v.id" :key="v.id"></el-option>
-                            </el-select>
+                            {{editForm.shelves_manager_name}}
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -93,10 +91,12 @@
                 model:'',
                 rules:{
                     shelves_name:[
-                        { required: true, message: '请输入货架名称', trigger: 'blur' }
+                        { required: true, message: '请输入货架名称', trigger: 'blur' },
+                        { max:20, message: '输入的内容不能超过20个字符', trigger: 'blur' }
                     ],
                     shelves_num:[
                         { required: true, message:'请输入货架编号', trigger: 'blur', },
+                        { max:20, message: '输入的内容不能超过20个字符', trigger: 'blur' }
                     ],
                     distributor_id:[
                         { required: true,message:'请选择配送中心', type: 'number', trigger:'change'}
@@ -115,6 +115,9 @@
             loadUsers(data){
                 this.computedusers = data.items;
             },
+            // formSubmit(){
+            //     console.log(this.editForm);
+            // },
             onOpen(param){
                 this.model = param.params.model;
             },

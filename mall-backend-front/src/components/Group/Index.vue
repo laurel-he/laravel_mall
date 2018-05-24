@@ -42,7 +42,7 @@
                     :param="mainparam"
                     @dbclick="doubleClick"
                     :bubble="bubble"
-                    :reload="dataTableReload">
+                    :reload="dataTableReload" :page-size="15">
                     <el-table-column label="序号" align="center" type="index" width="65"> 
                     </el-table-column>
 
@@ -80,7 +80,7 @@
                         </template>
                     </el-table-column>
 
-                    <el-table-column prop="remarks" label="说明备注" align="center">
+                    <el-table-column prop="remarks" label="说明备注" align="center" :show-overflow-tooltip="true">
                     </el-table-column>
 
                     <el-table-column   align="center" width="180" fixed="right"  label="操作"  >

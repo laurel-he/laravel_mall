@@ -46,7 +46,7 @@
                 <TableProxy
                         :url="mainurl"
                         :param="mainparam"
-                        :reload="dataTableReload">
+                        :reload="dataTableReload" :page-size="15">
                     <el-table-column label="序号" align="center"  type="index" width="65">
                     </el-table-column>
                     <el-table-column label="单位名"  prop="name" >
@@ -66,6 +66,7 @@
                             {{ scope.row.manager ? scope.row.manager.mobilephone : '' }}
                         </template>
                     </el-table-column>
+                    <el-table-column label="保证金"　prop="deposit"></el-table-column>
                     <!-- 让这个部门的人暂无法登录 -->
                     <el-table-column label="是否启用" align="center" prop="status">
                         <template slot-scope="scope">
@@ -80,7 +81,7 @@
                         </template>
                     </el-table-column>
 
-                    <el-table-column prop="remarks" label="备注" >
+                    <el-table-column prop="remarks" label="备注" :show-overflow-tooltip="true">
                     </el-table-column>
 
                     <el-table-column   align="center" width="180" fixed="right"  label="操作"  >
@@ -224,7 +225,6 @@ export default {
 
         },
         loadEntrepot(data){
-            console.log(data);
             this.entrepotlist = data.items;
         }
 
@@ -235,7 +235,7 @@ export default {
         this.departMentInit();
         
         this.entrepot = new DistributionCenterSelectProxy({}, this.loadEntrepot, this);
-
+        this.entrepot.load()
 
     }
 }

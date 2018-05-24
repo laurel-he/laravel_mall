@@ -72,6 +72,9 @@ class User extends Authenticatable
     	'creator_name',
         'location',
         'deposit_money',
+        'card_img',
+        'card_front',
+        'card_back',
 
     ];
     protected $appends = [
@@ -101,13 +104,7 @@ class User extends Authenticatable
     {
         return '普通';
     }
-    public function  getHeadAttribute($value) 
-    {
-        if($value){
-            $value = asset($value);
-        }
-        return $value;
-    }
+
     
     public function getRoles($withHidden = true)
     {
@@ -123,6 +120,18 @@ class User extends Authenticatable
                 return true;
             }
         });
+    }
+    
+    public function isSuperAdmin()
+    {
+        $roles  = $this->roles;
+        return $roles->contains('name','super-manager');
+    }
+    
+    public function isAdministrator()
+    {
+        $roles  = $this->roles;
+        return $roles->contains('name','administrator');
     }
     
     
@@ -147,9 +156,40 @@ class User extends Authenticatable
     
     public function getEntrepotId()
     {
-        return  empty($this->department_id) ? 
+        
+        return  $this->department_id == 0 ? 
         0 : 
-        empty($this->department->entrepot_id) ? 0 : $this->department->entrepot_id ;
+        (empty($this->department->entrepot_id) ? 0 : $this->department->entrepot_id) ;
+    }
+
+    /**
+     * 获取封面图片。
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCardImgAttribute($value)
+    {
+        if($value){
+            $value = asset($this->attributes['card_img']);
+        }
+        return $value;
+    }
+
+    public function getCardFrontAttribute($value)
+    {
+        if($value){
+            $value = asset($this->attributes['card_front']);
+        }
+        return $value;
+    }
+
+    public function getCardBackAttribute($value)
+    {
+        if($value){
+            $value = asset($this->attributes['card_back']);
+        }
+        return $value;
     }
     
 }

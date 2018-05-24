@@ -21,7 +21,8 @@
                 <TableProxy
                         :url="mainurl"
                         :param="mainparam"
-                        :reload="dataTableReload">
+                        :reload="dataTableReload"
+                        :page-size="15">
                     <el-table-column label="序号" align="center"  type="index" width="65"></el-table-column>
 
                     <el-table-column label="公告类型"  prop="type_id" align="center">
@@ -38,7 +39,7 @@
 
                     <el-table-column prop="title" label="公告标题" align="center"></el-table-column>
 
-                    <el-table-column prop="content" label="公告内容" align="center"></el-table-column>
+                    <el-table-column prop="content" label="公告内容" align="center" :show-overflow-tooltip="true"></el-table-column>
 
                     <el-table-column prop="start_time" label="开始日期"  align="center"></el-table-column>
                     

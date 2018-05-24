@@ -1,50 +1,47 @@
 <template>
     <div >
-        <MyDialog title="货架拣货" :name="name" :width="width" :height="height" >
+        <MyDialog title="货架上货" :name="name" :width="width" :height="height" @before-open="onBeforeOpen">
             <el-form :model="addForm"  :label-width="labelWidth"  ref="addForm" :label-position="labelPosition">
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item label="货架编号" prop="production_in_number" >
-                            <el-input class="name-input" v-model="number"  auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
+                        <el-form-item label="货架编号" prop="shelves_num" >
+                            {{model.shelves_num}}
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item label="货架状态" prop="production_in_number" >
-                            <el-input class="name-input" v-model="text"  auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="12">
-                        <el-form-item label="已放数量" prop="production_in_number" >
-                            <el-input class="name-input" v-model="putNumber"  auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="12">
-                        <el-form-item label="面編数量" prop="production_in_number" >
-                            <el-input class="name-input"  v-model="allNumber" auto-complete="off" :disabled="true" placeholder="请填写入放入数量"></el-input>
+                        <el-form-item label="货架状态" prop="shelves_status" >
+                                <span v-if="model.shelves_status==0">空</span>
+                                <span v-if="model.shelves_status==1">满</span>
+                                <span v-if="model.shelves_status==2">坏</span>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item prop="goods_type_id"  label="商品类型">
-                            <el-select
-                                    v-model="addForm.goods_type_id"
-
-                                    placeholder="商品类型">
-                                <el-option v-for="v in types" :label="v.name"
+                        <el-form-item label="已放数量" prop="deposit_num" >
+                            {{model.deposit_num}}
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="满編数量" prop="full_num" >
+                            <el-input class="name-input" v-model="full_num"  auto-complete="off" placeholder="请填写满編数量"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item prop="cate_type_id"  label="商品类型">
+                            <el-select v-model="addForm.cate_type_id" size="small" placeholder="商品类型" clearable @change="cate_type_change">
+                                <el-option v-for="v in CategoryList" :label="v.label"
                                            :value="v.id" :key="v.id">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item prop="product_id"  label="商品种类">
-                            <el-select
-                                    v-model="addForm.product_id"
-                                    placeholder="商品种类">
-                                <el-option v-for="v in productNames" :label="v.name"
+                        <el-form-item prop="cate_kind_id"  label="商品种类">
+                            <el-select v-model="addForm.cate_kind_id" size="small" placeholder="商品品类" @change="setKindName">
+                                <el-option v-for="v in CategoryChildrenList" :label="v.label"
                                            :value="v.id" :key="v.id">
                                 </el-option>
                             </el-select>
@@ -59,18 +56,17 @@
                     </el-col>
 
                     <el-col :span="12">
-                        <el-form-item label="商品编号" prop="goods_number" >
-                            <el-input class="name-input" v-model="addForm.goods_number"  auto-complete="off" placeholder="请填写商品编号"></el-input>
+                        <el-form-item label="商品编号" prop="sku_sn" >
+                            <el-input class="name-input" v-model="addForm.sku_sn"  auto-complete="off" placeholder="请填写商品编号"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
                <el-row>
                    <el-col :span="12">
-                       <el-form-item label="放入数量" prop="production_in_number" >
-                           <el-input class="name-input" v-model="addForm.production_in_number"  auto-complete="off" placeholder="请填写入放入数量"></el-input>
+                       <el-form-item label="放入数量" prop="goods_num" >
+                           <el-input class="name-input" v-model="addForm.goods_num"  auto-complete="off" placeholder="请填写入放入数量"></el-input>
                        </el-form-item>
                    </el-col>
-
                </el-row>
                 <el-row>
                     <el-col :span="24">
@@ -84,7 +80,7 @@
                 <el-button @click="handleClose">取 消</el-button>
                 <submit-button
                     :observer="dialogThis"
-                    @click="formSubmit('addForm')" >
+                    @click="beforeFormSubmit('addForm')" >
                     保 存
                 </submit-button>
             </div>
@@ -95,29 +91,28 @@
 <script>
 
     import DialogForm from '../../mix/DialogForm';
-    import EmployeeSelectProxy from '../../packages/EmployeeSelectProxy';
+    import SelectProxy from  '../../packages/SelectProxy';
+    import ShelvesManagementSelectProxy from '../../packages/ShelvesManagementSelectProxy';
+
     import { mapGetters } from 'vuex';
 
     // import Dialog from '../common/Dialog';
     export default {
         name: 'addDialog',
         mixins:[DialogForm],
-        // props:{
-        //
-        // },
-        // components:{
-        //     Dialog
-        // },
+        props:{
+            CategoryList:{
+                type:Array
+            }
+        },
+
         data () {
             return {
                 dialogThis:this,
                 labelPosition:"right",
                 labelWidth:'80px',
                 computedusers:[],
-                text:'满',
-                number:21354,
-                allNumber:50,
-                putNumber:20,
+                CategoryChildrenList:[],
                 types: [
                     {id:1,name:'面膜'},
                     {id:2,name:'爽肤水'},
@@ -139,17 +134,17 @@
                     {id:2,name:'圆通'},
                 ],
                 addForm:{
-                    product_id: "",
-                    warehouse_number: "",
-                    production_in_number: "",
-                    goods_type_id: '',
-                    goods_number: '',
-                    storage_id: '',
-                    production_in_time: '',
-                    distribution_id: '',
-                    remarks:''
+                    shelves_id: "",
+                    cate_type_id: "",
+                    cate_type: "",
+                    cate_kind_id: "",
+                    cate_kind: "",
+                    goods_name: '',
+                    goods_num:'',
+                    sku_sn: '',
+                    remarks:'',
+                    shelvesData:{}
                 },
-
                 rules:{
                     name:[
                         { required: true, message: '请输入小组名称', trigger: 'blur' }
@@ -160,30 +155,71 @@
                     remarks:[
                         { message:'输入内容最大长度为200', type: 'string', trigger:'blur', max:200}
               ]
-                }
+                },
+                model:"",
+                full_num:'',
+                deposit_num:'',
             }
         },
         computed:{
-            ...mapGetters({
-                'user_department_id':'department_id'
-            }),
 
         },
         methods:{
             getAjaxPromise(model){
                 return this.ajaxProxy.create(model);
             },
-            loadUsers(data){
-                this.computedusers = data.items;
+            setKindName(v){
+                let item = '';
+                for(item in this.CategoryChildrenList){
+                    if(this.CategoryChildrenList[item]['id'] ==v){
+                        this.addForm.cate_kind=this.CategoryChildrenList[item]['label']
+                    }
+                }
             },
-            onDepartChange(v){
-                this.employeeSelect.setParam({department_id:v, role:'group-captain', group_candidate:1})
-                this.employeeSelect.load();
-                this.addForm.manager_id = "";
+            beforeFormSubmit(name){
+                this.deposit_num =parseInt(this.addForm.goods_num) + parseInt(this.deposit_num) ;
+                this.addForm.shelvesData={full_num:this.full_num,deposit_num:this.deposit_num};
+                this.addForm.shelves_id=this.model.id;
+
+                // console.log(this.addForm);
+                // return false;
+
+                this.formSubmit(name)
+                this.full_num='';
+                this.deposit_num='';
+                let data ={shelves_id:this.model.id};
+                let that = this;
+                this.ajaxProxy.get(data).then(function(response){
+                    that.$emit('add-submit',response.data)
+                })
             },
+            cate_type_change(v){
+                if(v){
+                    let selectProxy = new SelectProxy('/getCategorys/'+ v, this.getCategoryChildrenList, this);
+                    selectProxy.load();
+                    let item = '';
+                    for(item in this.CategoryList){
+                        if(this.CategoryList[item]['id'] ==v){
+                            this.addForm.cate_type=this.CategoryList[item]['label']
+                        }
+                    }
+                }
+            },
+            getCategoryChildrenList(data){
+                this.CategoryChildrenList=data;
+            },
+            onBeforeOpen(model) {
+                this.model =  model.params.model;
+                this.full_num =this.model.full_num;
+                this.deposit_num =this.model.deposit_num;
+            }
+        },
+        watch:{
+            model:function(val, oldVal){
+                this.initObject(val, this.addForm);
+            }
         },
         created(){
-            this.employeeSelect = new EmployeeSelectProxy({}, this.loadUsers, this);
 
         }
         

@@ -4,24 +4,24 @@
             <el-form :model="addForm"  :label-width="labelWidth"  ref="addForm" :label-position="labelPosition">
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item prop="goods_type_id"  label="商品类型">
+                        <el-form-item prop="cate_type_id"  label="商品类型">
                             <el-select
-                                    v-model="addForm.goods_type_id"
-
-                                    placeholder="商品类型">
-                                <el-option v-for="v in types" :label="v.name"
+                                    v-model="addForm.cate_type_id"
+                                    placeholder="商品类型"
+                                    @change="typeChange">
+                                <el-option v-for="v in types" :label="v.label"
                                            :value="v.id" :key="v.id">
                                 </el-option>
                             </el-select>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item prop="product_id"  label="商品品类">
+                        <el-form-item prop="cate_kind_id"  label="商品品类">
                             <el-select
-                                    v-model="addForm.product_id"
-
-                                    placeholder="商品品类">
-                                <el-option v-for="v in productNames" :label="v.name"
+                                    v-model="addForm.cate_kind_id"
+                                    placeholder="商品品类"
+                                    @change="kindChange">
+                                <el-option v-for="v in cate_kinds" :label="v.label"
                                            :value="v.id" :key="v.id">
                                 </el-option>
                             </el-select>
@@ -30,14 +30,32 @@
                 </el-row>
                 <el-row>
                     <el-col :span="12">
-                        <el-form-item label="坏货数量" prop="bad_in_number" >
-                            <el-input class="name-input" v-model="addForm.bad_in_number"  auto-complete="off" placeholder="请填写坏货入库数量"></el-input>
+                        <el-form-item prop="product_sale_type"  label="销售类型">
+                            <el-select
+                                    v-model="addForm.product_sale_type"
+                                    placeholder="商品品类">
+                                <el-option v-for="v in sale_type" :label="v.name"
+                                           :value="v.id" :key="v.id">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item prop="department_id"  label="配送中心">
+                        <el-form-item label="坏货数量" prop="num" >
+                            <el-input class="name-input" v-model="addForm.num"  auto-complete="off" placeholder="请填写坏货入库数量"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="商品编号" prop="sku_sn" >
+                            <el-input class="name-input" v-model="addForm.sku_sn"  auto-complete="off" placeholder="请填写商品编号"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item prop="entrepot_id"  label="配送中心">
                             <el-select
-                                    v-model="addForm.distribution_id"
+                                    v-model="addForm.entrepot_id"
 
                                     placeholder="配送中心">
                                 <el-option v-for="v in distributors" :label="v.name"
@@ -49,50 +67,32 @@
                 </el-row>
                 <el-row>
                     <el-col :span="12">
-                        <!--<el-form-item label="货物状态" prop="goodsState_id" >-->
-                            <!--<el-select-->
-                                    <!--v-model="addForm.goodsState_id"-->
-
-                                    <!--placeholder="货物状态">-->
-                                <!--<el-option v-for="v in goodsStates" :label="v.name"-->
-                                           <!--:value="v.id" :key="v.id">-->
-                                <!--</el-option>-->
-                            <!--</el-select>-->
-                        <!--</el-form-item>-->
-                    </el-col>
-                    <el-col :span="12">
-                        <el-form-item label="商品编号" prop="goods_number" >
-                            <el-input class="name-input" v-model="addForm.goods_number"  auto-complete="off" placeholder="请填写商品编号"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="12">
-                        <el-form-item prop="storage_id"  label="入库人">
-                            <el-select
-                                    v-model="addForm.storage_id"
-
+                        <el-form-item prop="user_id"  label="入库人">
+                            {{ user_name }}
+                            <!-- <el-select
+                                    v-model="addForm.user_id"
                                     placeholder="入库人">
                                 <el-option v-for="v in storageUsers" :label="v.name"
                                            :value="v.id" :key="v.id">
                                 </el-option>
-                            </el-select>
+                            </el-select> -->
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item label="入库时间" prop="production_in_time" >
+                        <el-form-item label="入库时间" prop="reg_at" >
                             <el-date-picker
-                                    v-model="addForm.production_in_time"
+                                    v-model="addForm.reg_at"
                                     type="datetime"
-                                    placeholder="选择入库时间">
+                                    placeholder="选择入库时间"
+                                    @change="regChange">
                             </el-date-picker>
                         </el-form-item>
                     </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="24">
-                        <el-form-item label="备注"  prop="remarks">
-                            <el-input type="textarea"  auto-complete="off" v-model="addForm.remarks" placeholder="请填写备注"></el-input>
+                        <el-form-item label="备注"  prop="remark">
+                            <el-input type="textarea"  auto-complete="off" v-model="addForm.remark" placeholder="请填写备注"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -101,7 +101,7 @@
                 <el-button @click="handleClose">取 消</el-button>
                 <submit-button
                         :observer="dialogThis"
-                        @click="formSubmit('addForm')" >
+                        @click="beforeSubmit" >
                     保 存
                 </submit-button>
             </div>
@@ -113,15 +113,23 @@
 
     import DialogForm from '../../mix/DialogForm';
     import EmployeeSelectProxy from '../../packages/EmployeeSelectProxy';
+    import BadGoodsAjaxProxy from '@/ajaxProxy/BadGoods';
     import { mapGetters } from 'vuex';
 
     // import Dialog from '../common/Dialog';
     export default {
         name: 'addDialog',
         mixins:[DialogForm],
-        // props:{
-        //
-        // },
+        props:{
+            types:{
+                type: Array,
+                default:[]
+            },
+            distributors:{
+                type: Array,
+                default:[]
+            }
+        },
         // components:{
         //     Dialog
         // },
@@ -135,10 +143,7 @@
                     {id:1,name:'完好'},
                     {id:2,name:'损坏'},
                 ],
-                types: [
-                    {id:1,name:'面膜'},
-                    {id:2,name:'爽肤水'},
-                ],
+                
                 productNames: [
                     {id:1,name:'面膜 6张'},
                     {id:2,name:'爽肤水 200ml'},
@@ -151,44 +156,48 @@
                     {id:1,name:'面膜'},
                     {id:2,name:'爽肤水'},
                 ],
-                distributors: [
-                    {id:1,name:'顺丰'},
-                    {id:2,name:'圆通'},
-                ],
+                
                 addForm:{
-                    product_id: "",
-                    goodsState_id: "",
-                    bad_in_number: "",
-                    goods_type_id: '',
-                    goods_number: '',
-                    storage_id: '',
-                    production_in_time: '',
-                    distribution_id: '',
-                    remarks:''
+                    cate_type_id: "",
+                    cate_type:"",
+                    cate_kind_id:"",
+                    cate_kind:"",
+                    product_sale_type:2,
+                    num:"1",
+                    sku_sn:"",
+                    entrepot_id:"",
+                    user_id:"",
+                    user_name:"",
+                    reg_at:"",
+                    remark:""
                 },
+                
+                cate_kinds:[],
 
                 rules:{
-                    name:[
-                        { required: true, message: '请输入小组名称', trigger: 'blur' }
-                    ],
-                    department_id:[
-                        { required: true, message:'请选择所属部门', trigger: 'blur', type: 'number'}
-                    ],
-                    remarks:[
-                        { message:'输入内容最大长度为200', type: 'string', trigger:'blur', max:200}
-                    ]
+                    // name:[
+                    //     { required: true, message: '请输入小组名称', trigger: 'blur' }
+                    // ],
+                    // department_id:[
+                    //     { required: true, message:'请选择所属部门', trigger: 'blur', type: 'number'}
+                    // ],
+                    // remarks:[
+                    //     { message:'输入内容最大长度为200', type: 'string', trigger:'blur', max:200}
+                    // ]
                 }
             }
         },
         computed:{
             ...mapGetters({
-                'user_department_id':'department_id'
+                'sale_type':'saleType',
+                'user_id':'user_id',
+                'user_name':'realname'
             }),
 
         },
         methods:{
             getAjaxPromise(model){
-                return this.ajaxProxy.create(model);
+                return BadGoodsAjaxProxy.create(model);
             },
             loadUsers(data){
                 this.computedusers = data.items;
@@ -198,12 +207,35 @@
                 this.employeeSelect.load();
                 this.addForm.manager_id = "";
             },
+            typeChange(v){
+                for (let index = 0; index < this.types.length; index++) {
+                    const element = this.types[index];
+                    if (element.id == v) {
+                        this.addForm.cate_type = element.label;
+                        this.cate_kinds = element.children;
+                    }
+                }
+            },
+            kindChange(v){
+                for (let index = 0; index < this.cate_kinds.length; index++) {
+                    const element = this.cate_kinds[index];
+                    if (element.id == v) {
+                        this.addForm.cate_kind = element.label;
+                    }
+                }
+            },
+            beforeSubmit(){
+                this.addForm.user_id = this.user_id;
+                this.addForm.user_name = this.user_name;
+                this.formSubmit('addForm');
+            },
+            regChange(v){
+                this.addForm.reg_at = v;
+            }
         },
         created(){
             this.employeeSelect = new EmployeeSelectProxy({}, this.loadUsers, this);
-
         }
-
     }
 </script>
 

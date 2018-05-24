@@ -31,4 +31,10 @@ class EntrepotProductController extends Controller
         $re = $inventorySystem->getProductCount($user->department->entrepot_id, $sku_sn);
         return ['num'=>$re];
     }
+    
+    
+    public function idnex()
+    {
+        
+    }
 }

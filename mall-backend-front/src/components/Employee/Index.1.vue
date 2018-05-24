@@ -67,7 +67,7 @@
                     :url="mainurl" 
                     :param="mainparam"
                     :reload="dataTableReload"
-                    :bubble="bubble">
+                    :bubble="bubble" :page-size="15">
                     <el-table-column label="序号" width="70" type="index">
                     </el-table-column>
 
